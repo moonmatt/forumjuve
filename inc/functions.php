@@ -45,7 +45,8 @@ function loginErrors(){
 function loginCheck(){
     if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
         $username = $_SESSION["username"];
-        return array(True, $username);
+        $email = $_SESSION["email"];
+        return array(True, $username, $email);
       } else {
         return False;
       }

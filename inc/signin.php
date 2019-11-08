@@ -1,46 +1,52 @@
 <?php
+
+// Requires database and functions 
 require_once 'dbh.inc.php';
 require 'functions.php';
-// Initialize the session
+
+// Creates the errors array
 $errors = array(); 
 
+// Starts the session
 session_start();
-$_SESSION["login_errors"]=$errors;
+
+$_SESSION["login_errors"] = $errors; // Puts the Errors Array in the session, so it's visible from other pages
+
+$redirect = "../"; // Path to redirect
+$redirectLogin = "../login.php"; // Path to redirect
 
 
-if(isset($_POST['submit'])){
-    $username = stringEscape($_POST['username'], $conn);
-    $password = stringEscape($_POST['password'], $conn);
-    //  $password = hashPassword($password);
+
+if(isset($_POST['submit'])){ // If the login form is submitted
+    $username = stringEscape($_POST['username'], $conn); // Escapes dangerous characters
+    $password = stringEscape($_POST['password'], $conn); // Escapes dangerous characters
 
     $sql = "SELECT * FROM users WHERE username = '$username'";
     $result = mysqli_query($conn, $sql);
     $resultcheck = mysqli_num_rows($result);
 
-    if($resultcheck == 1){
+    if($resultcheck == 1){ // If there is 1 result
         while($row = mysqli_fetch_assoc($result)){
             $pwd = $row['pwd'];
-            echo "<br>PASSWORD 1 " . $password;
-            echo "<br>PASSWORD 2 " . $pwd . "<br>";
-
-            if(password_verify($password, $pwd)){
-                // Password is correct, then login
-
+            $username = $row['username'];
+            $email = $row['email'];
+            if(password_verify($password, $pwd)){ // If password is correct
                 $_SESSION['username'] = $username;
+                $_SESSION['email'] = $email;
                 $_SESSION['success'] = "You are now logged in";
-                header('location: /login/');
+                header('location: ' . $redirect);
                 die();
-            } else {
+            } else { // If password is not correct
                 array_push($errors, "The password is not correct");
                 $_SESSION["login_errors"] = $errors;
-                header('location: /login/');
+                header('location: ' . $redirectLogin);
                 die();
             }
         }
-    } else {
+    } else { // If there are no results
         array_push($errors, "The username does not exist");
         $_SESSION["login_errors"] = $errors;
-        header('location: /login/');
+        header('location: ' . $redirectLogin);
         die();
     }
  }

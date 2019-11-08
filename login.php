@@ -1,5 +1,10 @@
-<?php include 'inc/header.php'; ?>
+<?php include 'inc/header.php'; 
 
+if(loginCheck()[0]){
+    header('Location: /forumjuve');
+    die();
+  }
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,15 +19,23 @@
 
 
   </head>
-  <body class="bg-secondary d-flex flex-column">
+  <body>
 
     <div class="container">
     <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Juventus Forum</h1>
-    <p class="lead">Il forum dedicato a tutti i tifosi bianconeri.</p>
+    <h1 class="display-4">Fluid jumbotron</h1>
+    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
   </div>
 </div>
+    </div>
+    <div class="container">
+    <?php loginErrors(); ?>
+    <form action="inc/signin.php" method="POST">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <input type="submit" value="submit" name="submit">
+    </form>
     </div>
 
 
