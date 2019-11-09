@@ -1,12 +1,10 @@
 
-    <footer class="footer bg-dark text-muted" style="position: absolute; bottom: 0; width: 100%;">
+    <footer class="footer bg-dark text-muted p-2" style="position: absolute; bottom: 0; width: 100%;">
       <div class="container">
-        <span class="navbar-text">
-        © <?php echo date("Y"); ?> <a>moonmatt aka Matteo Galavotti
-    </span>
-    <span class="navbar-text float-right ">
-    Progetto su <a href="https://github.com/moonmatt/forumjuve" class="navbar-text m-auto">GitHub</a>
-    </span>
+      <div class="row">
+      <div class="col">© <?php echo date('Y');?> <a href="https://moonmatt.cf" class="text-muted">moonmatt</a> aka Matteo Galavotti</div>
+      <div class="col text-right">Progetto su <a href="https://github.com/moonmatt/forumjuve" class="text-light">GitHub</a></div>
+      </div>
       </div>
     </footer>
 

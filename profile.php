@@ -1,4 +1,10 @@
-<?php include 'inc/header.php'; ?>
+<?php
+include 'inc/header.php'; 
+
+$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+echo basename($actual_link);
+?>
 
 <!doctype html>
 <html lang="en">

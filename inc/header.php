@@ -25,7 +25,7 @@ if(loginCheck()){
   <!-- Image and text -->
   <nav class="navbar navbar-dark bg-dark">
   <div class="container">
-  <a class="navbar-brand" href="#">
+  <a class="navbar-brand" href="/forumjuve">
     <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
     JuveForum
   </a>
@@ -37,17 +37,17 @@ if(loginCheck()){
         '.$username.'
     </a>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="profile.php">Profilo</a>
+      <a class="dropdown-item" href="profile">Profilo</a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="inc/logout.php">Esci</a>
+      <a class="dropdown-item" href="inc/logout">Esci</a>
     </div>
   </div>
     ';
   } else {
     echo '
     <div class="span">
-    <a href="/forumjuve/signup.php" class="text-light align-baseline mr-2">Iscriviti</a>
-    <a href="/forumjuve/login.php"><button type="button" class="btn btn-secondary btn-sm align-baseline">Accedi</button></a>
+    <a href="/forumjuve/signup" class="text-light align-baseline mr-2">Iscriviti</a>
+    <a href="/forumjuve/login"><button type="button" class="btn btn-secondary btn-sm align-baseline">Accedi</button></a>
     </div>
     ';
   }

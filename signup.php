@@ -19,7 +19,7 @@ if(loginCheck()[0]){
 
 
   </head>
-  <body>
+  <body class="bg-secondary">
 
     <div class="container">
     <div class="jumbotron jumbotron-fluid">
