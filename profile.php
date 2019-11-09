@@ -1,7 +1,6 @@
 <?php
 include 'inc/header.php'; 
 
-
 ?>
 
 <!doctype html>
