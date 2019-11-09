@@ -1,8 +1,11 @@
 RewriteEngine on 
 
+ErrorDocument 404 /juveforum/erorre-404.html
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php [NC,L]
 
-RewriteRule ^user/(.+)[/]?$ profile.php?user=$1
+RewriteRule ^user/(.+)[/]?$ user/user.php?$1
+
+

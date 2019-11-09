@@ -1,7 +1,10 @@
 <?php
-include 'inc/header.php'; 
+include '../inc/header.php'; 
 
-
+$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$actual_link = basename($actual_link);
+$actual_link = stringEscape($actual_link, $conn);
+echo $actual_link;
 ?>
 
 <!doctype html>
@@ -54,6 +57,6 @@ include 'inc/header.php';
 
 
 
-<?php include 'inc/footer.php'; ?>
+<?php include '../inc/footer.php'; ?>
 
 </html>
