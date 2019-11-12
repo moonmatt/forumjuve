@@ -13,10 +13,12 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
         while($row = mysqli_fetch_assoc($result)){
             $username = $row['username'];
             $email = $row['email'];
-            echo $email;
+            $date = $row['date'];
+            $date = date("d-m-Y", strtotime($date));
         }
     } else {
-      echo "no username found";
+      header("Location: ../404.php");
+      die();
     }
 ?>
 
@@ -30,7 +32,7 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title><?php echo $username; ?> | ForumJuve</title>
 
 
   </head>
@@ -40,8 +42,8 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
 
     <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4">Juventus Forum</h1>
-    <p class="lead">Il forum dedicato a tutti i tifosi bianconeri.</p>
+    <h1 class="display-4"><?php echo $username; ?></h1>
+    <p class="lead">Utente dal <?php echo $date; ?></p>
   </div>
 
 </div>
