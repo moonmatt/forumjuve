@@ -3,8 +3,21 @@ include '../inc/header.php';
 
 $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $actual_link = basename($actual_link);
-$actual_link = stringEscape($actual_link, $conn);
-echo $actual_link;
+$username = stringEscape($actual_link, $conn);
+
+$sql = "SELECT * FROM users WHERE username = '$username'";
+    $result = mysqli_query($conn, $sql);
+    $resultcheck = mysqli_num_rows($result);
+
+    if($resultcheck == 1){ // If there is 1 result
+        while($row = mysqli_fetch_assoc($result)){
+            $username = $row['username'];
+            $email = $row['email'];
+            echo $email;
+        }
+    } else {
+      echo "no username found";
+    }
 ?>
 
 <!doctype html>

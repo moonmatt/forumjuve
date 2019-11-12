@@ -24,11 +24,13 @@ if(isset($_POST['submit'])){ // If the login form is submitted
     $rpassword = stringEscape($_POST['rpassword'], $conn);
 
     // Creates error messages
-    if (empty($username)) { array_push($errors, "Username is required"); }
-    if (empty($email)) { array_push($errors, "Email is required"); }
-    if (empty($password)) { array_push($errors, "Password is required"); }
+    if (empty($username)) { array_push($errors, "L'username è obbligatorio"); }
+    if (empty($email)) { array_push($errors, "L'email è obbligatoria"); }
+    if (empty($password)) { array_push($errors, "La password è obbligatoria"); }
+    if (!preg_match('[^A-Za-z0-9-_]+', $username)) { array_push($errors, "L'username non può contenere questi caratteri"); }
+    if (!preg_match('[^A-Za-z0-9-_.@+]+', $email)) { array_push($errors, "L'email non può contenere questi caratteri"); }
     if ($password != $rpassword) {
-      array_push($errors, "The two passwords do not match");
+      array_push($errors, "Le password non coincidono");
       $_SESSION["signup_errors"] = $errors;
     }
 
@@ -59,5 +61,9 @@ if(isset($_POST['submit'])){ // If the login form is submitted
         $sql = "INSERT INTO users (username, email, pwd) VALUES ('$username', '$email', '$password');";
         mysqli_query($conn, $sql);
         header('location: ' . $redirect);
+    } else {
+        $_SESSION["signup_errors"] = $errors;
+        header('location: ' . $redirectSignUp);
+        die();
     }
 }
