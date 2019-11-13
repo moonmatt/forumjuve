@@ -40,13 +40,27 @@ function loginErrors(){
     }
 }
 
+// Profile Error messages
+
+function profileErrors(){
+    if(isset($_SESSION['profile_errors']) && !empty($_SESSION['profile_errors'])) {
+        $error = $_SESSION["profile_errors"];
+
+        foreach($error as $error){
+            echo $error . "<br>";
+        }
+        unset($_SESSION["profile_errors"]);
+    }
+}
+
 // Login Check
 
 function loginCheck(){
     if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
         $username = $_SESSION["username"];
         $email = $_SESSION["email"];
-        return array(True, $username, $email);
+        $id = $_SESSION["id"];
+        return array(True, $username, $email, $id);
       } else {
         return False;
       }

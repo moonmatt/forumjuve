@@ -14,8 +14,31 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
             $username = $row['username'];
             $email = $row['email'];
             $date = $row['date'];
-            $date = date("d-m-Y", strtotime($date));
-            $ban = $row['banned'];
+            $date = date("d-M-Y", strtotime($date));
+            $ban = $row['ban'];
+            $name = $row['name'];
+            $ban = $row['ban'];
+            $bio = $row['bio'];
+            $website = $row['website'];
+            $sex = $row['sex'];
+            $dofbirth = $row['dofbirth'];
+
+            if($dofbirth != "0000-00-00"){ // If date of birth is not set
+              $dofbirth = date("D-M-Y", strtotime($dofbirth));
+            } else {
+              $dofbirth = "";
+            }
+
+            if($sex == 1){ // Check the sex of user
+              $sex = "Maschio";
+            } elseif ($sex == 2) {
+              $sex = "Femmina";
+            }
+            elseif ($sex == 0) {
+              $sex = "";
+            }
+
+            $city = $row['city']; // Check if user is banned
             if($ban == 1){
               echo "L'utente è bannato";
               die();
@@ -66,13 +89,17 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
     <div class="jumbotron jumbotron-fluid p-2">
     <div class="container">
       <h4>Name</h4>
-      <p class="lead">Matteo Galavotti</p>
+      <p class="lead"><?php echo $name; ?></p>
       <h4>Data di nascita</h4>
-      <p class="lead">11 Maggio 2005</p>
+      <p class="lead"><?php echo $dofbirth; ?></p>
       <h4>Link</h4>
-      <p class="lead">Link</p>
+      <p class="lead"><?php echo $website; ?></p>
       <h4>Biografia</h4>
-      <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur officiis velit doloribus. Accusamus iusto, rerum quia tempore non assumenda vero illo aliquam velit deleniti commodi excepturi vel, accusantium quam recusandae?</p>
+      <p class="lead"><?php echo $bio; ?></p>
+      <h4>Sesso</h4>
+      <p class="lead"><?php echo $sex; ?></p>
+      <h4>Provenienza</h4>
+      <p class="lead"><?php echo $city; ?></p>
     </div>
   </div>
     </div>

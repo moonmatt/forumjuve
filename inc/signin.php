@@ -30,9 +30,11 @@ if(isset($_POST['submit'])){ // If the login form is submitted
             $pwd = $row['pwd'];
             $username = $row['username'];
             $email = $row['email'];
+            $id = $row['id'];
             if(password_verify($password, $pwd)){ // If password is correct
                 $_SESSION['username'] = $username;
                 $_SESSION['email'] = $email;
+                $_SESSION['id'] = $id;
                 $_SESSION['success'] = "You are now logged in";
                 header('location: ' . $redirect);
                 die();
