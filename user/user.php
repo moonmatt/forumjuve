@@ -15,6 +15,11 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
             $email = $row['email'];
             $date = $row['date'];
             $date = date("d-m-Y", strtotime($date));
+            $ban = $row['banned'];
+            if($ban == 1){
+              echo "L'utente è bannato";
+              die();
+            }
         }
     } else {
       header("Location: ../404.php");
@@ -58,10 +63,16 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
   </div>
 </div>
     <div class="col-4">
-    <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron jumbotron-fluid p-2">
     <div class="container">
-      <h1 class="display-4">Juventus Forum</h1>
-      <p class="lead">Il forum dedicato a tutti i tifosi bianconeri.</p>
+      <h4>Name</h4>
+      <p class="lead">Matteo Galavotti</p>
+      <h4>Data di nascita</h4>
+      <p class="lead">11 Maggio 2005</p>
+      <h4>Link</h4>
+      <p class="lead">Link</p>
+      <h4>Biografia</h4>
+      <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur officiis velit doloribus. Accusamus iusto, rerum quia tempore non assumenda vero illo aliquam velit deleniti commodi excepturi vel, accusantium quam recusandae?</p>
     </div>
   </div>
     </div>
