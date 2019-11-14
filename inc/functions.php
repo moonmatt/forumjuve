@@ -4,6 +4,7 @@
 
 function stringEscape($string, $conn){
     $string = mysqli_real_escape_string($conn, $string);
+    $string = htmlspecialchars($string);
     return $string;
 }
  

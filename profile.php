@@ -19,14 +19,15 @@ if(loginCheck()){
             $sex = $row['sex'];
             $dofbirth = $row['dofbirth'];
             $city = $row['city'];
+            $propic = $row['propic'];
 
         }
     } else {
-      header("Location: ../404.php");
+      header("Location: index");
       die();
     }
 } else {
-  header("Location: index");
+  header("Location: login");
   die();
 }
 ?>
@@ -61,8 +62,9 @@ if(loginCheck()){
     <div class="col-8">
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
-  <form action="inc/profile.php" method="POST">
-  
+
+  <form action="inc/profile.php" method="POST" enctype="multipart/form-data">
+  <?php profileErrors(); ?>
   <input type="hidden" id="id_form" name="id_form" value="<?php echo $id; ?>">
   <div class="form-group">
     <label for="exampleInputEmail1">Username</label>
@@ -71,6 +73,13 @@ if(loginCheck()){
   <div class="form-group">
     <label for="exampleInputEmail1">Email</label>
     <input type="email" class="form-control" id="email_form" name="email_form" value="<?php echo $email; ?>">
+  </div>
+  <div class="form-group">
+  <div class="custom-file">
+    <label for="exampleInputEmail1">Profile Image</label><br>
+    <input name="img_form" name="img_form" size="35" type="file"/>
+    <input name="img_user" id="img_user" value="<?php echo $propic; ?>" type="hidden"/>
+  </div>
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Nome</label>
@@ -109,7 +118,7 @@ if(loginCheck()){
   </div>
   <div class="form-group">
     <label for="exampleFormControlTextarea1">Bio</label>
-    <textarea class="form-control" id="bio_form" name="bio_form" rows="5" value="<?php echo $bio; ?>"></textarea>
+    <textarea class="form-control" id="bio_form" name="bio_form" rows="5"><?php echo $bio; ?></textarea>
   </div>
   <button type="submit" class="btn btn-secondary" value="submit_profile" name="submit_profile">Invia</button>
 </form>
