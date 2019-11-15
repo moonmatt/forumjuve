@@ -27,7 +27,7 @@
 </div>
 
 <div class="row">
-    <div class="col-8">
+    <div class="col-sm-8">
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-4">Juventus Forum</h1>
@@ -35,7 +35,7 @@
     </div>
   </div>
 </div>
-    <div class="col-4">
+    <div class="col-sm-4">
     <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-4">Juventus Forum</h1>

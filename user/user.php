@@ -14,7 +14,7 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
             $username = $row['username'];
             $email = $row['email'];
             $date = $row['date'];
-            $date = date("d-M-Y", strtotime($date));
+            $date = date("d M Y", strtotime($date));
             $ban = $row['ban'];
             $name = $row['name'];
             $ban = $row['ban'];
@@ -22,9 +22,10 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
             $website = $row['website'];
             $sex = $row['sex'];
             $dofbirth = $row['dofbirth'];
+            $propic = $row['propic'];
 
             if($dofbirth != "0000-00-00"){ // If date of birth is not set
-              $dofbirth = date("D-M-Y", strtotime($dofbirth));
+              $dofbirth = date("d M Y", strtotime($dofbirth));
             } else {
               $dofbirth = "";
             }
@@ -70,22 +71,18 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
 
     <div class="jumbotron jumbotron-fluid">
   <div class="container">
+  <img src="<?php echo $propic; ?>" alt="..." style="object-fit: cover; width:200px; height:200px;" class="rounded" >
     <h1 class="display-4"><?php echo $username; ?></h1>
     <p class="lead">Utente dal <?php echo $date; ?></p>
   </div>
 
 </div>
 
+
+
 <div class="row">
-    <div class="col-8">
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">Juventus Forum</h1>
-      <p class="lead">Il forum dedicato a tutti i tifosi bianconeri.</p>
-    </div>
-  </div>
-</div>
-    <div class="col-4">
+
+<div class="col-sm-4 float-right">
     <div class="jumbotron jumbotron-fluid p-2">
     <div class="container">
       <h4>Name</h4>
@@ -93,7 +90,7 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
       <h4>Data di nascita</h4>
       <p class="lead"><?php echo $dofbirth; ?></p>
       <h4>Link</h4>
-      <p class="lead"><?php echo $website; ?></p>
+      <p class="lead"><?php echo "<a href='".$website."'>".$website."</a>"; ?></p>
       <h4>Biografia</h4>
       <p class="lead"><?php echo $bio; ?></p>
       <h4>Sesso</h4>
@@ -102,8 +99,17 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
       <p class="lead"><?php echo $city; ?></p>
     </div>
   </div>
+  </div>
+
+    <div class="col-sm-8 float-left">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Juventus Forum</h1>
+      <p class="lead">Il forum dedicato a tutti i tifosi bianconeri.</p>
     </div>
   </div>
+</div>
+    </div>
     </div>
 
 
