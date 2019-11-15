@@ -17,7 +17,7 @@ if(loginCheck()){
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-
+    <link rel='icon' href='/forumjuve/img/favicon.png' type='image/x-icon' sizes="16x16" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="\forumjuve\css\style.css">
@@ -28,8 +28,7 @@ if(loginCheck()){
   <nav class="navbar navbar-dark bg-dark">
   <div class="container">
   <a class="navbar-brand" href="/forumjuve">
-    <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-    JuveForum
+    <img src="/forumjuve/img/logo.png" width="auto" height="40" class="d-inline-block align-top" alt="">
   </a>
   <?php
   if(loginCheck()){

@@ -13,13 +13,19 @@ session_start();
 $_SESSION["login_errors"] = $errors; // Puts the Errors Array in the session, so it's visible from other pages
 
 $redirect = "../"; // Path to redirect
-$redirectLogin = "../login.php"; // Path to redirect
+$redirectLogin = "../login"; // Path to redirect
 
 
 
 if(isset($_POST['submit'])){ // If the login form is submitted
     $username = stringEscape($_POST['username'], $conn); // Escapes dangerous characters
     $password = stringEscape($_POST['password'], $conn); // Escapes dangerous characters
+
+    if (empty($username)) { array_push($errors, "L'username è obbligatorio"); }
+    if (empty($password)) { array_push($errors, "La password è obbligatoria"); }
+    if (preg_match('[^A-Za-z0-9-_]', $username)){
+        array_push($errors, "L'username contiene caratteri non validi");
+    }
 
     $sql = "SELECT * FROM users WHERE username = '$username'";
     $result = mysqli_query($conn, $sql);
@@ -40,14 +46,14 @@ if(isset($_POST['submit'])){ // If the login form is submitted
                 header('location: ' . $redirect);
                 die();
             } else { // If password is not correct
-                array_push($errors, "The password is not correct");
+                array_push($errors, "La password non è corretta");
                 $_SESSION["login_errors"] = $errors;
                 header('location: ' . $redirectLogin);
                 die();
             }
         }
     } else { // If there are no results
-        array_push($errors, "The username does not exist");
+        array_push($errors, "L'utente non esiste");
         $_SESSION["login_errors"] = $errors;
         header('location: ' . $redirectLogin);
         die();

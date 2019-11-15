@@ -44,6 +44,11 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
               echo "L'utente è bannato";
               die();
             }
+
+            if($propic == ''){
+              $propic = "/forumjuve/img/utente.jpg";
+            }
+
         }
     } else {
       header("Location: ../404.php");

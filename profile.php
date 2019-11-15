@@ -20,6 +20,9 @@ if(loginCheck()){
             $dofbirth = $row['dofbirth'];
             $city = $row['city'];
             $propic = $row['propic'];
+            if($propic == ''){
+              $propic = "/forumjuve/img/utente.jpg";
+            }
 
         }
     } else {

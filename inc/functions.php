@@ -30,12 +30,13 @@ function signupErrors(){
 }
 
 // Login Error messages
+
 function loginErrors(){
     if(isset($_SESSION['login_errors']) && !empty($_SESSION['login_errors'])) {
         $error = $_SESSION["login_errors"];
 
         foreach($error as $error){
-            echo $error . "<br>";
+            echo '<div class="alert alert-warning" role="alert"> '.$error.' </div>'; 
         }
         unset($_SESSION["login_errors"]);
     }
