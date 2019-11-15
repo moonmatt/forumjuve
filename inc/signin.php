@@ -35,6 +35,7 @@ if(isset($_POST['submit'])){ // If the login form is submitted
                 $_SESSION['username'] = $username;
                 $_SESSION['email'] = $email;
                 $_SESSION['id'] = $id;
+                $_SESSION['pwd'] = $pwd;
                 $_SESSION['success'] = "You are now logged in";
                 header('location: ' . $redirect);
                 die();

@@ -69,11 +69,20 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
 
     <div class="container">
 
-    <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron jumbotron-fluid pt-3 pb-3">
   <div class="container">
-  <img src="<?php echo $propic; ?>" alt="..." style="object-fit: cover; width:200px; height:200px;" class="rounded" >
+  <div class="row">
+
+  <div class="col-sm-8 align-self-center">    
     <h1 class="display-4"><?php echo $username; ?></h1>
     <p class="lead">Utente dal <?php echo $date; ?></p>
+  </div>
+  
+  <div class="col-sm-4 align-right">
+  <img src="<?php echo $propic; ?>" alt="..." style="object-fit: cover; width:200px; height:200px; " class="rounded" >
+  </div>
+
+  </div>
   </div>
 
 </div>

@@ -14,6 +14,7 @@ if(loginCheck()){
     $username = loginCheck()[1];
     $email = loginCheck()[2];
     $id = loginCheck()[3];
+    $pwd = loginCheck()[4];
   }
 
 $_SESSION["profile_errors"] = $errors; // Puts the Errors Array in the session, so it's visible from other pages
@@ -56,7 +57,7 @@ if(isset($_POST['submit_profile'])){ // If the login form is submitted
         $_SESSION["profile_errors"] = $errors;
     }
 
-    if(empty($img)){
+    if($img['name']==''){  
         $url_image = $img_user;
     } else {
         $filename = $img['tmp_name'];
@@ -88,8 +89,7 @@ if(isset($_POST['submit_profile'])){ // If the login form is submitted
     if (count($errors) == 0) { // If there are no errors
         $sql = "UPDATE users SET username = '$username_form', email = '$email_form', name = '$name_form', bio = '$bio_form', sex = '$sex_form', website = '$website_form', dofbirth = '$dofbirth_form', city = '$city_form', propic = '$url_image' WHERE id = '$id';";
         mysqli_query($conn, $sql);
-        unset($_SESSION["success"]);
-        header('location: ../login');
+        loginProfile($id, $pwd, $conn);
     } else {
         $_SESSION["signup_errors"] = $errors;
         header('location: ' . $redirectProfile);

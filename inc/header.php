@@ -41,7 +41,7 @@ if(loginCheck()){
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
       <a class="dropdown-item" href="/forumjuve/profile">Profilo</a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="inc/logout">Esci</a>
+      <a class="dropdown-item" href="/forumjuve/inc/logout">Esci</a>
     </div>
   </div>
     ';

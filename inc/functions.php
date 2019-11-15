@@ -61,7 +61,45 @@ function loginCheck(){
         $username = $_SESSION["username"];
         $email = $_SESSION["email"];
         $id = $_SESSION["id"];
-        return array(True, $username, $email, $id);
+        $pwd = $_SESSION["pwd"];
+        return array(True, $username, $email, $id, $pwd);
+      } else {
+        return False;
+      }
+}
+
+// Login
+
+function loginProfile($id, $password, $conn){
+    if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
+
+        $password = stringEscape($password, $conn);
+
+        $sql = "SELECT * FROM users WHERE id = '$id'";
+        $result = mysqli_query($conn, $sql);
+        $resultcheck = mysqli_num_rows($result);
+        echo $sql;
+        if($resultcheck == 1){ // If there is 1 result
+            while($row = mysqli_fetch_assoc($result)){
+                $pwd = $row['pwd'];
+                $username = $row['username'];
+                $email = $row['email'];
+                $id = $row['id'];
+                if($password == $pwd){ // If password is correct
+                    $_SESSION['username'] = $username;
+                    $_SESSION['email'] = $email;
+                    $_SESSION['id'] = $id;
+                    $_SESSION['success'] = "You are now logged in";
+                    header('Location: ../profile');
+                    die();
+                } else { // If password is not correct
+                    echo "password non corretta <br>";
+                    echo "PASSWORD 1 : ". $pwd . "<br>";
+                    echo "PASSWORD 2 : ". $password . "<br>";
+                    die();
+                }
+            }
+        }
       } else {
         return False;
       }
