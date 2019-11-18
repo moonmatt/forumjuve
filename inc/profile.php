@@ -39,14 +39,12 @@ if(isset($_POST['submit_profile'])){ // If the login form is submitted
     // Creates error messages
     if (empty($username)) { array_push($errors, "L'username è obbligatorio"); }
     if (empty($email)) { array_push($errors, "L'email è obbligatoria"); }
-    if (preg_match('[^A-Za-z0-9-_]', $username_form)){
-        array_push($errors, "L'username contiene caratteri non validi");
-    }
-    if (preg_match('[^A-Za-z0-9-_.@+]', $email_form)){
+    if(!valid_email($email)){
         array_push($errors, "L'email contiene caratteri non validi");
     }
-
-
+    if(!valid_username($username)){
+        array_push($errors, "L'username contiene caratteri non validi");
+    }
 
     $sql = "SELECT * FROM users WHERE id != '$id' AND (username = '$username_form' OR email = '$email_form')";
     $result = mysqli_query($conn, $sql);

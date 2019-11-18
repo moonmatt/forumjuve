@@ -1,38 +1,20 @@
 <?php
-$img=$_FILES['img'];
-if(isset($_POST['submit'])){ 
- if($img['name']==''){  
-  echo "<h2>An Image Please.</h2>";
- }else{
-  $filename = $img['tmp_name'];
-  $client_id="2b7e06d3cb8a203";
-  $handle = fopen($filename, "r");
-  $data = fread($handle, filesize($filename));
-  $pvars   = array('image' => base64_encode($data));
-  $timeout = 30;
-  $curl = curl_init();
-  curl_setopt($curl, CURLOPT_URL, 'https://api.imgur.com/3/image.json');
-  curl_setopt($curl, CURLOPT_TIMEOUT, $timeout);
-  curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization: Client-ID ' . $client_id));
-  curl_setopt($curl, CURLOPT_POST, 1);
-  curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-  curl_setopt($curl, CURLOPT_POSTFIELDS, $pvars);
-  $out = curl_exec($curl);
-  curl_close ($curl);
-  $pms = json_decode($out,true);
-  $url=$pms['data']['link'];
-  if($url!=""){
-   echo "<h2>Uploaded Without Any Problem</h2>";
-   echo "<img src='$url'/>";
-  }else{
-   echo "<h2>There's a Problem</h2>";
-   echo $pms['data']['error'];  
-  } 
- }
+    function valid_email($str) {
+        return (!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,24}$/ix", $str)) ? FALSE : TRUE;
+    }
+    function valid_username($str) {
+        return (!preg_match("/^[a-zA-Z0-9-_]*$/", $str)) ? FALSE : TRUE;
+    }
+if(isset($_POST['submit'])){
+        if(!valid_email($_POST['text'])){
+        echo "Invalid email address.";
+        }else{
+        echo "Valid email address.";
+        }
 }
 ?>
 
-<form action="" enctype="multipart/form-data" method="POST">
- Choose Image : <input name="img" size="35" type="file"/><br/>
- <input type="submit" name="submit" value="Upload"/>
+<form action="" method="POST">
+<input type="text" name="text">
+<input type="submit" value="submit" name="submit">
 </form>

@@ -28,11 +28,11 @@ if(isset($_POST['submit'])){ // If the login form is submitted
     if (empty($username)) { array_push($errors, "L'username è obbligatorio"); }
     if (empty($email)) { array_push($errors, "L'email è obbligatoria"); }
     if (empty($password)) { array_push($errors, "La password è obbligatoria"); }
-    if (preg_match('[^A-Za-z0-9-_]', $username)){
-        array_push($errors, "L'username contiene caratteri non validi");
-    }
-    if (preg_match('[^A-Za-z0-9-_.@+]', $email)){
+    if(!valid_email($email)){
         array_push($errors, "L'email contiene caratteri non validi");
+    }
+    if(!valid_username($username)){
+        array_push($errors, "L'username contiene caratteri non validi");
     }
     if ($password != $rpassword) {
       array_push($errors, "Le password non coincidono");
@@ -65,7 +65,7 @@ if(isset($_POST['submit'])){ // If the login form is submitted
         $password = hashPassword($password);
         $sql = "INSERT INTO users (username, email, pwd, date) VALUES ('$username', '$email', '$password', '$date');";
         mysqli_query($conn, $sql);
-        header('location: ' . $redirect);
+        autoLogin($username, $password, $conn);
     } else {
         $_SESSION["signup_errors"] = $errors;
         header('location: ' . $redirectSignUp);

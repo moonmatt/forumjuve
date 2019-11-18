@@ -24,7 +24,7 @@ if(loginCheck()){
 <div class="container">
   <form action="inc/signup.php" method="POST" class="form-signin bg-light">
   <a href="index"><img class="mb-4" src="/forumjuve/img/logo-black.png" alt="" width="auto" height="72"></a>
-      <?php loginErrors(); ?>
+      <?php signupErrors(); ?>
       <input type="text" id="username" class="form-control mb-1" name="username" placeholder="Username" required>
       <input type="email" id="email" class="form-control mb-1" name="email" placeholder="Email" required>
       <input type="password" id="password" name="password" class="form-control mb-1" placeholder="Password" required>

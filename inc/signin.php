@@ -23,7 +23,7 @@ if(isset($_POST['submit'])){ // If the login form is submitted
 
     if (empty($username)) { array_push($errors, "L'username è obbligatorio"); }
     if (empty($password)) { array_push($errors, "La password è obbligatoria"); }
-    if (preg_match('[^A-Za-z0-9-_]', $username)){
+    if(!valid_username($username)){
         array_push($errors, "L'username contiene caratteri non validi");
     }
 

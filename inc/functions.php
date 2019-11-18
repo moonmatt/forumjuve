@@ -23,7 +23,7 @@ function signupErrors(){
         $error = $_SESSION["signup_errors"];
 
         foreach($error as $error){
-            echo $error . "<br>";
+            echo '<div class="alert alert-warning" role="alert"> '.$error.' </div>'; 
         }
         unset($_SESSION["signup_errors"]);
     }
@@ -49,7 +49,7 @@ function profileErrors(){
         $error = $_SESSION["profile_errors"];
 
         foreach($error as $error){
-            echo $error . "<br>";
+            echo '<div class="alert alert-warning" role="alert"> '.$error.' </div>'; 
         }
         unset($_SESSION["profile_errors"]);
     }
@@ -104,4 +104,48 @@ function loginProfile($id, $password, $conn){
       } else {
         return False;
       }
+}
+
+// Valid email RegEx
+
+function valid_email($str) {
+    return (!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,24}$/ix", $str)) ? FALSE : TRUE;
+}
+
+// Valid username RegEx
+
+function valid_username($str) {
+    return (!preg_match("/^[a-zA-Z0-9-_]*$/", $str)) ? FALSE : TRUE;
+}
+
+// Auto Login
+
+function autoLogin($username, $password, $conn){
+    $username = stringEscape($_POST['username'], $conn); // Escapes dangerous characters
+    $password = stringEscape($_POST['password'], $conn); // Escapes dangerous characters
+
+    $sql = "SELECT * FROM users WHERE username = '$username'";
+    $result = mysqli_query($conn, $sql);
+    $resultcheck = mysqli_num_rows($result);
+
+    if($resultcheck == 1){ // If there is 1 result
+        while($row = mysqli_fetch_assoc($result)){
+            $pwd = $row['pwd'];
+            $username = $row['username'];
+            $email = $row['email'];
+            $id = $row['id'];
+            if(password_verify($password, $pwd)){ // If password is correct
+                $_SESSION['username'] = $username;
+                $_SESSION['email'] = $email;
+                $_SESSION['id'] = $id;
+                $_SESSION['pwd'] = $pwd;
+                $_SESSION['success'] = "You are now logged in";
+                header('location: ../index');
+                die();
+            } else { // If password is not correct
+                header('location: ../index');
+                die();
+            }
+        }
+    }
 }
