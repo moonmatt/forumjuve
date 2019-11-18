@@ -39,24 +39,26 @@ if(isset($_POST['submit'])){ // If the login form is submitted
       $_SESSION["signup_errors"] = $errors;
     }
 
-    $sql = "SELECT * FROM users WHERE username = '$username' or email = '$email'";
-    $result = mysqli_query($conn, $sql);
-    $resultcheck = mysqli_num_rows($result);
+    if (count($errors) == 0) {
+        $sql = "SELECT * FROM users WHERE username = '$username' or email = '$email'";
+        $result = mysqli_query($conn, $sql);
+        $resultcheck = mysqli_num_rows($result);
 
-    if($resultcheck == 1){ // If the account already exists
-        while($user = mysqli_fetch_assoc($result)){
-            if ($user['username'] === $username) {
-                array_push($errors, "Username already exists");
-                $_SESSION["signup_errors"] = $errors;
-                header('location: ' . $redirectSignUp);
-                die();
-            }
+        if($resultcheck == 1){ // If the account already exists
+            while($user = mysqli_fetch_assoc($result)){
+                if ($user['username'] === $username) {
+                    array_push($errors, "Username already exists");
+                    $_SESSION["signup_errors"] = $errors;
+                    header('location: ' . $redirectSignUp);
+                    die();
+                }
 
-            if ($user['email'] === $email) {
-                array_push($errors, "email already exists");
-                $_SESSION["signup_errors"] = $errors;
-                header('location: ' . $redirectSignUp);
-                die();
+                if ($user['email'] === $email) {
+                    array_push($errors, "email already exists");
+                    $_SESSION["signup_errors"] = $errors;
+                    header('location: ' . $redirectSignUp);
+                    die();
+                }
             }
         }
     }

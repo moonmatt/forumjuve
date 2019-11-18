@@ -55,6 +55,19 @@ function profileErrors(){
     }
 }
 
+// Send Msg Error messages
+
+function sendMsgErrors(){
+    if(isset($_SESSION['sendMsg_errors']) && !empty($_SESSION['sendMsg_errors'])) {
+        $error = $_SESSION["sendMsg_errors"];
+
+        foreach($error as $error){
+            echo '<div class="alert alert-warning" role="alert"> '.$error.' </div>'; 
+        }
+        unset($_SESSION["sendMsg_errors"]);
+    }
+}
+
 // Login Check
 
 function loginCheck(){

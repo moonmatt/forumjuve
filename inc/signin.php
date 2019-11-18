@@ -26,36 +26,40 @@ if(isset($_POST['submit'])){ // If the login form is submitted
     if(!valid_username($username)){
         array_push($errors, "L'username contiene caratteri non validi");
     }
+    if (count($errors) == 0) {
+        $sql = "SELECT * FROM users WHERE username = '$username'";
+        $result = mysqli_query($conn, $sql);
+        $resultcheck = mysqli_num_rows($result);
 
-    $sql = "SELECT * FROM users WHERE username = '$username'";
-    $result = mysqli_query($conn, $sql);
-    $resultcheck = mysqli_num_rows($result);
-
-    if($resultcheck == 1){ // If there is 1 result
-        while($row = mysqli_fetch_assoc($result)){
-            $pwd = $row['pwd'];
-            $username = $row['username'];
-            $email = $row['email'];
-            $id = $row['id'];
-            if(password_verify($password, $pwd)){ // If password is correct
-                $_SESSION['username'] = $username;
-                $_SESSION['email'] = $email;
-                $_SESSION['id'] = $id;
-                $_SESSION['pwd'] = $pwd;
-                $_SESSION['success'] = "You are now logged in";
-                header('location: ' . $redirect);
-                die();
-            } else { // If password is not correct
-                array_push($errors, "La password non è corretta");
-                $_SESSION["login_errors"] = $errors;
-                header('location: ' . $redirectLogin);
-                die();
+        if($resultcheck == 1){ // If there is 1 result
+            while($row = mysqli_fetch_assoc($result)){
+                $pwd = $row['pwd'];
+                $username = $row['username'];
+                $email = $row['email'];
+                $id = $row['id'];
+                if(password_verify($password, $pwd)){ // If password is correct
+                    $_SESSION['username'] = $username;
+                    $_SESSION['email'] = $email;
+                    $_SESSION['id'] = $id;
+                    $_SESSION['pwd'] = $pwd;
+                    $_SESSION['success'] = "You are now logged in";
+                    header('location: ' . $redirect);
+                    die();
+                } else { // If password is not correct
+                    array_push($errors, "L'username o la password sono sbagliati");
+                    $_SESSION["login_errors"] = $errors;
+                    header('location: ' . $redirectLogin);
+                    die();
+                }
             }
+        } else { // If there are no results
+            array_push($errors, "L'username o la password sono sbagliati");
+            $_SESSION["login_errors"] = $errors;
+            header('location: ' . $redirectLogin);
+            die();
         }
-    } else { // If there are no results
-        array_push($errors, "L'utente non esiste");
-        $_SESSION["login_errors"] = $errors;
-        header('location: ' . $redirectLogin);
-        die();
-    }
- }
+    } 
+    $_SESSION["login_errors"] = $errors;
+    header('location: ' . $redirectLogin);
+    die();
+}

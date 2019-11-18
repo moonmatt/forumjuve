@@ -25,33 +25,49 @@ if(loginCheck()){
   </head>
 
   <!-- Image and text -->
-  <nav class="navbar navbar-dark bg-dark">
+  <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
   <div class="container">
   <a class="navbar-brand" href="/forumjuve">
-    <img src="/forumjuve/img/logo.png" width="auto" height="40" class="d-inline-block align-top" alt="">
+    <img src="/forumjuve/img/logo.svg" class="d-inline-block align-top" alt="">
   </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse flex-grow-1 text-left" id="navbarSupportedContent">
   <?php
   if(loginCheck()){
     echo '
-    <div class="dropdown">
-    <a class="dropdown-toggle text-light" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        '.$username.'
-    </a>
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="/forumjuve/profile">Profilo</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="/forumjuve/inc/logout">Esci</a>
-    </div>
+    <ul class="nav navbar-nav navbar-right ml-auto flex-nowrap" >
+
+    <li class="nav-item">
+    <a class="nav-link" href="#">Nuovo post</a>
+  </li>
+
+
+  <div class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle text-light" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      '.$username.'
+  </a>
+  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="/forumjuve/profile">Profilo</a>
+    <a class="dropdown-item" href="/forumjuve/profile">Messaggi Privati</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="/forumjuve/inc/logout">Esci</a>
+  </div>
+</div>
+  
   </div>
     ';
   } else {
     echo '
-    <div class="span">
+    <div class="span ml-auto flex-nowrap">
     <a href="/forumjuve/signup" class="text-light align-baseline mr-2">Iscriviti</a>
     <a href="/forumjuve/login"><button type="button" class="btn btn-secondary btn-sm align-baseline">Accedi</button></a>
     </div>
+
     ';
   }
   ?>
+  </div>
   </div>
 </nav>
