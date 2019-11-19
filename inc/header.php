@@ -50,7 +50,7 @@ if(loginCheck()){
   </a>
   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
     <a class="dropdown-item" href="/forumjuve/profile">Profilo</a>
-    <a class="dropdown-item" href="/forumjuve/profile">Messaggi Privati</a>
+    <a class="dropdown-item" href="/forumjuve/msg">Messaggi Privati</a>
     <div class="dropdown-divider"></div>
     <a class="dropdown-item" href="/forumjuve/inc/logout">Esci</a>
   </div>

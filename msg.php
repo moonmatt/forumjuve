@@ -2,12 +2,12 @@
 include 'inc/header.php'; 
 
 if(loginCheck()){
-  $username = loginCheck()[1];
-  $email = loginCheck()[2];
+    $username = loginCheck()[1];
+    $email = loginCheck()[2];
 
-   $sql = "SELECT * FROM msg WHERE to_username = '$username'";
-     $result = mysqli_query($conn, $sql);
-     $resultcheck = mysqli_num_rows($result);
+    $sql = "SELECT * FROM msg WHERE to_username = '$username' ORDER BY id DESC";
+    $result = mysqli_query($conn, $sql);
+    $resultcheck = mysqli_num_rows($result);
 }
 else {
     header('location: ../index');
@@ -27,7 +27,7 @@ else {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Scrivi un messaggio | Forumjuve</title>
+    <title>I tuoi messaggi | Forumjuve</title>
 
 
 </head>
@@ -46,8 +46,6 @@ else {
 
         <div class="row">
             <div class="col-sm-8">
-                <div class="jumbotron jumbotron-fluid pt-3">
-                    <div class="container">
                         <?php
         if($resultcheck > 0){ // If there is 1 result
             while($row = mysqli_fetch_assoc($result)){
@@ -55,40 +53,49 @@ else {
                $title = $row['title'];
                $date = $row['date'];
                $msg = $row['msg'];
-               echo $from_username;
-               echo $msg;
+
+               $sql_1 = "SELECT * FROM users WHERE username = '$from_username'";
+               $result_1 = mysqli_query($conn, $sql_1);
+               $resultcheck_1 = mysqli_num_rows($result_1);
+               $row_1 = mysqli_fetch_assoc($result_1);
+               $propic = $row_1['propic'];
+               if($propic == ''){
+                $propic = "/forumjuve/img/utente.jpg";
+               }
+
+               echo '
+               <div class="jumbotron jumbotron-fluid pt-3 pb-0">
+               <div class="row mb-3 mt-3">
+                   <div class="col-sm-4">
+                   <img src="'.$propic.'" class="rounded mx-auto d-block" alt="..." style="object-fit: cover; width:200px; height:200px; ">
+                   <div class="text-center text-break pr-3 pl-3">
+                   <h5 class="mt-2">'.$from_username.'</h5>
+                   <span class="badge badge-secondary pt-2 pb-2 pr-4 pl-4">Utente</span>
+                   </div>
+                   </div>
+                   <div class="col-sm-8 pl-0">
+                       <div class="text-left">
+                           <h5 class="mb-0">'.$title.'</h5>
+                           <p class="text-muted">'.$date.'</p>
+                           <p class="mt-3">'.$msg.'</p>
+                       </div>
+                   </div>
+               </div>
+               <p class="text-right pr-3 pb-2">
+               <a href="write-msg?'.$from_username.'">Rispondi</a>
+               </p>
+           </div>
+               ';
             }
        } else {
-         echo "niente";
+         echo "Non hai ricevuto messaggi";
        }
     ?>
                     </div>
 
                     
-                </div>
 
-                <div class="jumbotron jumbotron-fluid pt-3" style="padding-bottom:0px;">
-                    <div class="row mb-3 mt-3">
-                        <div class="col-sm-4">
-                        <img src="https://avatars0.githubusercontent.com/u/43266667" class="rounded mx-auto d-block" alt="..." width="80%" height="auto">
-                        <div class="text-center text-break pr-3 pl-3">
-                        <h5 class="mt-2">moonmatt</h5>
-                        <span class="badge badge-secondary pt-2 pb-2 pr-4 pl-4">Utente</span>
-                        </div>
-                        </div>
-                        <div class="col-sm-8 pl-0">
-                            <div class="text-left">
-                                <h5 class="mb-0">moonmatt</h5>
-                                <p class="text-muted">25/11/2019</p>
-                                <p class="mt-3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit a nisi iste minima fugit, repudiandae dolore similique atque doloremque, placeat blanditiis recusandae perferendis quidem quibusdam amet? Molestias ratione repellat quos.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-right pr-3 pb-2">
-                    <a href="#">Rispondi</a>
-                    </p>
-                </div>
-            </div>
+            
             
             <div class="col-sm-4">
                 <div class="jumbotron jumbotron-fluid pt-3 pb-3">
