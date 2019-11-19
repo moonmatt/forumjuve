@@ -59,7 +59,7 @@ if(loginCheck()){
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 <h1 class="display-4">Modifica il tuo profilo</h1>
-                <p class="lead">Il forum dedicato a tutti i tifosi bianconeri.</p>
+                <p class="lead">Effettua cambiamenti al tuo account.</p>
             </div>
 
         </div>
