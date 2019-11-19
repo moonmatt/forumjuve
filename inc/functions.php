@@ -162,3 +162,13 @@ function autoLogin($username, $password, $conn){
         }
     }
 }
+
+// Role badge
+
+function roleBadge($role) {
+    if($role == "admin"){
+        return '<span class="badge badge-danger pt-2 pb-2 pr-4 pl-4">Admin</span>';
+    } elseif($role == "user"){
+        return '<span class="badge badge-secondary pt-2 pb-2 pr-4 pl-4">Utente</span>';
+    }
+}

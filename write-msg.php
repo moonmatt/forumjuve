@@ -13,26 +13,6 @@ if(loginCheck()){
   } else {
       $to_username = '';
   }
-//   $sql = "SELECT * FROM users WHERE username = '$username'";
-//     $result = mysqli_query($conn, $sql);
-//     $resultcheck = mysqli_num_rows($result);
-
-//     if($resultcheck == 1){ // If there is 1 result
-//         while($row = mysqli_fetch_assoc($result)){
-//             $username = $row['username'];
-//             $email = $row['email'];
-//             $name = $row['name'];
-//             $bio = $row['bio'];
-//             $website = $row['website'];
-//             $sex = $row['sex'];
-//             $dofbirth = $row['dofbirth'];
-//             $city = $row['city'];
-//             $propic = $row['propic'];
-//             if($propic == ''){
-//               $propic = "/forumjuve/img/utente.jpg";
-//             }
-
-//         }
     } else {
       header("Location: index");
       die();
@@ -50,7 +30,10 @@ if(loginCheck()){
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+        <script type="text/javascript" src="nicEdit.js"></script>
+        <script type="text/javascript">
+            bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+        </script>
     <title>Scrivi un messaggio | Forumjuve</title>
 
 
@@ -63,7 +46,7 @@ if(loginCheck()){
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 <h1 class="display-4">Scrivi un messaggio</h1>
-                <p class="lead">Il forum dedicato a tutti i tifosi bianconeri.</p>
+                <p class="lead">Invia un messaggio privato ad un utente. Solo lui potrà vederlo</p>
             </div>
 
         </div>
@@ -96,9 +79,9 @@ if(loginCheck()){
             <div class="col-sm-4">
                 <div class="jumbotron jumbotron-fluid pt-3 pb-3">
                     <div class="container">
-                        <h1 class="display-4 text-break">Immagine Profilo</h1>
-                        <img src="<?php echo $propic; ?>" alt="..."
-                            style="object-fit: cover; width:200px; height:200px;" class="rounded center">
+                        <h1 class="display-4 text-break">Invia un messaggio</h1>
+                        <p class="lead">Qui puoi scrivere messaggi privati ad altri utenti.</p>
+                        <a href="msg">I tuoi messaggi</a>
                     </div>
                 </div>
             </div>

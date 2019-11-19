@@ -38,8 +38,8 @@ else {
 
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <h1 class="display-4">Scrivi un messaggio</h1>
-                <p class="lead">Il forum dedicato a tutti i tifosi bianconeri.</p>
+                <h1 class="display-4">I tuoi messaggi</h1>
+                <p class="lead">Ecco i messaggi a te inviati, per un totale di <?php echo $resultcheck; ?> Messaggi.</p>
             </div>
 
         </div>
@@ -59,6 +59,7 @@ else {
                $resultcheck_1 = mysqli_num_rows($result_1);
                $row_1 = mysqli_fetch_assoc($result_1);
                $propic = $row_1['propic'];
+               $role = $row_1['role'];
                if($propic == ''){
                 $propic = "/forumjuve/img/utente.jpg";
                }
@@ -70,11 +71,11 @@ else {
                    <img src="'.$propic.'" class="rounded mx-auto d-block" alt="..." style="object-fit: cover; width:200px; height:200px; ">
                    <div class="text-center text-break pr-3 pl-3">
                    <h5 class="mt-2">'.$from_username.'</h5>
-                   <span class="badge badge-secondary pt-2 pb-2 pr-4 pl-4">Utente</span>
+                   '.roleBadge($role).'
                    </div>
                    </div>
                    <div class="col-sm-8 pl-0">
-                       <div class="text-left">
+                       <div class="text-left mx-4">
                            <h5 class="mb-0">'.$title.'</h5>
                            <p class="text-muted">'.$date.'</p>
                            <p class="mt-3">'.$msg.'</p>
@@ -87,8 +88,6 @@ else {
            </div>
                ';
             }
-       } else {
-         echo "Non hai ricevuto messaggi";
        }
     ?>
                     </div>
@@ -100,9 +99,9 @@ else {
             <div class="col-sm-4">
                 <div class="jumbotron jumbotron-fluid pt-3 pb-3">
                     <div class="container">
-                        <h1 class="display-4 text-break">Immagine Profilo</h1>
-                        <img src="<?php echo $propic; ?>" alt="..."
-                            style="object-fit: cover; width:200px; height:200px; " class="rounded">
+                        <h1 class="display-4 text-break">Messaggi privati</h1>
+                        <p class="lead">Qui puoi vedere i messaggi a te inviati.</p>
+                        <a href="write-msg">Scrivi un messaggio</a>
                     </div>
                 </div>
             </div>
