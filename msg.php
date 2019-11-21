@@ -60,6 +60,14 @@ else {
                $row_1 = mysqli_fetch_assoc($result_1);
                $propic = $row_1['propic'];
                $role = $row_1['role'];
+               $website = $row_1['website'];
+               if($website != ''){
+                   $website = "<a href='".$website."' target='_blank' class='mt-2'><i class='material-icons'>
+                   link
+                   </i></a>";
+               } else {
+                   $website = "";
+               }
                if($propic == ''){
                 $propic = "/forumjuve/img/utente.jpg";
                }
@@ -71,10 +79,11 @@ else {
                    <img src="'.$propic.'" class="rounded mx-auto d-block" alt="..." style="object-fit: cover; width:200px; height:200px; ">
                    <div class="text-center text-break pr-3 pl-3">
                    <h5 class="mt-2">'.$from_username.'</h5>
-                   '.roleBadge($role).'
+                   '.roleBadge($role).' <br>
+                                      <span class="mt-2">'.$website.'</span>
                    </div>
                    </div>
-                   <div class="col-sm-8 pl-0">
+                   <div class="col-sm-8 pl-0 message">
                        <div class="text-left mx-4">
                            <h5 class="mb-0">'.$title.'</h5>
                            <p class="text-muted">'.$date.'</p>
