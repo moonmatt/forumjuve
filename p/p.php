@@ -16,7 +16,24 @@ $sql = "SELECT * FROM posts WHERE permalink = '$permalink_url'";
             $date = $row['date'];
             $date = date("d M Y - H:i", strtotime($date));
             $username_post = $row['username'];
-            echo "ciao";
+
+            $sql_1 = "SELECT * FROM users WHERE username = '$username_post'";
+            $result_1 = mysqli_query($conn, $sql_1);
+            $resultcheck_1 = mysqli_num_rows($result_1);
+            $row_1 = mysqli_fetch_assoc($result_1);
+            $propic = $row_1['propic'];
+            $role = $row_1['role'];
+            $website = $row_1['website'];
+            if($website != ''){
+                $website = "<a href='".$website."' target='_blank' class='mt-2'><i class='material-icons'>
+                link
+                </i></a>";
+            } else {
+                $website = "";
+            }
+            if($propic == ''){
+             $propic = "/forumjuve/img/utente.jpg";
+            }
 
         }
     } else {
@@ -44,62 +61,29 @@ $sql = "SELECT * FROM posts WHERE permalink = '$permalink_url'";
 
 <body class="bg-secondary d-flex flex-column">
 
+
+
     <div class="container">
-
-        <div class="jumbotron jumbotron-fluid pt-3 pb-3">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-sm-8 align-self-center">
-                        <h1 class="display-4"><?php echo $username; ?></h1>
-                        <p class="lead">Utente dal <?php echo $date; ?></p>
-                    </div>
-
-                    <div class="col-sm-4 align-right">
-                        <img src="<?php echo $propic; ?>" alt="..."
-                            style="object-fit: cover; width:200px; height:200px; " class="rounded">
-                    </div>
-
-                </div>
-            </div>
-
+    <div class="jumbotron jumbotron-fluid mt-3 pb-3 mb-0 pt-3">
+    <div class="row ml-3 mr-3 pt-3 pb-3 bg-light">
+            <div class="col-sm-3 mr-0 pr-0">
+            <img src="<?php echo $propic; ?>" class="rounded mx-auto d-block" alt="..." style="object-fit: cover; width:200px; height:200px; ">
+                   <div class="text-center text-break pr-3 pl-3">
+                   <h5 class="mt-2"><?php echo $username_post; ?></h5>
+                   <?php echo rolebadge($role); ?>
+                   </div>
         </div>
 
-
-
-        <div class="row">
-
-            <div class="col-sm-4 float-right">
-                <div class="jumbotron jumbotron-fluid p-2">
-                    <div class="container">
-                        <h4>Name</h4>
-                        <p class="lead"><?php echo $name; ?></p>
-                        <h4>Data di nascita</h4>
-                        <p class="lead"><?php echo $dofbirth; ?></p>
-                        <h4>Link</h4>
-                        <p class="lead"><?php echo "<a href='".$website."'>".$website."</a>"; ?></p>
-                        <h4>Biografia</h4>
-                        <p class="lead"><?php echo $bio; ?></p>
-                        <h4>Sesso</h4>
-                        <p class="lead"><?php echo $sex; ?></p>
-                        <h4>Provenienza</h4>
-                        <p class="lead"><?php echo $city; ?></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-8 float-left">
-                <div class="jumbotron jumbotron-fluid">
-                    <div class="container">
-                        <h1 class="display-4">Juventus Forum</h1>
-                        <p class="lead">Il forum dedicato a tutti i tifosi bianconeri.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="col-sm-9 pl-0 ml-0">
+        <div class="text-left mx-4">
+                           <h4 class="mb-0"><?php echo $title; ?></h4>
+                           <p class="text-muted"><?php echo $date; ?></p>
+                           <p class="mt-3"><?php echo $msg; ?></p>
+                       </div>
         </div>
     </div>
-
-
+    </div>
+</div>
 
 
 
