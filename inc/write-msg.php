@@ -13,8 +13,6 @@ session_start();
 if(loginCheck()){
     $username = loginCheck()[1];
     $email = loginCheck()[2];
-    $id = loginCheck()[3];
-    $pwd = loginCheck()[4];
   } else {
       header('location: ../index');
       die();
@@ -32,6 +30,7 @@ if(isset($_POST['submit_msg'])){ // If the login form is submitted
     $msg_form = stringEscape($_POST['msg_form'], $conn);
     $title_form = stringEscape($_POST['title_form'], $conn);
     $date = date("Y-m-d H:i:s");
+    $username = stringEscape($username, $conn);
 
     // Creates error messages
     if (empty($to_username_form)) { array_push($errors, "L'username è obbligatorio"); }

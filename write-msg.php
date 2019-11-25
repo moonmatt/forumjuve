@@ -81,7 +81,8 @@ if(loginCheck()){
                     <div class="container">
                         <h1 class="display-4 text-break">Invia un messaggio</h1>
                         <p class="lead">Qui puoi scrivere messaggi privati ad altri utenti.</p>
-                        <a href="msg">I tuoi messaggi</a>
+                        <a href="msg">I tuoi messaggi</a> <br>
+                        <a href="sent-msg">Messaggi inviati</a>
                     </div>
                 </div>
             </div>

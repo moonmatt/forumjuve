@@ -168,7 +168,19 @@ function autoLogin($username, $password, $conn){
 function roleBadge($role) {
     if($role == "admin"){
         return '<span class="badge badge-danger pt-2 pb-2 pr-4 pl-4">Admin</span>';
-    } elseif($role == "user"){
+    } elseif($role == "user" or $role == ""){
         return '<span class="badge badge-secondary pt-2 pb-2 pr-4 pl-4">Utente</span>';
     }
 }
+
+// Permalink
+
+function permalink($string) {
+    $string = strtolower($string);
+    $string = preg_replace("/[^0-9A-Za-z ]/", "", $string);
+    $string = str_replace(" ", "-", $string);
+    while (strstr($string, "--")) {
+    $string = preg_replace("/--/", "-", $string);
+            }
+    return($string);
+    }

@@ -7,5 +7,6 @@ RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php [NC,L]
 
 RewriteRule ^user/(.+)[/]?$ user/user.php?$1
+RewriteRule ^p/(.+)[/]?$ p/p.php?$1
 
 

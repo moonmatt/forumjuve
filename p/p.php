@@ -3,57 +3,26 @@ include '../inc/header.php';
 
 $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $actual_link = basename($actual_link);
-$username = stringEscape($actual_link, $conn);
+$permalink_url = stringEscape($actual_link, $conn);
 
-$sql = "SELECT * FROM users WHERE username = '$username'";
+$sql = "SELECT * FROM posts WHERE permalink = '$permalink_url'";
     $result = mysqli_query($conn, $sql);
     $resultcheck = mysqli_num_rows($result);
 
     if($resultcheck == 1){ // If there is 1 result
         while($row = mysqli_fetch_assoc($result)){
-            $username_1 = $row['username'];
-            $email_1 = $row['email'];
+            $title = $row['title'];
+            $msg = $row['msg'];
             $date = $row['date'];
-            $date = date("d M Y", strtotime($date));
-            $ban = $row['ban'];
-            $name = $row['name'];
-            $ban = $row['ban'];
-            $bio = $row['bio'];
-            $website = $row['website'];
-            $sex = $row['sex'];
-            $dofbirth = $row['dofbirth'];
-            $propic = $row['propic'];
-
-            if($dofbirth != "0000-00-00"){ // If date of birth is not set
-              $dofbirth = date("d M Y", strtotime($dofbirth));
-            } else {
-              $dofbirth = "";
-            }
-
-            if($sex == 1){ // Check the sex of user
-              $sex = "Maschio";
-            } elseif ($sex == 2) {
-              $sex = "Femmina";
-            }
-            elseif ($sex == 0) {
-              $sex = "";
-            }
-
-            $city = $row['city']; // Check if user is banned
-            if($ban == 1){
-              echo "L'utente è bannato";
-              die();
-            }
-
-            if($propic == ''){
-              $propic = "/forumjuve/img/utente.jpg";
-            }
+            $date = date("d M Y - H:i", strtotime($date));
+            $username_post = $row['username'];
+            echo "ciao";
 
         }
     } else {
-      header("Location: ../404.php");
-      die();
-    }
+        header("Location: ../404.php");
+        die();
+}
 ?>
 
 <!doctype html>
@@ -68,7 +37,7 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title><?php echo $username_1; ?> | ForumJuve</title>
+    <title><?php echo $title; ?> | ForumJuve</title>
 
 
 </head>

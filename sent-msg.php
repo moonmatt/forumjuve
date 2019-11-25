@@ -5,7 +5,7 @@ if(loginCheck()){
     $username = loginCheck()[1];
     $email = loginCheck()[2];
 
-    $sql = "SELECT * FROM msg WHERE to_username = '$username' ORDER BY id DESC";
+    $sql = "SELECT * FROM msg WHERE from_username = '$username' ORDER BY id DESC";
     $result = mysqli_query($conn, $sql);
     $resultcheck = mysqli_num_rows($result);
 }
@@ -27,7 +27,7 @@ else {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>I tuoi messaggi | Forumjuve</title>
+    <title>I messaggi inviati | Forumjuve</title>
 
 
 </head>
@@ -38,8 +38,8 @@ else {
 
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <h1 class="display-4">I tuoi messaggi</h1>
-                <p class="lead">Ecco i messaggi a te inviati, per un totale di <?php echo $resultcheck; ?> Messaggi.</p>
+                <h1 class="display-4">I messaggi inviati</h1>
+                <p class="lead">Ecco i messaggi da te inviati, per un totale di <?php echo $resultcheck; ?> Messaggi.</p>
             </div>
 
         </div>
@@ -49,13 +49,13 @@ else {
                         <?php
         if($resultcheck > 0){ // If there is 1 result
             while($row = mysqli_fetch_assoc($result)){
-               $from_username = $row['from_username'];
+               $to_username = $row['to_username'];
                $title = $row['title'];
                $date = $row['date'];
                $date = date("d M Y - H:i", strtotime($date));
                $msg = $row['msg'];
 
-               $sql_1 = "SELECT * FROM users WHERE username = '$from_username'";
+               $sql_1 = "SELECT * FROM users WHERE username = '$to_username'";
                $result_1 = mysqli_query($conn, $sql_1);
                $resultcheck_1 = mysqli_num_rows($result_1);
                $row_1 = mysqli_fetch_assoc($result_1);
@@ -79,7 +79,7 @@ else {
                    <div class="col-sm-4">
                    <img src="'.$propic.'" class="rounded mx-auto d-block" alt="..." style="object-fit: cover; width:200px; height:200px; ">
                    <div class="text-center text-break pr-3 pl-3">
-                   <h5 class="mt-2">'.$from_username.'</h5>
+                   <h5 class="mt-2"><small>a </small>'.$to_username.'</h5>
                    '.roleBadge($role).' <br>
                                       <span class="mt-2">'.$website.'</span>
                    </div>
@@ -93,7 +93,7 @@ else {
                    </div>
                </div>
                <p class="text-right pr-3 pb-2">
-               <a href="write-msg?'.$from_username.'">Rispondi</a>
+               <a href="write-msg?'.$to_username.'">Rispondi</a>
                </p>
            </div>
                ';
@@ -112,7 +112,7 @@ else {
                         <h1 class="display-4 text-break">Messaggi privati</h1>
                         <p class="lead">Qui puoi vedere i messaggi a te inviati.</p>
                         <a href="write-msg">Scrivi un messaggio</a> <br>
-                        <a href="sent-msg">Messaggi inviati</a>
+                        <a href="msg">Tutti i messaggi</a>
                     </div>
                 </div>
             </div>
