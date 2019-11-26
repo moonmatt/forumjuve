@@ -4,8 +4,9 @@ include 'inc/header.php';
 if(loginCheck()){
     $username = loginCheck()[1];
     $email = loginCheck()[2];
+    $id = loginCheck()[3];
 
-    $sql = "SELECT * FROM msg WHERE to_username = '$username' ORDER BY id DESC";
+    $sql = "SELECT * FROM msg WHERE to_username = '$id' ORDER BY id DESC";
     $result = mysqli_query($conn, $sql);
     $resultcheck = mysqli_num_rows($result);
 }
@@ -55,11 +56,12 @@ else {
                $date = date("d M Y - H:i", strtotime($date));
                $msg = $row['msg'];
 
-               $sql_1 = "SELECT * FROM users WHERE username = '$from_username'";
+               $sql_1 = "SELECT * FROM users WHERE id = '$from_username'";
                $result_1 = mysqli_query($conn, $sql_1);
                $resultcheck_1 = mysqli_num_rows($result_1);
                $row_1 = mysqli_fetch_assoc($result_1);
                $propic = $row_1['propic'];
+               $from_username = $row_1['username'];
                $role = $row_1['role'];
                $website = $row_1['website'];
                if($website != ''){

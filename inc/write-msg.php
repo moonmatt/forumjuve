@@ -13,6 +13,7 @@ session_start();
 if(loginCheck()){
     $username = loginCheck()[1];
     $email = loginCheck()[2];
+    $id = loginCheck()[3];
   } else {
       header('location: ../index');
       die();
@@ -44,6 +45,7 @@ if(isset($_POST['submit_msg'])){ // If the login form is submitted
         $sql = "SELECT * FROM users WHERE username = '$to_username_form'";
         $result = mysqli_query($conn, $sql);
         $resultcheck = mysqli_num_rows($result);
+        
 
         if($resultcheck != 1){ // If there is not 1 result
             array_push($errors, "Il desitanatio non esiste non esiste"); 
@@ -52,7 +54,9 @@ if(isset($_POST['submit_msg'])){ // If the login form is submitted
     }
 
     if (count($errors) == 0) { // If there are no errors
-        $sql = "INSERT INTO msg (from_username, to_username, msg, title, date) VALUES ('$username', '$to_username_form', '$msg_form', '$title_form', '$date');";
+        $row = mysqli_fetch_assoc($result);
+        $to_id = $row['id'];
+        $sql = "INSERT INTO msg (from_username, to_username, msg, title, date) VALUES ('$id', '$to_id', '$msg_form', '$title_form', '$date');";
         mysqli_query($conn, $sql);
         header('location: index?message-sent');
         die();

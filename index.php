@@ -44,16 +44,18 @@
                 <?php
     if($resultcheck > 0){ // If there is 1 result
       while($row = mysqli_fetch_assoc($result)){
-        $username_post = $row['username'];
+        $id_post = $row['username'];
         $title_post = $row['title'];
+        $permalink_post = $row['permalink'];
         $date_post = $row['date'];
         $date_post = date("d/m/Y - H:i", strtotime($date_post));
 
-        $sql_1 = "SELECT * FROM users WHERE username = '$username_post'";
+        $sql_1 = "SELECT * FROM users WHERE id = '$id_post'";
         $result_1 = mysqli_query($conn, $sql_1);
         $resultcheck_1 = mysqli_num_rows($result_1);
         $row_1 = mysqli_fetch_assoc($result_1);
         $propic = $row_1['propic'];
+        $username_post = $row_1['username'];
         $role = $row_1['role'];
         if($propic == ''){
           $propic = "/forumjuve/img/utente.jpg";
@@ -64,11 +66,11 @@
         <div class="jumbotron jumbotron-fluid bg-light p-0 mb-3">
         <div class="row p-3 pt-2 mt-0 pb-0">
         <div class="col-2">
-        <img src="http://localhost/forumjuve/img/utente.jpg" class="rounded mx-auto d-block" alt="..." style="object-fit: cover; width:50px; height:50px; ">
+        <img src="'.$propic.'" class="rounded mx-auto d-block" alt="..." style="object-fit: cover; width:50px; height:50px; ">
         </div>
         <div class="col-8">
-        <h6 class="mb-0">questo è un test per il permalink</h6>
-        <p class="pt-0"><a href="" class="text-dark">moonmatt</a> - 25/11/2019 - 19:13</p>
+        <h6 class="mb-0"><a href="p/'.$permalink_post.'" class="text-dark">'.$title_post.'</a></h6>
+        <p class="pt-0"><a href="user/'.$username_post.'" class="text-dark">'.$username_post.'</a> - '.$date_post.'</p>
         </div>
         <div class="col-2 text-right">
         <span class="mb-0 pb-0 mb-0">10 <i class="fas fa-comment"></i></span> <br>

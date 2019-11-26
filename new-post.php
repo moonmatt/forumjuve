@@ -22,10 +22,9 @@ if(loginCheck()){
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script type="text/javascript" src="nicEdit.js"></script>
-        <script type="text/javascript">
-            bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
-        </script>
+        <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
+				
     <title>Scrivi un post | Forumjuve</title>
 
 
@@ -47,7 +46,7 @@ if(loginCheck()){
             <div class="col-sm-8">
                 <div class="jumbotron jumbotron-fluid pt-3">
                     <div class="container">
-                        <?php sendMsgErrors(); ?>
+                        <?php newPostErrors(); ?>
                         <form action="inc/new-post.php" method="POST" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Titolo</label>
