@@ -16,3 +16,8 @@ html {
     width: 100%;
     height: auto;
 }
+
+.comment img {
+    max-width: 100%;
+    height: auto;
+}

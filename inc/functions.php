@@ -68,6 +68,19 @@ function newPostErrors(){
     }
 }
 
+// Profile Error messages
+
+function newComment(){
+    if(isset($_SESSION['newComment_errors']) && !empty($_SESSION['newComment_errors'])) {
+        $error = $_SESSION["newComment_errors"];
+
+        foreach($error as $error){
+            echo '<div class="alert alert-warning" role="alert"> '.$error.' </div>'; 
+        }
+        unset($_SESSION["newComment_errors"]);
+    }
+}
+
 // Send Msg Error messages
 
 function sendMsgErrors(){
@@ -180,9 +193,9 @@ function autoLogin($username, $password, $conn){
 
 function roleBadge($role) {
     if($role == "admin"){
-        return '<img src="/forumjuve/img/admin.jpg" class="mx-auto d-block" width="132" height="auto">';
+        return '<img src="/forumjuve/img/admin.jpg" class="mx-auto d-block" width="132" height="auto" title="Admin">';
     } elseif($role == "user" or $role == ""){
-        return '<img src="/forumjuve/img/user.jpg" class="mx-auto d-block" width="132" height="auto">';
+        return '<img src="/forumjuve/img/user.jpg" class="mx-auto d-block" width="132" height="auto" title="Utente">';
     }
 }
 

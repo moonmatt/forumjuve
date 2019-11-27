@@ -42,7 +42,7 @@ if(loginCheck()){
     <ul class="nav navbar-nav navbar-right ml-auto flex-nowrap" >
 
     <li class="nav-item">
-    <a class="nav-link" href="#">Nuovo post</a>
+    <a class="nav-link" href="/forumjuve/new-post">Nuovo post</a>
   </li>
 
 

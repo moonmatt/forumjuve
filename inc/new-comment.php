@@ -15,11 +15,11 @@ if(loginCheck()){
     $email = loginCheck()[2];
     $id = loginCheck()[3];
   } else {
-    //   header('location: ../index');
-      die();
+    header('location: ../index');
+    die();
   }
 
-$_SESSION["sendMsg_errors"] = $errors; // Puts the Errors Array in the session, so it's visible from other pages
+$_SESSION["newComment_errors"] = $errors; // Puts the Errors Array in the session, so it's visible from other pages
 
 $redirect = "../"; // Path to redirect
 $redirectProfile = "../new-post"; // Path to redirect
@@ -34,19 +34,14 @@ if(isset($_POST['submit_comment'])){ // If the login form is submitted
     // Creates error messages
     if (empty($msg_post)) { array_push($errors, "Il messaggio è obbligatorio"); }
 
-
     if (count($errors) == 0) { // If there are no errors
         $sql = "INSERT INTO comments (username, msg, permalink_post, date) VALUES ('$id', '$msg_post', '$permalink', '$date');";
         mysqli_query($conn, $sql);
-        echo $sql;
-        // header('location: index?post-sent');
-        echo "va";
-        echo $permalink;
+        header("location: ../p/".$permalink);
         die();
     } else {
         $_SESSION["sendMsg_errors"] = $errors;
-        // header('location: ' . $redirectProfile);
-        echo "errore";
+        header('location: ' . $redirect);
         die();
     }
 }

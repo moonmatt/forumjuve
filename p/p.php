@@ -82,33 +82,66 @@ $sql = "SELECT * FROM posts WHERE permalink = '$permalink_url'";
                     <div class="text-left mx-4">
                         <h4 class="mb-0"><?php echo $title; ?></h4>
                         <p class="text-muted"><?php echo $date; ?></p>
-                        <p class="mt-3"><?php echo $msg; ?></p>
+                        <p class="mt-3 comment"><?php echo $msg; ?></p>
                     </div>
                 </div>
             </div>
         
 <?php
-$sql_2 = "SELECT * FROM comments WHERE permalink = '$permalink_url'";
-$result_2 = mysqli_query($conn, $sql);
-$resultcheck_2 = mysqli_num_rows($result);
+$sql_2 = "SELECT * FROM comments WHERE permalink_post = '$permalink_url'";
+$result_2 = mysqli_query($conn, $sql_2);
+$resultcheck_2 = mysqli_num_rows($result_2);
 
-if($resultcheck_2 > 0){ // If there is atleast 1 result
+if($resultcheck_2 > 0){ // If there is 1 result
     while($row_2 = mysqli_fetch_assoc($result_2)){
-        $title_2 = $row_2['title'];
-        $id_2 = $row_2['id'];
-        $msg = $row_2['msg'];
-        $date = $row_2['date'];
+        $id_user_comment = $row_2['username'];
+        $msg_comment = $row_2['msg'];
+        $date_comment = $row_2['date'];
+        $date_comment = date("d/m/Y - H:i", strtotime($date_comment));
 
-        $sql_3 = "SELECT * FROM users WHERE id = '$id_2'";
+        $sql_3 = "SELECT * FROM users WHERE id = '$id_user_comment'";
         $result_3 = mysqli_query($conn, $sql_3);
         $resultcheck_3 = mysqli_num_rows($result_3);
         $row_3 = mysqli_fetch_assoc($result_3);
-        $propic = $row_1['propic'];
-        $role = $row_1['role'];
-        $username_post = $row_1['username'];
-        $website = $row_1['website'];
 
-        echo "ciao";
+        $username_comment = $row_3['username'];
+        $propic_comment = $row_3['propic'];
+        $role_comment = $row_3['role'];
+        $website_comment = $row_3['website'];
+
+        if($website_comment != ''){
+            $website_comment = "<a href='".$website_comment."' target='_blank' class='mt-2'><i class='material-icons'>
+            link
+            </i></a>";
+        } else {
+            $website_comment = "";
+        }
+        if($propic_comment == ''){
+         $propic_comment = "/forumjuve/img/utente.jpg";
+        }
+
+        echo '
+        <div class="jumbotron jumbotron-fluid mt-1 pb-1 mb-0 pt-3">
+            <div class="row ml-3 mr-3 pt-3 pb-3 bg-light">
+                <div class="col-sm-3 mr-0 pr-0">
+                    <img src="'.$propic_comment.'" class="rounded mx-auto d-block" alt="..."
+                        style="object-fit: cover; width:200px; height:200px; ">
+                    <div class="text-center text-break pr-3 pl-3">
+                        <h5 class="mt-2">'.$username_comment.'</h5>
+                        '.rolebadge($role_comment).'
+                    </div>
+                </div>
+
+                <div class="col-sm-9 pl-0 ml-0">
+                    <div class="text-left mx-4">
+                        <p class="text-muted">'.$date_comment.'</p>
+                        <p class="mt-3 comment">'.$msg_comment.'</p>
+                    </div>
+                </div>
+                </div>
+                </div>
+        
+        ';
     }
 
     }

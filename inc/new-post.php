@@ -38,10 +38,9 @@ if(isset($_POST['submit_post'])){ // If the login form is submitted
 
     if (count($errors) == 0) { // If there are no errors
         $permalink = permalink($title_post);
-        $sql = "INSERT INTO posts (from_id, title, msg, permalink, date) VALUES ('$id', '$title_post', '$msg_post', '$permalink', '$date');";
+        $sql = "INSERT INTO posts (username, title, msg, permalink, date) VALUES ('$id', '$title_post', '$msg_post', '$permalink', '$date');";
         mysqli_query($conn, $sql);
         // header('location: index?post-sent');
-        echo "va";
         die();
     } else {
         $_SESSION["sendMsg_errors"] = $errors;
