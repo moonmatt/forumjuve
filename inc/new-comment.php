@@ -37,7 +37,12 @@ if(isset($_POST['submit_comment'])){ // If the login form is submitted
     if (count($errors) == 0) { // If there are no errors
         $sql = "INSERT INTO comments (username, msg, permalink_post, date) VALUES ('$id', '$msg_post', '$permalink', '$date');";
         mysqli_query($conn, $sql);
-        header("location: ../p/".$permalink);
+        $sql_2 = "SELECT * FROM comments WHERE permalink_post = '$permalink' ORDER BY id DESC";
+        $result_2 = mysqli_query($conn, $sql_2);
+        $resultcheck_2 = mysqli_num_rows($result_2);
+        $row_2 = mysqli_fetch_assoc($result_2);
+        $id = $row_2['id'];
+        header("location: ../p/".$permalink."#".$id);
         die();
     } else {
         $_SESSION["sendMsg_errors"] = $errors;

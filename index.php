@@ -5,6 +5,10 @@
     $sql = "SELECT * FROM posts ORDER BY id DESC";
     $result = mysqli_query($conn, $sql);
     $resultcheck = mysqli_num_rows($result);
+
+    $sql_2 = "SELECT * FROM comments ORDER BY date DESC LIMIT 5";
+    $result_2 = mysqli_query($conn, $sql_2);
+    $resultcheck_2 = mysqli_num_rows($result_2);
 ?>
 
 
@@ -40,7 +44,8 @@
         <div class="row">
             <div class="col-sm-8">
 
-            <div class="jumbotron jumbotron-fluid p-3">
+            <div class="jumbotron jumbotron-fluid px-3 py-1">
+            <p class="h3 py-2">Post recenti</p>
                 <?php
     if($resultcheck > 0){ // If there is 1 result
       while($row = mysqli_fetch_assoc($result)){
@@ -61,6 +66,10 @@
           $propic = "/forumjuve/img/utente.jpg";
          }
 
+         $sql_4 = "SELECT * FROM comments WHERE permalink_post = '$permalink_post'";
+         $result_4 = mysqli_query($conn, $sql_4);
+         $resultcheck_4 = mysqli_num_rows($result_4);
+
         echo '
 
         <div class="jumbotron jumbotron-fluid bg-light p-0 mb-3">
@@ -73,7 +82,7 @@
         <p class="pt-0"><a href="user/'.$username_post.'" class="text-dark">'.$username_post.'</a> - '.$date_post.'</p>
         </div>
         <div class="col-2 text-right">
-        <span class="mb-0 pb-0 mb-0">10 <i class="fas fa-comment"></i></span> <br>
+        <span class="mb-0 pb-0 mb-0">'.$resultcheck_4.' <i class="fas fa-comment"></i></span> <br>
         <span class="mb-0 pt-0 mt-0">Segnala <i class="fas fa-flag"></i></span>
         </div>
         </div>
@@ -86,10 +95,53 @@
             </div>
 
             <div class="col-sm-4">
-                <div class="jumbotron jumbotron-fluid">
+                <div class="jumbotron jumbotron-fluid py-1">
                     <div class="container">
-                        <h1 class="display-4">Juventus Forum</h1>
-                        <p class="lead">Il forum dedicato a tutti i tifosi bianconeri.</p>
+                    <p class="h3 py-2">Risposte recenti</p>
+                        <?php
+                         if($resultcheck_2 > 0){ // If there is 1 result
+                           while($row_2 = mysqli_fetch_assoc($result_2)){
+                             $id_comment = $row_2['username'];
+                             $id_comment_1 = $row_2['id'];
+                             $permalink_comment = $row_2['permalink_post'];
+                             $date_comment = $row_2['date'];
+                             $date_comment = date("d/m/Y - H:i", strtotime($date_comment));
+                     
+                             $sql_3 = "SELECT * FROM users WHERE id = '$id_comment'";
+                             $result_3 = mysqli_query($conn, $sql_3);
+                             $resultcheck_3 = mysqli_num_rows($result_3);
+                             $row_3 = mysqli_fetch_assoc($result_3);
+                             $propic_3 = $row_3['propic'];
+                             $username_post = $row_3['username'];
+                             $role = $row_3['role'];
+                             if($propic_3 == ''){
+                               $propic_3 = "/forumjuve/img/utente.jpg";
+                              }
+
+                              $sql_4 = "SELECT * FROM posts WHERE permalink = '$permalink_comment'";
+                              $result_4 = mysqli_query($conn, $sql_4);
+                              $resultcheck_4 = mysqli_num_rows($result_4);
+                              $row_4 = mysqli_fetch_assoc($result_4);
+                              $title_comment = $row_4['title'];
+                     
+                             echo '
+                             <div class="jumbotron jumbotron-fluid bg-light p-0 mb-3">
+                            <div class="row p-3 pt-2 mt-0 pb-0">
+                            <div class="col-2">
+                            <a href="user/'.$username_post.'">
+                            <img title="'.$username_post.'" src="'.$propic_3.'" class="rounded mx-auto d-block" alt="..." style="object-fit: cover; width:45px; height:45px; ">
+                            </a>
+                            </div>
+                            <div class="col-8 ml-2">
+                            <h6 class="mb-0"><a href="p/'.$permalink_comment.'#'.$id_comment_1.'" class="text-dark">'.$title_comment.'</a></h6>
+                            <p class="py-0 my-0">'.$date_post.'</p>
+                            </div>
+                            </div>
+                            </div>
+                             ';
+                            }
+                        }
+                        ?>
                     </div>
                 </div>
             </div>

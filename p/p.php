@@ -64,8 +64,6 @@ $sql = "SELECT * FROM posts WHERE permalink = '$permalink_url'";
 
 <body class="bg-secondary d-flex flex-column">
 
-
-
     <div class="container">
         <div class="jumbotron jumbotron-fluid mt-3 pb-3 mb-0 pt-3">
             <div class="row ml-3 mr-3 pt-3 pb-3 bg-light">
@@ -95,6 +93,7 @@ $resultcheck_2 = mysqli_num_rows($result_2);
 if($resultcheck_2 > 0){ // If there is 1 result
     while($row_2 = mysqli_fetch_assoc($result_2)){
         $id_user_comment = $row_2['username'];
+        $id_comment = $row_2['id'];
         $msg_comment = $row_2['msg'];
         $date_comment = $row_2['date'];
         $date_comment = date("d/m/Y - H:i", strtotime($date_comment));
@@ -121,7 +120,7 @@ if($resultcheck_2 > 0){ // If there is 1 result
         }
 
         echo '
-        <div class="jumbotron jumbotron-fluid mt-1 pb-1 mb-0 pt-3">
+        <div class="jumbotron jumbotron-fluid mt-1 pb-1 mb-0 pt-3" id="'.$id_comment.'">
             <div class="row ml-3 mr-3 pt-3 pb-3 bg-light">
                 <div class="col-sm-3 mr-0 pr-0">
                     <img src="'.$propic_comment.'" class="rounded mx-auto d-block" alt="..."

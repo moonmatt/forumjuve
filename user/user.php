@@ -103,18 +103,18 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
             <div class="col-sm-4 float-right">
                 <div class="jumbotron jumbotron-fluid p-2">
                     <div class="container">
-                        <h4>Name</h4>
+                        <h4>Nome</h4>
                         <p class="lead"><?php echo $name; ?></p>
                         <h4>Data di nascita</h4>
                         <p class="lead"><?php echo $dofbirth; ?></p>
                         <h4>Link</h4>
                         <p class="lead"><?php echo "<a href='".$website."'>".$website."</a>"; ?></p>
-                        <h4>Biografia</h4>
-                        <p class="lead"><?php echo $bio; ?></p>
                         <h4>Sesso</h4>
                         <p class="lead"><?php echo $sex; ?></p>
                         <h4>Provenienza</h4>
                         <p class="lead"><?php echo $city; ?></p>
+                        <h4>Biografia</h4>
+                        <p class="lead"><?php echo $bio; ?></p>
                     </div>
                 </div>
             </div>
