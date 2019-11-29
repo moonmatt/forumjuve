@@ -17,6 +17,7 @@ $sql = "SELECT * FROM posts WHERE permalink = '$permalink_url'";
             $msg = $row['msg'];
             $date = $row['date'];
             $date = date("d M Y - H:i", strtotime($date));
+            $closed = $row['closed'];
 
             $sql_1 = "SELECT * FROM users WHERE id = '$username'";
             $result_1 = mysqli_query($conn, $sql_1);
@@ -152,31 +153,35 @@ if($resultcheck_2 > 0){ // If there is 1 result
     </div>
 
 <?php
-if(loginCheck()){
-    $username = loginCheck()[1];
-    $email = loginCheck()[2];
-    $id = loginCheck()[3];
+if($closed != '1'){
+    if(loginCheck()){
+        $username = loginCheck()[1];
+        $email = loginCheck()[2];
+        $id = loginCheck()[3];
 
-    $_SESSION["new-comment"] = array($permalink_url);; // Puts the Errors Array in the session, so it's visible from other pages
-    echo '
-    <div class="container">
-    <div class="jumbotron jumbotron-fluid mt-3 pb-3 mb-0 pt-3">
-        <div class="ml-3 mr-3 pt-3 pb-3 bg-light">
-        <form action="../inc/new-comment.php" method="POST" enctype="multipart/form-data" class="pl-5 pr-5">
-                        <div class="form-group">
-                            <h3>Aggiungi una risposta pubblica</h3>
-                            <textarea class="form-control" id="msg_comment" name="msg_comment" rows="5"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-secondary" value="submit_comment"
-                            name="submit_comment">Invia</button>
-                    </form>
+        $_SESSION["new-comment"] = array($permalink_url);; // Puts the Errors Array in the session, so it's visible from other pages
+        echo '
+        <div class="container">
+        <div class="jumbotron jumbotron-fluid mt-3 pb-3 mb-0 pt-3">
+            <div class="ml-3 mr-3 pt-3 pb-3 bg-light">
+            <form action="../inc/new-comment.php" method="POST" enctype="multipart/form-data" class="pl-5 pr-5">
+                            <div class="form-group">
+                                <h3>Aggiungi una risposta pubblica</h3>
+                                <textarea class="form-control" id="msg_comment" name="msg_comment" rows="5"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-secondary" value="submit_comment"
+                                name="submit_comment">Invia</button>
+                        </form>
+            </div>
         </div>
     </div>
-</div>
-    ';
-  } else {
-      echo "devi essere loggato ignorante!";
-  }
+        ';
+    } else {
+        echo "devi essere loggato ignorante!";
+    }
+} else {
+    echo "è chiuso";
+}
 ?>
 
 
