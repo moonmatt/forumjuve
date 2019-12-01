@@ -199,6 +199,19 @@ function roleBadge($role) {
     }
 }
 
+function postBadge($usernameId) {
+    include 'dbh.inc.php';
+    $numberOfPostsSql = "SELECT * FROM comments WHERE username = '$usernameId'";
+    $numberOfPostsResult = mysqli_query($conn, $numberOfPostsSql);
+    $numberOfPostResultCount = mysqli_num_rows($numberOfPostsResult);
+    if($numberOfPostResultCount < 5){
+        return '<img src="/forumjuve/img/pinsoglio.svg" class="mx-auto d-block" width="132" height="auto" title="Pinsoglio - '.$numberOfPostResultCount.'">';
+    } elseif($numberOfPostResultCount < 25) {
+        // return '<img src="/forumjuve/img/prova.svg" class="mx-auto d-block" width="132" height="auto" title="Pinsoglio - '.$numberOfPostResultCount.'">';
+        return '<div class="badge123  mx-4" width="132px" height="39px"></div>';
+    }
+}
+
 // Permalink
 
 function permalink($string) {

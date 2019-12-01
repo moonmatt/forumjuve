@@ -17,29 +17,46 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
             $date = date("d M Y", strtotime($date));
             $ban = $row['ban'];
             $name = $row['name'];
-            $ban = $row['ban'];
             $bio = $row['bio'];
             $website = $row['website'];
             $sex = $row['sex'];
             $dofbirth = $row['dofbirth'];
             $propic = $row['propic'];
+            $city = $row['city']; 
+            $role = $row['role'];
+            if($name != ''){
+                $name = '<h4>Nome</h4> <p class="lead">'.$name.'</p>';
+            }
+
+            if($website != ''){
+                $website = '<h4>Link</h4> <p class="lead">'.$website.'</p>';
+            }
+            $role = '<h4>Ruolo</h4> <p class="lead d-inline-block m-0">'.roleBadge($role).'</p>';
 
             if($dofbirth != "0000-00-00"){ // If date of birth is not set
               $dofbirth = date("d M Y", strtotime($dofbirth));
+              $dofbirth = '<h4>Data di nascita</h4> <p class="lead">'.$dofbirth.'</p>';
             } else {
-              $dofbirth = "";
+                $dofbirth = "";
             }
 
             if($sex == 1){ // Check the sex of user
-              $sex = "Maschio";
+                $sex = '<h4>Sesso</h4> <p class="lead">Maschio</p>';
             } elseif ($sex == 2) {
-              $sex = "Femmina";
+                $sex = '<h4>Sesso</h4> <p class="lead">Femmina</p>';
             }
             elseif ($sex == 0) {
               $sex = "";
             }
 
-            $city = $row['city']; // Check if user is banned
+            if($city != ''){
+                $city = '<h4>Città</h4> <p class="lead">'.$city.'</p>';
+            }
+
+            if($bio != ''){
+                $bio = '<h4>Biografia</h4> <p class="lead">'.$bio.'</p>';
+            }
+
             if($ban == 1){
               echo "L'utente è bannato";
               die();
@@ -102,19 +119,15 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
 
             <div class="col-sm-4 float-right">
                 <div class="jumbotron jumbotron-fluid p-2">
+                <p class="h3 py-2 px-2">Informazioni</p>
                     <div class="container">
-                        <h4>Nome</h4>
-                        <p class="lead"><?php echo $name; ?></p>
-                        <h4>Data di nascita</h4>
-                        <p class="lead"><?php echo $dofbirth; ?></p>
-                        <h4>Link</h4>
-                        <p class="lead"><?php echo "<a href='".$website."'>".$website."</a>"; ?></p>
-                        <h4>Sesso</h4>
-                        <p class="lead"><?php echo $sex; ?></p>
-                        <h4>Provenienza</h4>
-                        <p class="lead"><?php echo $city; ?></p>
-                        <h4>Biografia</h4>
-                        <p class="lead"><?php echo $bio; ?></p>
+                        <?php echo $name; ?>
+                        <?php echo $role; ?>
+                        <?php echo $dofbirth; ?>
+                        <?php echo $website; ?>
+                        <?php echo $sex; ?>
+                        <?php echo $city; ?>
+                        <?php echo $bio; ?>
                     </div>
                 </div>
             </div>
@@ -122,7 +135,7 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
             <div class="col-sm-8 float-left">
                 <div class="jumbotron jumbotron-fluid">
                     <div class="container">
-                        <h1 class="display-4">Juventus Forum</h1>
+                        <p class="h3 py-2">Post dell'utente</p>
                         <p class="lead">Il forum dedicato a tutti i tifosi bianconeri.</p>
                     </div>
                 </div>

@@ -129,6 +129,7 @@ if($resultcheck_2 > 0){ // If there is 1 result
                     <div class="text-center text-break pr-3 pl-3">
                         <h5 class="mt-2">'.$username_comment.'</h5>
                         '.rolebadge($role_comment).'
+                        '.postBadge($id_user_comment).'
                     </div>
                 </div>
 

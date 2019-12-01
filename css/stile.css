@@ -21,3 +21,17 @@ html {
     max-width: 100%;
     height: auto;
 }
+img {
+    image-resolution: 1000dpi; 
+}
+.badge123 {
+    background-image: url("../img/admin.jpg");
+    background-size: cover;
+    background-position: center center;
+    height: 39px;
+    width: 158px;
+
+}
+.badge123:empty::before {
+    content: "\A0";
+  }

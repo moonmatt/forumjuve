@@ -82,8 +82,8 @@ else {
                    <img src="'.$propic.'" class="rounded mx-auto d-block" alt="..." style="object-fit: cover; width:200px; height:200px; ">
                    <div class="text-center text-break pr-3 pl-3">
                    <h5 class="mt-2"><small>a </small>'.$to_username.'</h5>
-                   '.roleBadge($role).' <br>
-                                      <span class="mt-2">'.$website.'</span>
+                   '.roleBadge($role).'
+                    <span class="mt-2">'.$website.'</span>
                    </div>
                    </div>
                    <div class="col-sm-8 pl-0 message">
