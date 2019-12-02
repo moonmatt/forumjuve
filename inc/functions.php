@@ -193,9 +193,9 @@ function autoLogin($username, $password, $conn){
 
 function roleBadge($role) {
     if($role == "admin"){
-        return '<img src="/forumjuve/img/admin.jpg" class="mx-auto d-block" width="132" height="auto" title="Admin">';
+        return '<img src="/forumjuve/img/admin.png" class="mx-auto d-block mb-1" width="132" height="auto" title="Admin">';
     } elseif($role == "user" or $role == ""){
-        return '<img src="/forumjuve/img/user.jpg" class="mx-auto d-block" width="132" height="auto" title="Utente">';
+        return '<img src="/forumjuve/img/user.png" class="mx-auto d-block mb-1" width="132" height="auto" title="Utente">';
     }
 }
 
@@ -205,10 +205,11 @@ function postBadge($usernameId) {
     $numberOfPostsResult = mysqli_query($conn, $numberOfPostsSql);
     $numberOfPostResultCount = mysqli_num_rows($numberOfPostsResult);
     if($numberOfPostResultCount < 5){
-        return '<img src="/forumjuve/img/pinsoglio.svg" class="mx-auto d-block" width="132" height="auto" title="Pinsoglio - '.$numberOfPostResultCount.'">';
+        return '<img src="/forumjuve/img/pinsoglio.png" class="mx-auto d-block" width="132" height="auto" title="Pinsoglio - '.$numberOfPostResultCount.'">';
     } elseif($numberOfPostResultCount < 25) {
-        // return '<img src="/forumjuve/img/prova.svg" class="mx-auto d-block" width="132" height="auto" title="Pinsoglio - '.$numberOfPostResultCount.'">';
-        return '<div class="badge123  mx-4" width="132px" height="39px"></div>';
+        return '<img src="/forumjuve/img/desciglio.png" class="mx-auto d-block" width="132" height="auto" title="De Sciglio - '.$numberOfPostResultCount.'">';
+    } elseif($numberOfPostResultCount < 50) {
+        return '<img src="/forumjuve/img/alexsandro.png" class="mx-auto d-block" width="132" height="auto" title="Alex Sandro - '.$numberOfPostResultCount.'">';
     }
 }
 

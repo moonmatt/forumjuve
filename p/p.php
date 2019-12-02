@@ -67,6 +67,13 @@ $sql = "SELECT * FROM posts WHERE permalink = '$permalink_url'";
 
     <div class="container">
         <div class="jumbotron jumbotron-fluid mt-3 pb-3 mb-0 pt-3">
+        <?php
+        if($closed == 1){
+        echo '<div class="alert alert-warning mx-3" role="alert">
+        Questa discussione è stata chiusa da un amministratore
+        </div>';
+        }
+        ?>
             <div class="row ml-3 mr-3 pt-3 pb-3 bg-light">
                 <div class="col-sm-3 mr-0 pr-0">
                     <img src="<?php echo $propic; ?>" class="rounded mx-auto d-block" alt="..."
@@ -154,7 +161,7 @@ if($resultcheck_2 > 0){ // If there is 1 result
     </div>
 
 <?php
-if($closed != '1'){
+if($closed != 1){
     if(loginCheck()){
         $username = loginCheck()[1];
         $email = loginCheck()[2];
@@ -178,10 +185,20 @@ if($closed != '1'){
     </div>
         ';
     } else {
-        echo "devi essere loggato ignorante!";
+        echo '
+        <div class="container mt-2">
+        <div class="alert alert-warning" role="alert">
+        Devi essere loggato per poter scrivere! <a href="../login">Login</a>
+      </div>
+      </div>';
     }
 } else {
-    echo "è chiuso";
+    echo '
+    <div class="container mt-2">
+    <div class="alert alert-warning" role="alert">
+    Questa discussione è stata chiusa da un amministratore.
+  </div>
+  </div>';
 }
 ?>
 

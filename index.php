@@ -51,9 +51,15 @@
       while($row = mysqli_fetch_assoc($result)){
         $id_post = $row['username'];
         $title_post = $row['title'];
+        $status = $row['closed'];
         $permalink_post = $row['permalink'];
         $date_post = $row['date'];
         $date_post = date("d/m/Y - H:i", strtotime($date_post));
+        if($status == 1){
+            $status = 'Chiuso <i class="fas fa-door-closed"></i>';
+        } else {
+            $status = 'Aperto <i class="fas fa-door-open"></i>';
+        }
 
         $sql_1 = "SELECT * FROM users WHERE id = '$id_post'";
         $result_1 = mysqli_query($conn, $sql_1);
@@ -83,7 +89,7 @@
         </div>
         <div class="col-2 text-right">
         <span class="mb-0 pb-0 mb-0">'.$resultcheck_4.' <i class="fas fa-comment"></i></span> <br>
-        <span class="mb-0 pt-0 mt-0">Segnala <i class="fas fa-flag"></i></span>
+        <span class="mb-0 pt-0 mt-0">'.$status.'</span>
         </div>
         </div>
         </div>
