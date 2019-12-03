@@ -11,11 +11,13 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
 
     if($resultcheck == 1){ // If there is 1 result
         while($row = mysqli_fetch_assoc($result)){
+            $username_id = $row['id'];
             $username_1 = $row['username'];
             $email_1 = $row['email'];
             $date = $row['date'];
             $date = date("d M Y", strtotime($date));
             $ban = $row['ban'];
+            $badges = $row['badges'];
             $name = $row['name'];
             $bio = $row['bio'];
             $website = $row['website'];
@@ -31,7 +33,6 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
             if($website != ''){
                 $website = '<h4>Link</h4> <p class="lead">'.$website.'</p>';
             }
-            $role = '<h4>Ruolo</h4> <p class="lead d-inline-block m-0">'.roleBadge($role).'</p>';
 
             if($dofbirth != "0000-00-00"){ // If date of birth is not set
               $dofbirth = date("d M Y", strtotime($dofbirth));
@@ -122,12 +123,21 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
                 <p class="h3 py-2 px-2">Informazioni</p>
                     <div class="container">
                         <?php echo $name; ?>
-                        <?php echo $role; ?>
                         <?php echo $dofbirth; ?>
                         <?php echo $website; ?>
                         <?php echo $sex; ?>
                         <?php echo $city; ?>
                         <?php echo $bio; ?>
+                        <h4>Targhette</h4> <p class="lead d-inline-block m-0">
+                        <?php 
+                        // echo roleBadge($role); 
+                        // echo postBadge($username_id);
+                        // foreach(allBadges($badges, $conn) as $badge){
+                        //     echo "<img class='mx-auto d-block my-1' width='132' height='auto' title='".$badge[1]."' src='/forumjuve/".$badge[2]."'>";
+                        // }
+                        echo badgeGroup($role, $username_id, $badges, $conn);
+                        ?>
+                        </p>
                     </div>
                 </div>
             </div>

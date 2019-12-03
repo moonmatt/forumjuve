@@ -51,6 +51,7 @@ else {
         if($resultcheck > 0){ // If there is 1 result
             while($row = mysqli_fetch_assoc($result)){
                $from_username = $row['from_username'];
+               $from_username_id = $from_username;
                $title = $row['title'];
                $date = $row['date'];
                $date = date("d M Y - H:i", strtotime($date));
@@ -81,8 +82,9 @@ else {
                    <div class="col-sm-4">
                    <img src="'.$propic.'" class="rounded mx-auto d-block" alt="..." style="object-fit: cover; width:200px; height:200px; ">
                    <div class="text-center text-break pr-3 pl-3">
-                   <h5 class="mt-2">'.$from_username.'</h5>
+                   <h5 class="mt-2"><a href="user/'.$from_username.'" class="text-dark">'.$from_username.'</a></h5>
                    '.roleBadge($role).'
+                   '.postBadge($from_username_id).'
                    <span class="mt-2">'.$website.'</span>
                    </div>
                    </div>

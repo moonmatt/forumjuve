@@ -189,14 +189,18 @@ function autoLogin($username, $password, $conn){
     }
 }
 
-// Role badge
 
-function roleBadge($role) {
-    if($role == "admin"){
-        return '<img src="/forumjuve/img/admin.png" class="mx-auto d-block mb-1" width="132" height="auto" title="Admin">';
-    } elseif($role == "user" or $role == ""){
-        return '<img src="/forumjuve/img/user.png" class="mx-auto d-block mb-1" width="132" height="auto" title="Utente">';
-    }
+function roleBadge($role, $conn){
+	$sql = "SELECT * FROM roles";
+	$result = mysqli_query($conn, $sql);
+	$resultcheck = mysqli_num_rows($result);
+	while($row = mysqli_fetch_assoc($result)){
+			$name = $row['name'];
+			if($role == $name){
+                $image = $row['image'];
+				return('<img src="'.$image.'" class="mx-auto d-block mb-1" width="132" height="auto" title="'.$name.'">');
+			}
+	}
 }
 
 function postBadge($usernameId) {
@@ -211,6 +215,37 @@ function postBadge($usernameId) {
     } elseif($numberOfPostResultCount < 50) {
         return '<img src="/forumjuve/img/alexsandro.png" class="mx-auto d-block" width="132" height="auto" title="Alex Sandro - '.$numberOfPostResultCount.'">';
     }
+}
+
+function allBadges($badges, $conn){
+	$badges = explode(",", $badges);
+	$sql = "SELECT * FROM badges";
+	$result = mysqli_query($conn, $sql);
+	$resultcheck = mysqli_num_rows($result);
+	$total = array(); 
+	while($row = mysqli_fetch_assoc($result)){
+    		foreach ($badges as $badge) {
+			$badge = trim($badge);
+			$name = $row['name'];
+			if($badge == $name){
+                $title = $row['title'];
+                $image = $row['image'];
+				$badge_arr = array(True,$title,$image);
+				array_push($total, $badge_arr);
+			}
+		}
+	}
+	return $total;
+}
+
+function badgeGroup($role, $usernameId, $badges, $conn){
+    $role = roleBadge($role, $conn);
+    $postBadge = postBadge($usernameId);
+    $allBadges = "";
+    foreach(allBadges($badges, $conn) as $badge){
+        $allBadges = "<img class='mx-auto d-block my-1' width='132' height='auto' title='".$badge[1]."' src='/forumjuve/".$badge[2]."'>";
+    } 
+    return $role . $postBadge . $allBadges;
 }
 
 // Permalink

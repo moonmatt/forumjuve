@@ -1,29 +1,30 @@
 <?php
+require_once 'inc/dbh.inc.php';
 
-$curl = curl_init();
+function allBadges($badges, $conn){
+	$badges = explode(",", $badges);
+	$sql = "SELECT * FROM badges";
+	$result = mysqli_query($conn, $sql);
+	$resultcheck = mysqli_num_rows($result);
+	$total = array(); 
+	while($row = mysqli_fetch_assoc($result)){
+    		foreach ($badges as $badge) {
+			$badge = trim($badge);
+			$name = $row['name'];
+			if($badge == $name){
+                $title = $row['title'];
+                $image = $row['image'];
+				$bad = array(True,$title,$image);
+				array_push($total, $bad);
+			}
+		}
+	}
+	return $total;
+}
 
-curl_setopt_array($curl, array(
-	CURLOPT_URL => "https://sportsop-soccer-sports-open-data-v1.p.rapidapi.com/v1/leagues",
-	CURLOPT_RETURNTRANSFER => true,
-	CURLOPT_FOLLOWLOCATION => true,
-	CURLOPT_ENCODING => "",
-	CURLOPT_MAXREDIRS => 10,
-	CURLOPT_TIMEOUT => 30,
-	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-	CURLOPT_CUSTOMREQUEST => "GET",
-	CURLOPT_HTTPHEADER => array(
-		"x-rapidapi-host: sportsop-soccer-sports-open-data-v1.p.rapidapi.com",
-		"x-rapidapi-key: 7b6f10ad4amsh385a40103be4cc9p15763bjsn25f984ba9626"
-	),
-));
 
-$response = curl_exec($curl);
-$err = curl_error($curl);
-
-curl_close($curl);
-
-if ($err) {
-	echo "cURL Error #:" . $err;
-} else {
-	echo $response;
+foreach(allBadges("ciao,prova", $conn) as $lmao){
+	echo json_encode($lmao);
+	echo "<br>";
+	echo $lmao[2];
 }

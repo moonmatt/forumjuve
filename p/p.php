@@ -81,6 +81,7 @@ $sql = "SELECT * FROM posts WHERE permalink = '$permalink_url'";
                     <div class="text-center text-break pr-3 pl-3">
                         <h5 class="mt-2"><?php echo $username_post; ?></h5>
                         <?php echo rolebadge($role); ?>
+                        <?php echo postBadge($username); ?>
                     </div>
                 </div>
 
