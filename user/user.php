@@ -130,11 +130,6 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
                         <?php echo $bio; ?>
                         <h4>Targhette</h4> <p class="lead d-inline-block m-0">
                         <?php 
-                        // echo roleBadge($role); 
-                        // echo postBadge($username_id);
-                        // foreach(allBadges($badges, $conn) as $badge){
-                        //     echo "<img class='mx-auto d-block my-1' width='132' height='auto' title='".$badge[1]."' src='/forumjuve/".$badge[2]."'>";
-                        // }
                         echo badgeGroup($role, $username_id, $badges, $conn);
                         ?>
                         </p>

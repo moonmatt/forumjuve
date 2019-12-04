@@ -25,6 +25,7 @@ $sql = "SELECT * FROM posts WHERE permalink = '$permalink_url'";
             $row_1 = mysqli_fetch_assoc($result_1);
             $propic = $row_1['propic'];
             $role = $row_1['role'];
+            $badges = $row_1['badges'];
             $username_post = $row_1['username'];
             $website = $row_1['website'];
             if($website != ''){
@@ -80,8 +81,7 @@ $sql = "SELECT * FROM posts WHERE permalink = '$permalink_url'";
                         style="object-fit: cover; width:200px; height:200px; ">
                     <div class="text-center text-break pr-3 pl-3">
                         <h5 class="mt-2"><?php echo $username_post; ?></h5>
-                        <?php echo rolebadge($role); ?>
-                        <?php echo postBadge($username); ?>
+                        <?php echo badgeGroup($role, $username, $badges, $conn); ?>
                     </div>
                 </div>
 
@@ -114,6 +114,7 @@ if($resultcheck_2 > 0){ // If there is 1 result
 
         $username_comment = $row_3['username'];
         $propic_comment = $row_3['propic'];
+        $badges_comment = $row_3['badges'];
         $role_comment = $row_3['role'];
         $website_comment = $row_3['website'];
 
@@ -136,8 +137,7 @@ if($resultcheck_2 > 0){ // If there is 1 result
                         style="object-fit: cover; width:200px; height:200px; ">
                     <div class="text-center text-break pr-3 pl-3">
                         <h5 class="mt-2">'.$username_comment.'</h5>
-                        '.rolebadge($role_comment).'
-                        '.postBadge($id_user_comment).'
+                        '.badgeGroup($role_comment, $id_user_comment, $badges_comment, $conn).'
                     </div>
                 </div>
 

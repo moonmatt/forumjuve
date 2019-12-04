@@ -205,7 +205,7 @@ function roleBadge($role, $conn){
 
 function postBadge($usernameId) {
     include 'dbh.inc.php';
-    $numberOfPostsSql = "SELECT * FROM comments WHERE username = '$usernameId'";
+    $numberOfPostsSql = "SELECT * FROM comments, posts WHERE comments.username = '$usernameId' AND posts.username = '$usernameId'";
     $numberOfPostsResult = mysqli_query($conn, $numberOfPostsSql);
     $numberOfPostResultCount = mysqli_num_rows($numberOfPostsResult);
     if($numberOfPostResultCount < 5){
