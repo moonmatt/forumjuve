@@ -40,12 +40,11 @@ if(isset($_POST['submit_post'])){ // If the login form is submitted
         $permalink = permalink($title_post);
         $sql = "INSERT INTO posts (username, title, msg, permalink, date) VALUES ('$id', '$title_post', '$msg_post', '$permalink', '$date');";
         mysqli_query($conn, $sql);
-        // header('location: index?post-sent');
+        header('location: /forumjuve/p/'.$permalink);
         die();
     } else {
         $_SESSION["sendMsg_errors"] = $errors;
-        // header('location: ' . $redirectProfile);
-        echo "errore";
+        header('location: /forumjuve');
         die();
     }
 }

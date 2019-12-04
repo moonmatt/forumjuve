@@ -203,22 +203,6 @@ function roleBadge($role, $conn){
 	}
 }
 
-// function postBadge($usernameId) {
-//     include 'dbh.inc.php';
-//     $numberOfPostsSql = "SELECT * FROM comments, posts WHERE comments.username = '$usernameId' AND posts.username = '$usernameId'";
-//     $numberOfPostsResult = mysqli_query($conn, $numberOfPostsSql);
-//     $numberOfPostResultCount = mysqli_num_rows($numberOfPostsResult);
-//     if($numberOfPostResultCount < 5){
-//         return '<img src="/forumjuve/img/pinsoglio.png" class="mx-auto d-block" width="132" height="auto" title="Pinsoglio - '.$numberOfPostResultCount.'">';
-//     } elseif($numberOfPostResultCount < 25) {
-//         return '<img src="/forumjuve/img/desciglio.png" class="mx-auto d-block" width="132" height="auto" title="De Sciglio - '.$numberOfPostResultCount.'">';
-//     } elseif($numberOfPostResultCount < 50) {
-//         return '<img src="/forumjuve/img/alexsandro.png" class="mx-auto d-block" width="132" height="auto" title="Alex Sandro - '.$numberOfPostResultCount.'">';
-//     }  elseif($numberOfPostResultCount >= 50) {
-//         return '<img src="/forumjuve/img/alexsandro.png" class="mx-auto d-block" width="132" height="auto" title="Alex Sandro - '.$numberOfPostResultCount.'">';
-//     }
-// }
-
 function postBadge($usernameId, $conn) {
     include 'dbh.inc.php';
     $numberOfPostsSql = "SELECT * FROM comments, posts WHERE comments.username = '$usernameId' AND posts.username = '$usernameId'";
