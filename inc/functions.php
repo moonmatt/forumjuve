@@ -203,18 +203,39 @@ function roleBadge($role, $conn){
 	}
 }
 
-function postBadge($usernameId) {
+// function postBadge($usernameId) {
+//     include 'dbh.inc.php';
+//     $numberOfPostsSql = "SELECT * FROM comments, posts WHERE comments.username = '$usernameId' AND posts.username = '$usernameId'";
+//     $numberOfPostsResult = mysqli_query($conn, $numberOfPostsSql);
+//     $numberOfPostResultCount = mysqli_num_rows($numberOfPostsResult);
+//     if($numberOfPostResultCount < 5){
+//         return '<img src="/forumjuve/img/pinsoglio.png" class="mx-auto d-block" width="132" height="auto" title="Pinsoglio - '.$numberOfPostResultCount.'">';
+//     } elseif($numberOfPostResultCount < 25) {
+//         return '<img src="/forumjuve/img/desciglio.png" class="mx-auto d-block" width="132" height="auto" title="De Sciglio - '.$numberOfPostResultCount.'">';
+//     } elseif($numberOfPostResultCount < 50) {
+//         return '<img src="/forumjuve/img/alexsandro.png" class="mx-auto d-block" width="132" height="auto" title="Alex Sandro - '.$numberOfPostResultCount.'">';
+//     }  elseif($numberOfPostResultCount >= 50) {
+//         return '<img src="/forumjuve/img/alexsandro.png" class="mx-auto d-block" width="132" height="auto" title="Alex Sandro - '.$numberOfPostResultCount.'">';
+//     }
+// }
+
+function postBadge($usernameId, $conn) {
     include 'dbh.inc.php';
     $numberOfPostsSql = "SELECT * FROM comments, posts WHERE comments.username = '$usernameId' AND posts.username = '$usernameId'";
     $numberOfPostsResult = mysqli_query($conn, $numberOfPostsSql);
     $numberOfPostResultCount = mysqli_num_rows($numberOfPostsResult);
-    if($numberOfPostResultCount < 5){
-        return '<img src="/forumjuve/img/pinsoglio.png" class="mx-auto d-block" width="132" height="auto" title="Pinsoglio - '.$numberOfPostResultCount.'">';
-    } elseif($numberOfPostResultCount < 25) {
-        return '<img src="/forumjuve/img/desciglio.png" class="mx-auto d-block" width="132" height="auto" title="De Sciglio - '.$numberOfPostResultCount.'">';
-    } elseif($numberOfPostResultCount < 50) {
-        return '<img src="/forumjuve/img/alexsandro.png" class="mx-auto d-block" width="132" height="auto" title="Alex Sandro - '.$numberOfPostResultCount.'">';
-    }
+
+    $sql = "SELECT * FROM postbadges";
+	$result = mysqli_query($conn, $sql);
+	$resultcheck = mysqli_num_rows($result);
+	while($row = mysqli_fetch_assoc($result)){
+            $value = $row['value'];
+			if($numberOfPostResultCount < $value){
+                $name = $row['name'];
+                $image = $row['image'];
+				return('<img src="'.$image.'" class="mx-auto d-block mb-1" width="132" height="auto" title="'.$name.' - '.$numberOfPostResultCount.'">');
+			}
+	}
 }
 
 function allBadges($badges, $conn){
@@ -240,7 +261,7 @@ function allBadges($badges, $conn){
 
 function badgeGroup($role, $usernameId, $badges, $conn){
     $role = roleBadge($role, $conn);
-    $postBadge = postBadge($usernameId);
+    $postBadge = postBadge($usernameId, $conn);
     $allBadges = "";
     foreach(allBadges($badges, $conn) as $badge){
         $allBadges = "<img class='mx-auto d-block my-1' width='132' height='auto' title='".$badge[1]."' src='/forumjuve/".$badge[2]."'>";

@@ -63,6 +63,7 @@ else {
                $row_1 = mysqli_fetch_assoc($result_1);
                $to_username = $row_1['username'];
                $propic = $row_1['propic'];
+               $badges = $row_1['badges'];
                $role = $row_1['role'];
                $website = $row_1['website'];
                if($website != ''){
@@ -83,8 +84,7 @@ else {
                    <img src="'.$propic.'" class="rounded mx-auto d-block" alt="..." style="object-fit: cover; width:200px; height:200px; ">
                    <div class="text-center text-break pr-3 pl-3">
                    <h5 class="mt-2"><small>a </small><a href="user/'.$to_username.'" class="text-dark">'.$to_username.'</a></h5>
-                   '.roleBadge($role).'
-                   '.postBadge($to_username_id).'
+                   '.badgeGroup($role, $to_username_id, $badges, $conn).'
                     <span class="mt-2">'.$website.'</span>
                    </div>
                    </div>

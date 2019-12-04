@@ -2,9 +2,33 @@
 
 
 <?php
-    $sql = "SELECT * FROM posts ORDER BY id DESC";
-    $result = mysqli_query($conn, $sql);
-    $resultcheck = mysqli_num_rows($result);
+    $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    $actual_link = basename($actual_link);
+    $linkNum = stringEscape($actual_link, $conn);
+    $linkNum = substr($linkNum, 1);
+    if(is_numeric($linkNum) and $linkNum != 1){
+        $pzero = false;
+        $offset = $linkNum * 5 - 5;
+
+        $sql = "SELECT * FROM posts";
+        $result = mysqli_query($conn, $sql);
+        $resultcheck = mysqli_num_rows($result);
+        $max = ceil($resultcheck / 5);
+
+        $sql = "SELECT * FROM posts order by id DESC LIMIT 5 OFFSET $offset";
+        $result = mysqli_query($conn, $sql);
+        $resultcheck = mysqli_num_rows($result);
+        if($linkNum > $max){
+            header("location: /forumjuve");
+        }
+    } else {
+        $max = 0;
+        $linkNum = 1;
+        $pzero = true;
+        $sql = "SELECT * FROM posts ORDER BY id DESC LIMIT 5";
+        $result = mysqli_query($conn, $sql);
+        $resultcheck = mysqli_num_rows($result);
+    }
 
     $sql_2 = "SELECT * FROM comments ORDER BY date DESC LIMIT 5";
     $result_2 = mysqli_query($conn, $sql_2);
@@ -97,6 +121,21 @@
       }
     }
     ?>
+    <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item <?php if($pzero){ echo "disabled"; }?>">
+      <a class="page-link" href="?<?php echo $linkNum - 1;?>" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link"><?php echo $linkNum;?></a></li>
+    <li class="page-item <?php if($linkNum == $max) { echo "disabled";} ?>">
+      <a class="page-link " href="?<?php if($linkNum != $max) { echo $linkNum + 1;} ?>" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
 </div>
             </div>
 
