@@ -28,13 +28,6 @@ $sql = "SELECT * FROM posts WHERE permalink = '$permalink_url'";
             $badges = $row_1['badges'];
             $username_post = $row_1['username'];
             $website = $row_1['website'];
-            if($website != ''){
-                $website = "<a href='".$website."' target='_blank' class='mt-2'><i class='material-icons'>
-                link
-                </i></a>";
-            } else {
-                $website = "";
-            }
             if($propic == ''){
              $propic = "/forumjuve/img/utente.jpg";
             }
@@ -76,12 +69,13 @@ $sql = "SELECT * FROM posts WHERE permalink = '$permalink_url'";
         }
         ?>
             <div class="row ml-3 mr-3 pt-3 pb-3 bg-light">
-                <div class="col-sm-3 mr-0 pr-0">
+                <div class="col-sm-3 mr-0 pr-0 border-right">
                     <img src="<?php echo $propic; ?>" class="rounded mx-auto d-block" alt="..."
                         style="object-fit: cover; width:200px; height:200px; ">
                     <div class="text-center text-break pr-3 pl-3">
                         <h5 class="mt-2"><?php echo $username_post; ?></h5>
                         <?php echo badgeGroup($role, $username, $badges, $conn); ?>
+                        <span class="mt-2"><?php echo website($website); ?></span>
                     </div>
                 </div>
 
@@ -117,14 +111,6 @@ if($resultcheck_2 > 0){ // If there is 1 result
         $badges_comment = $row_3['badges'];
         $role_comment = $row_3['role'];
         $website_comment = $row_3['website'];
-
-        if($website_comment != ''){
-            $website_comment = "<a href='".$website_comment."' target='_blank' class='mt-2'><i class='material-icons'>
-            link
-            </i></a>";
-        } else {
-            $website_comment = "";
-        }
         if($propic_comment == ''){
          $propic_comment = "/forumjuve/img/utente.jpg";
         }
@@ -132,12 +118,13 @@ if($resultcheck_2 > 0){ // If there is 1 result
         echo '
         <div class="jumbotron jumbotron-fluid mt-1 pb-1 mb-0 pt-3" id="'.$id_comment.'">
             <div class="row ml-3 mr-3 pt-3 pb-3 bg-light">
-                <div class="col-sm-3 mr-0 pr-0">
+                <div class="col-sm-3 mr-0 pr-0 border-right">
                     <img src="'.$propic_comment.'" class="rounded mx-auto d-block" alt="..."
                         style="object-fit: cover; width:200px; height:200px; ">
                     <div class="text-center text-break pr-3 pl-3">
                         <h5 class="mt-2">'.$username_comment.'</h5>
                         '.badgeGroup($role_comment, $id_user_comment, $badges_comment, $conn).'
+                        <span class="mt-2">'.website($website_comment).'</span>
                     </div>
                 </div>
 

@@ -47,6 +47,7 @@ else {
 
         <div class="row">
             <div class="col-sm-8">
+            <div class="pt-1" style="background-color: #e9ecef">
                         <?php
         if($resultcheck > 0){ // If there is 1 result
             while($row = mysqli_fetch_assoc($result)){
@@ -66,26 +67,19 @@ else {
                $badges = $row_1['badges'];
                $role = $row_1['role'];
                $website = $row_1['website'];
-               if($website != ''){
-                   $website = "<a href='".$website."' target='_blank' class='mt-2'><i class='material-icons'>
-                   link
-                   </i></a>";
-               } else {
-                   $website = "";
-               }
                if($propic == ''){
                 $propic = "/forumjuve/img/utente.jpg";
                }
 
                echo '
-               <div class="jumbotron jumbotron-fluid pt-3 pb-0">
-               <div class="row mb-3 mt-3">
-                   <div class="col-sm-4">
+               <div class="jumbotron jumbotron-fluid bg-light py-2 mb-1 m-3">
+               <div class="row mb-3 mt-3 mx-0">
+                   <div class="col-sm-4 border-right">
                    <img src="'.$propic.'" class="rounded mx-auto d-block" alt="..." style="object-fit: cover; width:200px; height:200px; ">
                    <div class="text-center text-break pr-3 pl-3">
                    <h5 class="mt-2"><small>a </small><a href="user/'.$to_username.'" class="text-dark">'.$to_username.'</a></h5>
                    '.badgeGroup($role, $to_username_id, $badges, $conn).'
-                    <span class="mt-2">'.$website.'</span>
+                    '.website($website).'
                    </div>
                    </div>
                    <div class="col-sm-8 pl-0 message">
@@ -96,7 +90,7 @@ else {
                        </div>
                    </div>
                </div>
-               <p class="text-right pr-3 pb-2">
+               <p class="text-right pr-3 pb-0 mb-0">
                <a href="write-msg?'.$to_username.'">Rispondi</a>
                </p>
            </div>
@@ -104,6 +98,7 @@ else {
             }
        }
     ?>
+                    </div>
                     </div>
 
                     

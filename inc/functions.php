@@ -253,6 +253,15 @@ function badgeGroup($role, $usernameId, $badges, $conn){
     return $role . $postBadge . $allBadges;
 }
 
+function website($website){
+    if($website != ''){
+        $website = "<a href='".$website."' target='_blank' class='mt-2'>Sito web <i class='fas fa-link'></i></a>";
+    } else {
+        $website = "";
+    }
+    return $website;
+}
+
 // Permalink
 
 function permalink($string) {
