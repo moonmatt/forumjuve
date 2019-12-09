@@ -41,23 +41,21 @@
 
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>ForumJuve | Il forum dedicato a tutti i tifosi bianconeri</title>
 
 
 </head>
 
-<body class="bg-secondary d-flex flex-column">
+<!-- <div class="preloader">
+   <div class="loader">
+        <div class="loader-inner"></div>
+   </div>
+</div> -->
 
-    <div class="container">
+<body class="bg-light">
 
-        <div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid text-white third">
             <div class="container">
                 <h1 class="display-4">Juventus Forum</h1>
                 <p class="lead">Il forum dedicato a tutti i tifosi bianconeri.</p>
@@ -65,11 +63,13 @@
 
         </div>
 
+
+    <div class="container">
+
         <div class="row">
             <div class="col-sm-8">
 
-            <div class="jumbotron jumbotron-fluid px-3 py-1">
-            <p class="h3 py-2">Post recenti</p>
+            <div class="jumbotron jumbotron-fluid px-3 pt-3 pb-1 bg-white rounded-lg shadow-sm">
                 <?php
     if($resultcheck > 0){ // If there is 1 result
       while($row = mysqli_fetch_assoc($result)){
@@ -80,9 +80,9 @@
         $date_post = $row['date'];
         $date_post = date("d/m/Y - H:i", strtotime($date_post));
         if($status == 1){
-            $status = 'Chiuso <i class="fas fa-door-closed"></i>';
+            $status = '<span class="badge badge-danger shadow">Chiuso <i class="fas fa-door-closed "></i></span>';
         } else {
-            $status = 'Aperto <i class="fas fa-door-open"></i>';
+            $status = '<span class="badge third text-light shadow">Aperto <i class="fas fa-door-open "></i></span>';
         }
 
         $sql_1 = "SELECT * FROM users WHERE id = '$id_post'";
@@ -102,17 +102,17 @@
 
         echo '
 
-        <div class="jumbotron jumbotron-fluid bg-light p-0 mb-3">
-        <div class="row p-3 pt-2 mt-0 pb-0">
-        <div class="col-2">
+        <div class="jumbotron jumbotron-fluid bg-white p-2 mb-3 rounded-lg shadow-sm">
+        <div class="row p-1 pt-0 mt-0 pb-0">
+        <div class="col-2 ">
         <img src="'.$propic.'" class="rounded mx-auto d-block" alt="..." style="object-fit: cover; width:50px; height:50px; ">
         </div>
-        <div class="col-8">
+        <div class="col-7">
         <h6 class="mb-0"><a href="p/'.$permalink_post.'" class="text-dark">'.$title_post.'</a></h6>
         <p class="pt-0"><a href="user/'.$username_post.'" class="text-dark">'.$username_post.'</a> - '.$date_post.'</p>
         </div>
-        <div class="col-2 text-right">
-        <span class="mb-0 pb-0 mb-0">'.$resultcheck_4.' <i class="fas fa-comment"></i></span> <br>
+        <div class="col-3 text-right pl-0 ml-0">
+        <span class="mb-0 pb-0 mb-0"><span class="badge badge-secondary shadow">'.$resultcheck_4.' <i class="fas fa-comment "></i></span></span> <br>
         <span class="mb-0 pt-0 mt-0">'.$status.'</span>
         </div>
         </div>
@@ -124,13 +124,13 @@
     <nav aria-label="Page navigation example">
   <ul class="pagination">
     <li class="page-item <?php if($pzero){ echo "disabled"; }?>">
-      <a class="page-link" href="?<?php echo $linkNum - 1;?>" aria-label="Previous">
+      <a class="page-link text-success" href="?<?php echo $linkNum - 1;?>" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    <li class="page-item"><a class="page-link"><?php echo $linkNum;?></a></li>
+    <li class="page-item  text-success"><a class="page-link"><?php echo $linkNum;?></a></li>
     <li class="page-item <?php if($linkNum == $max) { echo "disabled";} ?>">
-      <a class="page-link " href="?<?php if($linkNum != $max) { echo $linkNum + 1;} ?>" aria-label="Next">
+      <a class="page-link text-success" href="?<?php if($linkNum != $max) { echo $linkNum + 1;} ?>" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
@@ -140,8 +140,8 @@
             </div>
 
             <div class="col-sm-4">
-                <div class="jumbotron jumbotron-fluid py-1">
-                    <div class="container">
+                <div class="jumbotron jumbotron-fluid bg-white rounded-lg shadow-sm pt-0 pb-2">
+                    <div class="container ">
                     <p class="h3 py-2">Risposte recenti</p>
                         <?php
                          if($resultcheck_2 > 0){ // If there is 1 result
@@ -170,7 +170,7 @@
                               $title_comment = $row_4['title'];
                      
                              echo '
-                             <div class="jumbotron jumbotron-fluid bg-light p-0 mb-3">
+                             <div class="jumbotron jumbotron-fluid bg-white p-0 mt-0 mb-3 rounded-lg shadow-sm">
                             <div class="row p-3 pt-2 mt-0 pb-0">
                             <div class="col-2">
                             <a href="user/'.$username_post.'">
@@ -198,5 +198,17 @@
 
 
     <?php include 'inc/footer.php'; ?>
-
+    <!-- <script type="text/javascript">
+            // let myElement = document.querySelector(".preloader");
+            // myElement.style.display = "block";
+let myElement = document.querySelector(".preloader");
+if (sessionStorage.getItem('dontLoad') == null){
+    alert("This message will be shown only once when we use this window." )
+    myElement.style.display = "block";
+    setTimeout(function(){ myElement.style.display = "none"; }, 3000);
+    sessionStorage.setItem('dontLoad', 'true');
+  } else {
+    console.log(myElement);
+  }
+</script> -->
 </html>

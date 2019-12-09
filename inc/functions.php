@@ -255,7 +255,7 @@ function badgeGroup($role, $usernameId, $badges, $conn){
 
 function website($website){
     if($website != ''){
-        $website = "<a href='".$website."' target='_blank' class='mt-2'>Sito web <i class='fas fa-link'></i></a>";
+        $website = "<a href='".$website."' target='_blank' class='mt-2 text-light'>Sito web <i class='fas fa-link'></i></a>";
     } else {
         $website = "";
     }

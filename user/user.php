@@ -5,9 +5,11 @@ $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $actual_link = basename($actual_link);
 $username = stringEscape($actual_link, $conn);
 
-$sql = "SELECT * FROM users WHERE username = '$username'";
+    $sql = "SELECT * FROM users WHERE username = '$username'";
     $result = mysqli_query($conn, $sql);
     $resultcheck = mysqli_num_rows($result);
+
+
 
     if($resultcheck == 1){ // If there is 1 result
         while($row = mysqli_fetch_assoc($result)){
@@ -31,7 +33,7 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
             }
 
             if($website != ''){
-                $website = '<h4>Link</h4> <p class="lead">'.$website.'</p>';
+                $website = '<h4>Link</h4> <p class="lead">'.website($website).'</p>';
             }
 
             if($dofbirth != "0000-00-00"){ // If date of birth is not set
@@ -67,7 +69,17 @@ $sql = "SELECT * FROM users WHERE username = '$username'";
               $propic = "/forumjuve/img/utente.jpg";
             }
 
+
+            $postsListSql = "SELECT * FROM comments, posts WHERE comments.username = '$username_id' AND posts.username = '$username_id'";
+            $postsNumResult = mysqli_query($conn, $postsListSql);
+            $postNumResultCount = mysqli_num_rows($postsNumResult);
+
+            if($postNumResultCount > 0){ // If there is 1 result
+                while($row_2 = mysqli_fetch_assoc($postsNumResult)){
+                    echo "ciao -";
+                }
         }
+    }
     } else {
       header("Location: ../404.php");
       die();

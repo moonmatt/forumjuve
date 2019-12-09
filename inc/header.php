@@ -19,18 +19,18 @@ if(loginCheck()){
     <meta name="viewport" content="width=device-width">
     <link rel='icon' href='/forumjuve/img/favicon.png' type='image/x-icon' sizes="16x16" />
     <!-- Bootstrap CSS -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="\forumjuve\css\stile.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
-    
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
 
   <!-- Image and text -->
-  <nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top">
+  <nav class="navbar bg-white navbar-expand-lg sticky-top">
   <div class="container">
   <a class="navbar-brand" href="/forumjuve">
-    <img src="/forumjuve/img/logo.svg" class="d-inline-block align-top" alt="">
+    <img src="/forumjuve/img/logo-black.png" width="120px" class="d-inline-block align-top" alt="">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -63,8 +63,8 @@ if(loginCheck()){
   } else {
     echo '
     <div class="span ml-auto flex-nowrap">
-    <a href="/forumjuve/signup" class="text-light align-baseline mr-2">Iscriviti</a>
-    <a href="/forumjuve/login"><button type="button" class="btn btn-secondary btn-sm align-baseline">Accedi</button></a>
+    <a href="/forumjuve/signup"><button type="button" class="btn btn-outline-success btn-sm align-baseline">Iscriviti</button></a>
+    <a href="/forumjuve/login"><button type="button" class="btn text-white border-success third btn-sm align-baseline">Accedi</button></a>
     </div>
 
     ';

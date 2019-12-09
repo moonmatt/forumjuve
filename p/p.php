@@ -57,23 +57,23 @@ $sql = "SELECT * FROM posts WHERE permalink = '$permalink_url'";
 
 </head>
 
-<body class="bg-secondary d-flex flex-column">
+<body class="bg-light">
 
     <div class="container">
-        <div class="jumbotron jumbotron-fluid mt-3 pb-3 mb-0 pt-3">
+        <div class="jumbotron jumbotron-fluid mt-3 pb-3 mb-0 pt-3 bg-white rounded-lg shadow-sm">
         <?php
         if($closed == 1){
-        echo '<div class="alert alert-warning mx-3" role="alert">
+        echo '<div class="alert alert-warning mx-3 rounded-lg" role="alert">
         Questa discussione è stata chiusa da un amministratore
         </div>';
         }
         ?>
-            <div class="row ml-3 mr-3 pt-3 pb-3 bg-light">
-                <div class="col-sm-3 mr-0 pr-0 border-right">
+            <div class="row ml-3 mr-3 pt-3 pb-3 bg-light bg-white rounded-lg shadow-sm pl-3 shadow">
+                <div class="col-sm-3 mr-0 pr-0 py-4 border-right pl-0 third rounded-lg shadow text-light">
                     <img src="<?php echo $propic; ?>" class="rounded mx-auto d-block" alt="..."
                         style="object-fit: cover; width:200px; height:200px; ">
                     <div class="text-center text-break pr-3 pl-3">
-                        <h5 class="mt-2"><?php echo $username_post; ?></h5>
+                    <a href="../user/<?php echo $username_post; ?>" class="text-light"><h5 class="mt-2"><?php echo $username_post; ?></h5></a>
                         <?php echo badgeGroup($role, $username, $badges, $conn); ?>
                         <span class="mt-2"><?php echo website($website); ?></span>
                     </div>
@@ -116,13 +116,13 @@ if($resultcheck_2 > 0){ // If there is 1 result
         }
 
         echo '
-        <div class="jumbotron jumbotron-fluid mt-1 pb-1 mb-0 pt-3" id="'.$id_comment.'">
-            <div class="row ml-3 mr-3 pt-3 pb-3 bg-light">
-                <div class="col-sm-3 mr-0 pr-0 border-right">
+        <div class="jumbotron jumbotron-fluid pt-1 pb-1 mb-0 pt-3 bg-white rounded-lg shadow my-3 mx-3 third" id="'.$id_comment.'">
+            <div class="row ml-3 mr-3  pb-3 bg-white rounded-lg">
+                <div class="col-sm-3 mr-0 pr-0 py-4 border-right pl-0 third rounded-lg shadow text-light">
                     <img src="'.$propic_comment.'" class="rounded mx-auto d-block" alt="..."
                         style="object-fit: cover; width:200px; height:200px; ">
                     <div class="text-center text-break pr-3 pl-3">
-                        <h5 class="mt-2">'.$username_comment.'</h5>
+                        <a href="../user/'.$username_comment.'" class="text-light"><h5 class="mt-2">'.$username_comment.'</h5></a>
                         '.badgeGroup($role_comment, $id_user_comment, $badges_comment, $conn).'
                         <span class="mt-2">'.website($website_comment).'</span>
                     </div>
@@ -175,7 +175,7 @@ if($closed != 1){
     } else {
         echo '
         <div class="container mt-2">
-        <div class="alert alert-warning" role="alert">
+        <div class="alert alert-warning rounded-lg" role="alert">
         Devi essere loggato per poter scrivere! <a href="../login">Login</a>
       </div>
       </div>';
@@ -183,7 +183,7 @@ if($closed != 1){
 } else {
     echo '
     <div class="container mt-2">
-    <div class="alert alert-warning" role="alert">
+    <div class="alert alert-warning rounded-lg" role="alert">
     Questa discussione è stata chiusa da un amministratore.
   </div>
   </div>';
