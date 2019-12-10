@@ -1,6 +1,5 @@
 <?php include 'inc/header.php'; ?>
-
-
+<script src="https://kit.fontawesome.com/d2ce008e27.js" crossorigin="anonymous"></script>
 <?php
     $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     $actual_link = basename($actual_link);
@@ -41,7 +40,6 @@
 
 <head>
     <!-- Required meta tags -->
-
     <title>ForumJuve | Il forum dedicato a tutti i tifosi bianconeri</title>
 
 
@@ -54,7 +52,6 @@
 </div> -->
 
 <body class="bg-light">
-
 <div class="jumbotron jumbotron-fluid text-white third">
             <div class="container">
                 <h1 class="display-4">Juventus Forum</h1>
@@ -65,7 +62,6 @@
 
 
     <div class="container">
-
         <div class="row">
             <div class="col-sm-8">
 
@@ -80,9 +76,9 @@
         $date_post = $row['date'];
         $date_post = date("d/m/Y - H:i", strtotime($date_post));
         if($status == 1){
-            $status = '<span class="badge badge-danger shadow">Chiuso <i class="fas fa-door-closed "></i></span>';
+            $status = '<span class="badge badge-danger shadow">Chiuso <ion-icon name="close"></ion-icon></span>';
         } else {
-            $status = '<span class="badge third text-light shadow">Aperto <i class="fas fa-door-open "></i></span>';
+            $status = '<span class="badge third text-light shadow">Aperto <ion-icon name="globe"></ion-icon></span>';
         }
 
         $sql_1 = "SELECT * FROM users WHERE id = '$id_post'";
@@ -112,7 +108,7 @@
         <p class="pt-0"><a href="user/'.$username_post.'" class="text-dark">'.$username_post.'</a> - '.$date_post.'</p>
         </div>
         <div class="col-3 text-right pl-0 ml-0">
-        <span class="mb-0 pb-0 mb-0"><span class="badge badge-secondary shadow">'.$resultcheck_4.' <i class="fas fa-comment "></i></span></span> <br>
+        <span class="mb-0 pb-0 mb-0"><span class="badge badge-secondary shadow">'.$resultcheck_4.' <ion-icon name="chatboxes"></ion-icon> </span></span> <br>
         <span class="mb-0 pt-0 mt-0">'.$status.'</span>
         </div>
         </div>
@@ -193,10 +189,11 @@
         </div>
     </div>
 
+    <ion-icon name="heart"></ion-icon>
+ciaoa
 
 
-
-
+<script src="https://kit.fontawesome.com/d2ce008e27.js" crossorigin="anonymous"></script>
     <?php include 'inc/footer.php'; ?>
     <!-- <script type="text/javascript">
             // let myElement = document.querySelector(".preloader");
