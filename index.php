@@ -108,7 +108,7 @@
         <p class="pt-0"><a href="user/'.$username_post.'" class="text-light">'.$username_post.'</a> - '.$date_post.'</p>
         </div>
         <div class="col-3 text-right pl-0 ml-0">
-        <span class="mb-0 pb-0 mb-0"><span class="badge badge-secondary shadow">'.$resultcheck_4.' <ion-icon name="chatboxes"></ion-icon> </span></span> <br>
+        <span class="mb-0 pb-0 mb-0"><span class="badge third shadow">'.$resultcheck_4.' <ion-icon name="chatboxes"></ion-icon> </span></span> <br>
         <span class="mb-0 pt-0 mt-0">'.$status.'</span>
         </div>
         </div>

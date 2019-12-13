@@ -51,7 +51,7 @@ if(isset($_POST['submit_profile'])){ // If the login form is submitted
     $resultcheck = mysqli_num_rows($result);
 
     if($resultcheck > 0){ // If the account already exists
-        array_push($errors, "L'username è l'email non sono disponibili");
+        array_push($errors, "L'username o l'email non sono disponibili");
         $_SESSION["profile_errors"] = $errors;
     }
 
@@ -78,7 +78,6 @@ if(isset($_POST['submit_profile'])){ // If the login form is submitted
         if($url!=""){
          $url_image = $url;
         }else{
-         echo "<h2>There's a Problem</h2>";
          echo $pms['data']['error'];  
          die();
         } 

@@ -26,7 +26,7 @@ if(loginCheck()){
   </head>
 
   <!-- Image and text -->
-  <nav class="navbar dark-bg navbar-expand-lg sticky-top shadow">
+  <nav class="navbar dark-bg navbar-expand-lg sticky-top shadow-sm">
   <div class="container">
   <a class="navbar-brand" href="/forumjuve">
     <img src="/forumjuve/img/logo1.png" width="120px" class="d-inline-block align-top" alt="">
@@ -49,11 +49,11 @@ if(loginCheck()){
   <a class="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
       '.$username.'
   </a>
-  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="/forumjuve/profile">Profilo <ion-icon name="person"></ion-icon></a>
-    <a class="dropdown-item" href="/forumjuve/msg">Messaggi Privati <ion-icon name="mail"></ion-icon></a>
+  <div class="dropdown-menu dropdown-menu-right dark-bg" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item text-light" href="/forumjuve/profile">Profilo <ion-icon name="person"></ion-icon></a>
+    <a class="dropdown-item text-light" href="/forumjuve/msg">Messaggi Privati <ion-icon name="mail"></ion-icon></a>
     <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="/forumjuve/inc/logout">Esci <ion-icon name="log-out"></ion-icon></a>
+    <a class="dropdown-item text-light" href="/forumjuve/inc/logout">Esci <ion-icon name="log-out"></ion-icon></a>
   </div>
 </div>
   
@@ -63,7 +63,7 @@ if(loginCheck()){
     echo '
     <div class="span ml-auto flex-nowrap">
     <a href="/forumjuve/signup"><button type="button" class="btn btn-sm align-baseline bg-light">Iscriviti</button></a>
-    <a href="/forumjuve/login"><button type="button" class="btn btn-sm align-baseline bg-light">Accedi <ion-icon name="log-in"></ion-icon></button></a>
+    <a href="/forumjuve/login"><button type="button" class="btn btn-sm align-baseline third text-light">Accedi <ion-icon name="log-in"></ion-icon></button></a>
     </div>
 
     ';

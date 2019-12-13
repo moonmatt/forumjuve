@@ -33,11 +33,9 @@ else {
 
 </head>
 
-<body class="bg-secondary d-flex flex-column">
+<body class="dark-bg d-flex flex-column">
 
-    <div class="container">
-
-        <div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid dark-bg-1 shadow rounded-lg text-light">
             <div class="container">
                 <h1 class="display-4">I messaggi inviati</h1>
                 <p class="lead">Ecco i messaggi da te inviati, per un totale di <?php echo $resultcheck; ?> Messaggi.</p>
@@ -45,9 +43,11 @@ else {
 
         </div>
 
+    <div class="container">
+
         <div class="row">
             <div class="col-sm-8">
-            <div class="pt-1" style="background-color: #e9ecef">
+            <div class="py-1 dark-bg-1 shadow rounded-lg">
                         <?php
         if($resultcheck > 0){ // If there is 1 result
             while($row = mysqli_fetch_assoc($result)){
@@ -72,12 +72,12 @@ else {
                }
 
                echo '
-               <div class="jumbotron jumbotron-fluid bg-light py-2 mb-1 m-3">
+               <div class="jumbotron jumbotron-fluid dark-bg-1 shadow rounded-lg text-light py-2 mb-1 m-3">
                <div class="row mb-3 mt-3 mx-0">
-                   <div class="col-sm-4 border-right">
+                   <div class="col-sm-4">
                    <img src="'.$propic.'" class="rounded mx-auto d-block" alt="..." style="object-fit: cover; width:200px; height:200px; ">
                    <div class="text-center text-break pr-3 pl-3">
-                   <h5 class="mt-2"><small>a </small><a href="user/'.$to_username.'" class="text-dark">'.$to_username.'</a></h5>
+                   <h5 class="mt-2"><small>a </small><a href="user/'.$to_username.'" class="text-light">'.$to_username.'</a></h5>
                    '.badgeGroup($role, $to_username_id, $badges, $conn).'
                     '.website($website).'
                    </div>
@@ -91,7 +91,7 @@ else {
                    </div>
                </div>
                <p class="text-right pr-3 pb-0 mb-0">
-               <a href="write-msg?'.$to_username.'">Rispondi</a>
+               <a href="write-msg?'.$to_username.'" class="text-light">Rispondi</a>
                </p>
            </div>
                ';
@@ -106,12 +106,12 @@ else {
             
             
             <div class="col-sm-4">
-                <div class="jumbotron jumbotron-fluid pt-3 pb-3">
+                <div class="jumbotron jumbotron-fluid pt-3 pb-3 dark-bg-1 rounded-lg shadow text-light">
                     <div class="container">
-                        <h1 class="display-4 text-break">Messaggi privati</h1>
-                        <p class="lead">Qui puoi vedere i messaggi a te inviati.</p>
-                        <a href="write-msg">Scrivi un messaggio</a> <br>
-                        <a href="msg">Tutti i messaggi</a>
+                        <h1 class="text-break">Messaggi privati</h1>
+                        <p class="lead">Qui puoi vedere i messaggi che hai inviato.</p>
+                        <a href="write-msg" class="text-light">Scrivi un messaggio</a> <br>
+                        <a href="msg" class="text-light">Tutti i messaggi</a>
                     </div>
                 </div>
             </div>

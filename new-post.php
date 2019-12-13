@@ -30,11 +30,10 @@ if(loginCheck()){
 
 </head>
 
-<body class="bg-secondary d-flex flex-column">
+<body class="dark-bg d-flex flex-column">
 
-    <div class="container">
 
-        <div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid dark-bg-1 rounded-lg shadow text-light">
             <div class="container">
                 <h1 class="display-4">Scrivi un post</h1>
                 <p class="lead">Inizia una discussione pubblica nel forum. Mantieni un tono educato</p>
@@ -42,32 +41,34 @@ if(loginCheck()){
 
         </div>
 
+    <div class="container">
+
         <div class="row">
             <div class="col-sm-8">
-                <div class="jumbotron jumbotron-fluid pt-3">
+                <div class="jumbotron jumbotron-fluid pt-3 text-light dark-bg-1 shadow rounded-lg">
                     <div class="container">
                         <?php newPostErrors(); ?>
                         <form action="inc/new-post.php" method="POST" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Titolo</label>
-                                <input type="text" class="form-control" id="title_post" name="title_post">
+                                <input type="text" class="form-control dark-bg text-light" id="title_post" name="title_post" style="border: none;">
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Contenuto</label>
                                 <textarea class="form-control" id="msg_post" name="msg_post" rows="5"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-secondary" value="submit_post"
+                            <button type="submit" class="btn third text-light" value="submit_post"
                                 name="submit_post">Invia</button>
                         </form>
                     </div>
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="jumbotron jumbotron-fluid pt-3 pb-3">
+                <div class="jumbotron jumbotron-fluid pt-3 pb-3 text-light dark-bg-1 rounded-lg shadow">
                     <div class="container">
-                        <h1 class="display-4 text-break">Crea un post</h1>
+                        <h1 class="text-break">Crea un post</h1>
                         <p class="lead">Qui puoi iniziare una discussione, ricordati che può essere eliminata/chiusa in qualsiasi momento dagli admin, mantieni un tono educato.</p>
-                        <a href="my-posts">I tuoi post</a>
+                        <a href="/forumjuve/user/<?php echo $username; ?>" class="text-light">I tuoi post</a>
                     </div>
                 </div>
             </div>

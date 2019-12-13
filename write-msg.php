@@ -39,50 +39,51 @@ if(loginCheck()){
 
 </head>
 
-<body class="bg-secondary d-flex flex-column">
 
+<body class="dark-bg d-flex flex-column">
+
+<div class="jumbotron jumbotron-fluid dark-bg-1 text-light shadow rounded-lg">
     <div class="container">
+        <h1 class="display-4">Scrivi un messaggio</h1>
+        <p class="lead">Invia un messaggio privato ad un utente. Solo lui potrà vederlo</p>
+    </div>
 
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-4">Scrivi un messaggio</h1>
-                <p class="lead">Invia un messaggio privato ad un utente. Solo lui potrà vederlo</p>
-            </div>
+</div>
 
-        </div>
+<div class="container">
 
         <div class="row">
             <div class="col-sm-8">
-                <div class="jumbotron jumbotron-fluid pt-3">
+                <div class="jumbotron jumbotron-fluid pt-3 text-light dark-bg-1 shadow rounded-lg">
                     <div class="container">
                         <?php sendMsgErrors(); ?>
                         <form action="inc/write-msg.php" method="POST" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Destinatario</label>
-                                <input type="text" class="form-control" id="to_username_form" name="to_username_form"
-                                    value="<?php echo $to_username; ?>">
+                                <input type="text" class="form-control dark-bg text-light" id="to_username_form" name="to_username_form"
+                                    value="<?php echo $to_username; ?>" style="border: none;">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Titolo</label>
-                                <input type="text" class="form-control" id="title_form" name="title_form">
+                                <input type="text" class="form-control dark-bg text-light" id="title_form" name="title_form" style="border: none;">
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Message</label>
                                 <textarea class="form-control" id="msg_form" name="msg_form" rows="5"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-secondary" value="submit_msg"
+                            <button type="submit" class="btn third text-light" value="submit_msg"
                                 name="submit_msg">Invia</button>
                         </form>
                     </div>
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="jumbotron jumbotron-fluid pt-3 pb-3">
+                <div class="jumbotron jumbotron-fluid pt-3 pb-3 dark-bg-1 text-light shadow rounded-lg">
                     <div class="container">
-                        <h1 class="display-4 text-break">Invia un messaggio</h1>
+                        <h1 class="text-break">Invia un messaggio</h1>
                         <p class="lead">Qui puoi scrivere messaggi privati ad altri utenti.</p>
-                        <a href="msg">I tuoi messaggi</a> <br>
-                        <a href="sent-msg">Messaggi inviati</a>
+                        <a href="msg" class="text-light">I tuoi messaggi</a> <br>
+                        <a href="sent-msg" class="text-light">Messaggi inviati</a>
                     </div>
                 </div>
             </div>

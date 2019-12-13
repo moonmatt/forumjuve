@@ -23,7 +23,7 @@ function signupErrors(){
         $error = $_SESSION["signup_errors"];
 
         foreach($error as $error){
-            echo '<div class="alert alert-warning" role="alert"> '.$error.' </div>'; 
+            echo '<div class="alert third rounded-lg text-light" role="alert"> '.$error.' </div>'; 
         }
         unset($_SESSION["signup_errors"]);
     }
@@ -36,7 +36,7 @@ function loginErrors(){
         $error = $_SESSION["login_errors"];
 
         foreach($error as $error){
-            echo '<div class="alert alert-warning" role="alert"> '.$error.' </div>'; 
+            echo '<div class="alert third rounded-lg text-light" role="alert"> '.$error.' </div>'; 
         }
         unset($_SESSION["login_errors"]);
     }
@@ -49,13 +49,13 @@ function profileErrors(){
         $error = $_SESSION["profile_errors"];
 
         foreach($error as $error){
-            echo '<div class="alert alert-warning" role="alert"> '.$error.' </div>'; 
+            echo '<div class="alert third rounded-lg text-light" role="alert"> '.$error.' </div>'; 
         }
         unset($_SESSION["profile_errors"]);
     }
 }
 
-// Profile Error messages
+// Post Errors
 
 function newPostErrors(){
     if(isset($_SESSION['newPost_errors']) && !empty($_SESSION['newPost_errors'])) {
@@ -255,7 +255,7 @@ function badgeGroup($role, $usernameId, $badges, $conn){
 
 function website($website){
     if($website != ''){
-        $website = "<a href='".$website."' target='_blank' class='mt-2 text-light'>Sito web <i class='fas fa-link'></i></a>";
+        $website = "<a href='".$website."' target='_blank' class='mt-2 text-light'>Sito web <ion-icon name='link'></ion-icon></a>";
     } else {
         $website = "";
     }

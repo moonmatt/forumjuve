@@ -57,23 +57,23 @@ $sql = "SELECT * FROM posts WHERE permalink = '$permalink_url'";
 
 </head>
 
-<body class="bg-light">
+<body class="dark-bg">
 
     <div class="container">
-        <div class="jumbotron jumbotron-fluid mt-3 pb-3 mb-0 pt-3 bg-white rounded-lg shadow-sm">
+        <div class="jumbotron jumbotron-fluid mt-3 pb-3 mb-0 pt-3 dark-bg-1 rounded-lg shadow">
         <?php
         if($closed == 1){
-        echo '<div class="alert alert-warning mx-3 rounded-lg" role="alert">
+        echo '<div class="alert third mx-3 rounded-lg text-light" role="alert">
         Questa discussione è stata chiusa da un amministratore
         </div>';
         }
         ?>
-            <div class="row ml-3 mr-3 pt-3 pb-3 bg-light bg-white rounded-lg shadow-sm pl-3 shadow">
-                <div class="col-sm-3 mr-0 pr-0 py-4 border-right pl-0 bg-white rounded-lg shadow text-light">
+            <div class="row ml-3 mr-3 pt-3 pb-3 dark-bg-1 text-light rounded-lg shadow pl-3">
+                <div class="col-sm-3 mr-0 pr-0 py-4 pl-0 dark-bg-1 rounded-lg shadow text-light">
                     <img src="<?php echo $propic; ?>" class="rounded mx-auto d-block" alt="..."
                         style="object-fit: cover; width:200px; height:200px; ">
-                    <div class="text-center text-break pr-3 pl-3">
-                    <a href="../user/<?php echo $username_post; ?>" class="text-dark"><h5 class="mt-2"><?php echo $username_post; ?></h5></a>
+                    <div class="text-center text-break pr-3 pl-3 ">
+                    <a href="../user/<?php echo $username_post; ?>" class="text-light"><h5 class="mt-2"><?php echo $username_post; ?></h5></a>
                         <?php echo badgeGroup($role, $username, $badges, $conn); ?>
                         <span class="mt-2"><?php echo website($website); ?></span>
                     </div>
@@ -116,13 +116,13 @@ if($resultcheck_2 > 0){ // If there is 1 result
         }
 
         echo '
-        <div class="jumbotron jumbotron-fluid pt-1 pb-1 mb-0 pt-3 bg-white rounded-lg shadow my-3 mx-3 third" id="'.$id_comment.'">
-            <div class="row ml-3 mr-3  pb-3 bg-white rounded-lg">
-                <div class="col-sm-3 mr-0 pr-0 py-4 border-right pl-0 bg-white rounded-lg shadow text-light">
+        <div class="jumbotron jumbotron-fluid pt-1 pb-1 mb-0 pt-3 dark-bg-1 rounded-lg shadow my-3 mx-3 third text-light" id="'.$id_comment.'">
+            <div class="row ml-3 mr-3  pb-3 dark-bg-1 rounded-lg">
+                <div class="col-sm-3 mr-0 pr-0 py-4 pl-0 dark-bg-1 rounded-lg shadow text-light">
                     <img src="'.$propic_comment.'" class="rounded mx-auto d-block" alt="..."
                         style="object-fit: cover; width:200px; height:200px; ">
                     <div class="text-center text-break pr-3 pl-3">
-                        <a href="../user/'.$username_comment.'" class="text-dark"><h5 class="mt-2">'.$username_comment.'</h5></a>
+                        <a href="../user/'.$username_comment.'" class="text-light"><h5 class="mt-2">'.$username_comment.'</h5></a>
                         '.badgeGroup($role_comment, $id_user_comment, $badges_comment, $conn).'
                         <span class="mt-2">'.website($website_comment).'</span>
                     </div>
@@ -158,14 +158,14 @@ if($closed != 1){
         $_SESSION["new-comment"] = array($permalink_url);; // Puts the Errors Array in the session, so it's visible from other pages
         echo '
         <div class="container">
-        <div class="jumbotron jumbotron-fluid mt-3 pb-3 mb-0 pt-3">
-            <div class="ml-3 mr-3 pt-3 pb-3 bg-light">
+        <div class="jumbotron jumbotron-fluid mt-3 pb-3 mb-0 pt-3 dark-bg-1 rounded-lg shadow">
+            <div class="ml-3 mr-3 pt-3 pb-3 rounded-lg shadow text-light">
             <form action="../inc/new-comment.php" method="POST" enctype="multipart/form-data" class="pl-5 pr-5">
                             <div class="form-group">
                                 <h3>Aggiungi una risposta pubblica</h3>
                                 <textarea class="form-control" id="msg_comment" name="msg_comment" rows="5"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-secondary" value="submit_comment"
+                            <button type="submit" class="btn third text-light" value="submit_comment"
                                 name="submit_comment">Invia</button>
                         </form>
             </div>
@@ -175,15 +175,15 @@ if($closed != 1){
     } else {
         echo '
         <div class="container mt-2">
-        <div class="alert alert-warning rounded-lg" role="alert">
-        Devi essere loggato per poter scrivere! <a href="../login">Login</a>
+        <div class="alert third rounded-lg text-light" role="alert">
+        Devi essere loggato per poter scrivere! <a href="../login" class="text-light"><button type="button" class="btn btn-sm align-baseline dark-bg-1 text-light">Login <ion-icon name="log-in"></ion-icon></button></a>
       </div>
       </div>';
     }
 } else {
     echo '
-    <div class="container mt-2">
-    <div class="alert alert-warning rounded-lg" role="alert">
+    <div class="container mt-3">
+    <div class="alert third rounded-lg text-light" role="alert">
     Questa discussione è stata chiusa da un amministratore.
   </div>
   </div>';
