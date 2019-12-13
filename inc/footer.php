@@ -1,5 +1,5 @@
 
-    <footer class="footer bg-white text-muted p-2 ">
+    <footer class="footer dark-bg-1 text-light text-muted p-2 ">
       <div class="container">
       <div class="row">
       <div class="col">© <?php echo date('Y');?> <a href="https://moonmatt.cf" class="text-muted">moonmatt</a> aka Matteo Galavotti</div>

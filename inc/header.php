@@ -26,10 +26,10 @@ if(loginCheck()){
   </head>
 
   <!-- Image and text -->
-  <nav class="navbar bg-white navbar-expand-lg sticky-top">
+  <nav class="navbar dark-bg navbar-expand-lg sticky-top shadow">
   <div class="container">
   <a class="navbar-brand" href="/forumjuve">
-    <img src="/forumjuve/img/logo-black.png" width="120px" class="d-inline-block align-top" alt="">
+    <img src="/forumjuve/img/logo1.png" width="120px" class="d-inline-block align-top" alt="">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -45,7 +45,7 @@ if(loginCheck()){
   </li>
 
 
-  <div class="nav-item dropdown">
+  <div class="nav-item dropdown text-light">
   <a class="nav-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
       '.$username.'
   </a>
@@ -62,8 +62,8 @@ if(loginCheck()){
   } else {
     echo '
     <div class="span ml-auto flex-nowrap">
-    <a href="/forumjuve/signup"><button type="button" class="btn btn-outline-success btn-sm align-baseline">Iscriviti</button></a>
-    <a href="/forumjuve/login"><button type="button" class="btn text-white border-success third btn-sm align-baseline">Accedi <ion-icon name="log-in"></ion-icon></button></a>
+    <a href="/forumjuve/signup"><button type="button" class="btn btn-sm align-baseline bg-light">Iscriviti</button></a>
+    <a href="/forumjuve/login"><button type="button" class="btn btn-sm align-baseline bg-light">Accedi <ion-icon name="log-in"></ion-icon></button></a>
     </div>
 
     ';
