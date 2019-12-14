@@ -22,7 +22,7 @@ if(loginCheck()){
 $_SESSION["newPost_errors"] = $errors; // Puts the Errors Array in the session, so it's visible from other pages
 
 $redirect = "../"; // Path to redirect
-$redirectProfile = "../new-post"; // Path to redirect
+$redirectPage = "../new-post"; // Path to redirect
 
 if(isset($_POST['submit_post'])){ // If the login form is submitted
 
@@ -43,8 +43,9 @@ if(isset($_POST['submit_post'])){ // If the login form is submitted
         header('location: /forumjuve/p/'.$permalink);
         die();
     } else {
-        $_SESSION["sendMsg_errors"] = $errors;
-        header('location: /forumjuve');
+        echo var_dump($errors);
+        $_SESSION["newPost_errors"] = $errors;
+        header('location: '.$redirectPage);
         die();
     }
 }

@@ -45,12 +45,6 @@
 
 </head>
 
-<!-- <div class="preloader">
-   <div class="loader">
-        <div class="loader-inner"></div>
-   </div>
-</div> -->
-
 <body class="dark-bg">
 <div class="jumbotron jumbotron-fluid text-light dark-bg-1 shadow">
             <div class="container">

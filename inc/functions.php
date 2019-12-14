@@ -62,7 +62,7 @@ function newPostErrors(){
         $error = $_SESSION["newPost_errors"];
 
         foreach($error as $error){
-            echo '<div class="alert alert-warning" role="alert"> '.$error.' </div>'; 
+            echo '<div class="alert third text-light rounded-lg" role="alert"> '.$error.' </div>'; 
         }
         unset($_SESSION["newPost_errors"]);
     }
@@ -75,7 +75,7 @@ function newComment(){
         $error = $_SESSION["newComment_errors"];
 
         foreach($error as $error){
-            echo '<div class="alert alert-warning" role="alert"> '.$error.' </div>'; 
+            echo '<div class="alert third text-light rounded-lg" role="alert"> '.$error.' </div>'; 
         }
         unset($_SESSION["newComment_errors"]);
     }
