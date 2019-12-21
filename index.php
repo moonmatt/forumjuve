@@ -8,12 +8,10 @@
     if(is_numeric($linkNum) and $linkNum != 1){
         $pzero = false;
         $offset = $linkNum * 5 - 5;
-
         $sql = "SELECT * FROM posts";
         $result = mysqli_query($conn, $sql);
         $resultcheck = mysqli_num_rows($result);
         $max = ceil($resultcheck / 5);
-
         $sql = "SELECT * FROM posts order by id DESC LIMIT 5 OFFSET $offset";
         $result = mysqli_query($conn, $sql);
         $resultcheck = mysqli_num_rows($result);
@@ -28,7 +26,6 @@
         $result = mysqli_query($conn, $sql);
         $resultcheck = mysqli_num_rows($result);
     }
-
     $sql_2 = "SELECT * FROM comments ORDER BY date DESC LIMIT 5";
     $result_2 = mysqli_query($conn, $sql_2);
     $resultcheck_2 = mysqli_num_rows($result_2);
@@ -59,7 +56,7 @@
         <div class="row">
             <div class="col-sm-8">
 
-            <div class="jumbotron jumbotron-fluid px-3 pt-3 pb-1 dark-bg-1 rounded-lg shadow">
+            <div class="jumbotron jumbotron-fluid px-3 pt-3 pb-1 dark-bg-1">
                 <?php
     if($resultcheck > 0){ // If there is 1 result
       while($row = mysqli_fetch_assoc($result)){
@@ -74,7 +71,6 @@
         } else {
             $status = '<span class="badge third text-light shadow">Aperto <ion-icon name="globe"></ion-icon></span>';
         }
-
         $sql_1 = "SELECT * FROM users WHERE id = '$id_post'";
         $result_1 = mysqli_query($conn, $sql_1);
         $resultcheck_1 = mysqli_num_rows($result_1);
@@ -85,17 +81,14 @@
         if($propic == ''){
           $propic = "/forumjuve/img/utente.jpg";
          }
-
          $sql_4 = "SELECT * FROM comments WHERE permalink_post = '$permalink_post'";
          $result_4 = mysqli_query($conn, $sql_4);
          $resultcheck_4 = mysqli_num_rows($result_4);
-
         echo '
-
-        <div class="jumbotron jumbotron-fluid p-2 mb-3 dark-bg-1 text-light rounded-lg shadow-lg">
-        <div class="row p-1 pt-0 mt-0 pb-0">
+        <div class="jumbotron jumbotron-fluid p-2 mb-2 dark-bg-2 text-light">
+        <div class="row p-1 py-0 my-0">
         <div class="col-2 ">
-        <img src="'.$propic.'" class="rounded mx-auto d-block" alt="..." style="object-fit: cover; width:50px; height:50px; ">
+        <img src="'.$propic.'" class="mx-auto d-block" alt="..." style="object-fit: cover; width:50px; height:50px; ">
         </div>
         <div class="col-7">
         <h6 class="mb-0"><a href="p/'.$permalink_post.'" class="text-light">'.$title_post.'</a></h6>
@@ -111,17 +104,17 @@
       }
     }
     ?>
-    <nav aria-label="Page navigation example">
+    <nav>
   <ul class="pagination">
-  <div class="shadow-lg rounded-lg" style="display: inherit;">
-    <li class="page-item <?php if($pzero){ echo "disabled"; }?> dark-bg-1 shadow-lg">
-      <a class="page-link dark-bg-1 text-light border-0" href="?<?php echo $linkNum - 1;?>" aria-label="Previous">
+  <div style="display: inherit;">
+    <li class="page-item <?php if($pzero){ echo "disabled"; }?> dark-bg-2">
+      <a class="page-link dark-bg-2 text-light border-0" href="?<?php echo $linkNum - 1;?>" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
-    <li class="page-item"><a class="page-link  dark-bg-1 text-light border-0"><?php echo $linkNum;?></a></li>
+    <li class="page-item"><a class="page-link dark-bg-2 text-light border-0"><?php echo $linkNum;?></a></li>
     <li class="page-item <?php if($linkNum == $max) { echo "disabled";} ?>">
-      <a class="page-link dark-bg-1 text-light border-0" href="?<?php if($linkNum != $max) { echo $linkNum + 1;} ?>" aria-label="Next">
+      <a class="page-link dark-bg-2 text-light border-0" href="?<?php if($linkNum != $max) { echo $linkNum + 1;} ?>" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
@@ -132,7 +125,7 @@
             </div>
 
             <div class="col-sm-4">
-                <div class="jumbotron jumbotron-fluid dark-bg-1 rounded-lg shadow-sm pt-0 pb-2">
+                <div class="jumbotron jumbotron-fluid dark-bg-1 pt-0 pb-2">
                     <div class="container ">
                     <p class="h3 py-2 text-light">Risposte recenti</p>
                         <?php
@@ -154,7 +147,6 @@
                              if($propic_3 == ''){
                                $propic_3 = "/forumjuve/img/utente.jpg";
                               }
-
                               $sql_4 = "SELECT * FROM posts WHERE permalink = '$permalink_comment'";
                               $result_4 = mysqli_query($conn, $sql_4);
                               $resultcheck_4 = mysqli_num_rows($result_4);
@@ -162,11 +154,11 @@
                               $title_comment = $row_4['title'];
                      
                              echo '
-                             <div class="jumbotron jumbotron-fluid p-0 mt-0 mb-3 dark-bg-1 text-light rounded-lg shadow-lg">
+                             <div class="jumbotron jumbotron-fluid p-0 mt-0 mb-2 dark-bg-2 text-light">
                             <div class="row p-3 pt-2 mt-0 pb-0">
                             <div class="col-2">
                             <a href="user/'.$username_post.'">
-                            <img title="'.$username_post.'" src="'.$propic_3.'" class="rounded mx-auto d-block " alt="..." style="object-fit: cover; width:45px; height:45px; ">
+                            <img title="'.$username_post.'" src="'.$propic_3.'" class="mx-auto d-block " alt="..." style="object-fit: cover; width:45px; height:45px; ">
                             </a>
                             </div>
                             <div class="col-8 ml-2">

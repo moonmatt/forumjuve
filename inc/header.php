@@ -26,7 +26,7 @@ if(loginCheck()){
   </head>
 
   <!-- Image and text -->
-  <nav class="navbar dark-bg navbar-expand-lg sticky-top shadow-sm">
+  <nav class="navbar dark-bg-1 navbar-expand-lg sticky-top">
   <div class="container">
   <a class="navbar-brand" href="/forumjuve">
     <img src="/forumjuve/img/logo1.png" width="120px" class="d-inline-block align-top" alt="">

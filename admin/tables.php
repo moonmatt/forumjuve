@@ -151,6 +151,8 @@ if(loginCheck()){
                           <th>Sito Web</th>
                           <th>Ruolo</th>
                           <th>Badges</th>
+                          <th>Ban</th>
+                          <th>Invio</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -164,16 +166,23 @@ if(loginCheck()){
                             $totalWebsite = $totalRow['website'];
                             $totalRole = $totalRow['role'];
                             $totalBadges = $totalRow['badges'];
-
-                            echo "<tr>";
+                            
+                            echo "<form method='POST' action='inc/users.php'><tr>";
                             echo "<td>".$totalId."</td>";
-                            echo "<td>".$totalUsername."</td>";
-                            echo "<td>".$totalEmail."</td>";
-                            echo "<td>".$totalPropic."</td>";
-                            echo "<td>".$totalWebsite."</td>";
-                            echo "<td>".$totalRole."</td>";
-                            echo "<td>".$totalBadges."</td>";
-                            echo "</tr>";
+                            echo "<td><input type='text' value='".$totalUsername."' class='form-control dark-bg text-light border-0 ' id='username_form' name='username_form'></input></td>";
+                            echo "<td><input type='email' value='".$totalEmail."' class='form-control dark-bg text-light border-0 ' id='email_form' name='email_form'></input></td>";
+                            echo "<td><input type='url' value='".$totalPropic."' class='form-control dark-bg text-light border-0 ' id='propic_form' name='propic_form'></input></td>";
+                            echo "<td><input type='url' value='".$totalWebsite."' class='form-control dark-bg text-light border-0 ' id='website_form' name='website_form'></input></td>";
+                            echo "<td><input type='text' value='".$totalRole."' class='form-control dark-bg text-light border-0 ' id='role_form' name='role_form'></input></td>";
+                            echo "<td><input type='text' value='".$totalBadges."' class='form-control dark-bg text-light border-0 ' id='badges_form' name='badges_form'></input></td>";
+                            echo "<td>
+                            <select class='form-control border-0' id='exampleFormControlSelect1'>
+                            <option value='0'>No</option>
+                            <option value='1'>Si</option>
+                            </select>
+                            </td>";
+                            echo "<td><input type='submit' name='submit_form_admin' class='btn btn-dark'></td>";
+                            echo "</tr></form>";
                           }
                         }
                         ?>

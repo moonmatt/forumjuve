@@ -60,7 +60,7 @@ $sql = "SELECT * FROM posts WHERE permalink = '$permalink_url'";
 <body class="dark-bg">
 
     <div class="container">
-        <div class="jumbotron jumbotron-fluid mt-3 pb-3 mb-0 pt-3 dark-bg-1 rounded-lg shadow">
+        <div class="jumbotron jumbotron-fluid mt-3 pb-3 mb-0 pt-3 dark-bg-1">
         <?php
         if($closed == 1){
         echo '<div class="alert third mx-3 rounded-lg text-light" role="alert">
@@ -68,8 +68,8 @@ $sql = "SELECT * FROM posts WHERE permalink = '$permalink_url'";
         </div>';
         }
         ?>
-            <div class="row ml-3 mr-3 pt-3 pb-3 dark-bg-1 text-light rounded-lg shadow pl-3">
-                <div class="col-sm-3 mr-0 pr-0 py-4 pl-0 dark-bg-1 rounded-lg shadow text-light">
+            <div class="row ml-3 mr-3 pt-3 pb-3 dark-bg-2 text-light pl-3">
+                <div class="col-sm-3 mr-0 pr-0 py-4 pl-0 dark-bg-1 text-light">
                     <img src="<?php echo $propic; ?>" class="rounded mx-auto d-block" alt="..."
                         style="object-fit: cover; width:200px; height:200px; ">
                     <div class="text-center text-break pr-3 pl-3 ">
@@ -116,26 +116,24 @@ if($resultcheck_2 > 0){ // If there is 1 result
         }
 
         echo '
-        <div class="jumbotron jumbotron-fluid pt-1 pb-1 mb-0 pt-3 dark-bg-1 rounded-lg shadow my-3 mx-3 third text-light" id="'.$id_comment.'">
-            <div class="row ml-3 mr-3  pb-3 dark-bg-1 rounded-lg">
-                <div class="col-sm-3 mr-0 pr-0 py-4 pl-0 dark-bg-1 rounded-lg shadow text-light">
-                    <img src="'.$propic_comment.'" class="rounded mx-auto d-block" alt="..."
-                        style="object-fit: cover; width:200px; height:200px; ">
-                    <div class="text-center text-break pr-3 pl-3">
-                        <a href="../user/'.$username_comment.'" class="text-light"><h5 class="mt-2">'.$username_comment.'</h5></a>
-                        '.badgeGroup($role_comment, $id_user_comment, $badges_comment, $conn).'
-                        <span class="mt-2">'.website($website_comment).'</span>
-                    </div>
-                </div>
+        <div class="row ml-3 mr-3 pt-3 pb-3 dark-bg-2 text-light pl-3 mt-3">
+        <div class="col-sm-3 mr-0 pr-0 py-4 pl-0 dark-bg-1 text-light">
+            <img src="'.$propic_comment.'" class=" mx-auto d-block" alt="..."
+                style="object-fit: cover; width:200px; height:200px; ">
+            <div class="text-center text-break pr-3 pl-3 ">
+            <a href="../user/'.$username_comment.'" class="text-light"><h5 class="mt-2">'.$username_comment.'</h5></a>
+                '.badgeGroup($role_comment, $username_comment, $badges_comment, $conn).'
+                <span class="mt-2">'.website($website_comment).'</span>
+            </div>
+        </div>
 
-                <div class="col-sm-9 pl-0 ml-0">
-                    <div class="text-left mx-4">
-                        <p class="text-muted">'.$date_comment.'</p>
-                        <p class="mt-3 comment">'.$msg_comment.'</p>
-                    </div>
-                </div>
-                </div>
-                </div>
+        <div class="col-sm-9 pl-0 ml-0">
+            <div class="text-left mx-4">
+                <p class="text-muted">'.$date_comment.'</p>
+                <p class="comment">'.$msg_comment.'</p>
+            </div>
+        </div>
+    </div>
         
         ';
     }

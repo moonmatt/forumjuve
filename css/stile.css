@@ -44,11 +44,14 @@ img {
 }
 
 .dark-bg {
-    background-color: #282828 !important;
+    background-color: #101010 !important;
 }
 
 .dark-bg-1 {
-    background-color: #2d2d2d !important;
+    background-color: #181818 !important;
+}
+.dark-bg-2 {
+    background-color: #1d1d1d !important;
 }
 .shadow-lg {
     -webkit-box-shadow: 0px 0px 50px -10px rgba(38, 37, 38, 0.767) 0.575)!important;
@@ -56,7 +59,7 @@ img {
 box-shadow: 0px 0px 50px -10px rgba(38, 37, 38, 0.767) 0.575)!important;
 }
 .shadow {
-    box-shadow: 1rem 1rem 1rem 1rem rgba(0,0,0,.175)!important;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
 .dropdown-menu a:hover {
     background-image: none;
@@ -69,3 +72,19 @@ box-shadow: 0px 0px 50px -10px rgba(38, 37, 38, 0.767) 0.575)!important;
 .nicEdit-main {
     background-color: #282828 !important;
 } 
+.cover-1 {
+      /* The image used */
+  background-image: url("https://e0.365dm.com/19/07/2048x1152/skysports-paulo-dybala-juventus_4731993.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.container {
+    filter: blur(0) !important;
+    -webkit-filter: blur(0) !important;
+}
