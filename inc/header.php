@@ -1,5 +1,5 @@
 <?php
-
+//  SELECT * FROM posts WHERE (`title` LIKE '%ciao%') OR (`msg` LIKE '%ciao%')
 require_once 'dbh.inc.php';
 require 'functions.php';
 session_start();
@@ -23,6 +23,11 @@ if(loginCheck()){
     <link rel="stylesheet" href="\forumjuve\css\stile.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" >
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="//wpcc.io/lib/1.0.2/cookieconsent.min.css"/><script src="//wpcc.io/lib/1.0.2/cookieconsent.min.js"></script><script>window.addEventListener("load", function(){window.wpcc.init({"colors":{"popup":{"background":"#222222","text":"#ffffff","border":"#fde296"},"button":{"background":"#fde296","text":"#000000"}},"position":"bottom-right","content":{"href":"https://forumjuve.cf/privacy.txt","message":"Visitando questo sito acconsenti l'utilizzo di cookie per migliorare l'esperienza finale.","button":"Capito!","link":"Leggi tutto"}})});</script>
   </head>
 
   <!-- Image and text -->
