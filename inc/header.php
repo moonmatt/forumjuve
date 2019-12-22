@@ -34,7 +34,10 @@ if(loginCheck()){
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse flex-grow-1 text-left" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse flex-grow-1 text-left pb-1" id="navbarSupportedContent">
+  <form class="form-inline">
+    <input class="form-control border-0 my-3 my-sm-0" type="search" placeholder="Cerca..." aria-label="Search" style="background-color: #1d1d1d !important;">
+  </form>
   <?php
   if(loginCheck()){
     echo '

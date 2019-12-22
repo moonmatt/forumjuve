@@ -85,16 +85,17 @@
          $result_4 = mysqli_query($conn, $sql_4);
          $resultcheck_4 = mysqli_num_rows($result_4);
         echo '
+
         <div class="jumbotron jumbotron-fluid p-2 mb-2 dark-bg-2 text-light">
         <div class="row p-1 py-0 my-0">
-        <div class="col-2 ">
+        <div class="col-2 d-none d-sm-block">
         <img src="'.$propic.'" class="mx-auto d-block" alt="..." style="object-fit: cover; width:50px; height:50px; ">
         </div>
         <div class="col-7">
         <h6 class="mb-0"><a href="p/'.$permalink_post.'" class="text-light">'.$title_post.'</a></h6>
         <p class="pt-0"><a href="user/'.$username_post.'" class="text-light">'.$username_post.'</a> - '.$date_post.'</p>
         </div>
-        <div class="col-3 text-right pl-0 ml-0">
+        <div class="col text-right pl-0 ml-0">
         <span class="mb-0 pb-0 mb-0"><span class="badge third shadow">'.$resultcheck_4.' <ion-icon name="chatboxes"></ion-icon> </span></span> <br>
         <span class="mb-0 pt-0 mt-0">'.$status.'</span>
         </div>

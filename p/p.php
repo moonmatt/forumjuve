@@ -156,8 +156,8 @@ if($closed != 1){
         $_SESSION["new-comment"] = array($permalink_url);; // Puts the Errors Array in the session, so it's visible from other pages
         echo '
         <div class="container">
-        <div class="jumbotron jumbotron-fluid mt-3 pb-3 mb-0 pt-3 dark-bg-1 rounded-lg shadow">
-            <div class="ml-3 mr-3 pt-3 pb-3 rounded-lg shadow text-light">
+        <div class="jumbotron jumbotron-fluid mt-3 pb-3 mb-0 pt-3 dark-bg-1">
+            <div class="ml-3 mr-3 pt-3 pb-3 text-light dark-bg-2">
             <form action="../inc/new-comment.php" method="POST" enctype="multipart/form-data" class="pl-5 pr-5">
                             <div class="form-group">
                                 <h3>Aggiungi una risposta pubblica</h3>
