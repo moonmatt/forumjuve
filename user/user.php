@@ -104,7 +104,7 @@ $username = stringEscape($actual_link, $conn);
 
 <body class="dark-bg d-flex flex-column">
 
-<div class="jumbotron jumbotron-fluid pt-3 pb-3 dark-bg-1 shadow rounded-lg text-light">
+<div class="jumbotron jumbotron-fluid pt-3 pb-3 dark-bg-1 text-light">
             <div class="container">
                 <div class="row">
 
@@ -131,7 +131,7 @@ $username = stringEscape($actual_link, $conn);
         <div class="row">
 
             <div class="col-sm-4 float-right">
-                <div class="jumbotron jumbotron-fluid p-2 dark-bg-1 shadow rounded-lg text-light">
+                <div class="jumbotron jumbotron-fluid p-2 dark-bg-1 text-light">
                 <p class="h3 py-2 px-2">Informazioni</p>
                     <div class="container">
                         <?php echo $name; ?>
@@ -150,7 +150,7 @@ $username = stringEscape($actual_link, $conn);
             </div>
 
             <div class="col-sm-8 float-left">
-                <div class="jumbotron jumbotron-fluid dark-bg-1 shadow rounded-lg text-light py-3">
+                <div class="jumbotron jumbotron-fluid dark-bg-1 text-light py-3">
                     <div class="container">
                         <p class="h3 py-2">Post dell'utente</p>
                         <p class="lead">Ecco le attività di <?php echo $username; ?> su ForumJuve</p>
@@ -195,7 +195,7 @@ $username = stringEscape($actual_link, $conn);
                 $resultcheck_6 = mysqli_num_rows($result_6);
 
                 echo '
-                <div class="jumbotron jumbotron-fluid p-2 mb-3 dark-bg-1 text-light rounded-lg shadow-lg">
+                <div class="jumbotron jumbotron-fluid p-2 mb-3 dark-bg-2 text-light">
                 <div class="row p-1 pt-0 mt-0 pb-0">
                 <div class="col-2 ">
                 <img src="'.$propic.'" class="rounded mx-auto d-block" alt="..." style="object-fit: cover; width:50px; height:50px; ">
@@ -255,7 +255,7 @@ $username = stringEscape($actual_link, $conn);
                 $resultcheck_9 = mysqli_num_rows($result_9);
                      
                              echo '
-                            <div class="jumbotron jumbotron-fluid p-2 mb-3 dark-bg-1 text-light rounded-lg shadow-lg">
+                            <div class="jumbotron jumbotron-fluid p-2 mb-3 dark-bg-2 text-light">
                             <div class="row p-1 pt-0 mt-0 pb-0">
                             <div class="col-2">
                             <a href="user/'.$username_post.'">

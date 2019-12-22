@@ -70,7 +70,7 @@ box-shadow: 0px 0px 50px -10px rgba(38, 37, 38, 0.767) 0.575)!important;
     border-top: 1px solid #2d2d2d !important;
 }
 .nicEdit-main {
-    background-color: #282828 !important;
+    background-color: #181818 !important;
 } 
 .cover-1 {
       /* The image used */
@@ -83,8 +83,4 @@ box-shadow: 0px 0px 50px -10px rgba(38, 37, 38, 0.767) 0.575)!important;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
-.container {
-    filter: blur(0) !important;
-    -webkit-filter: blur(0) !important;
 }

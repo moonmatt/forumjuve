@@ -35,7 +35,7 @@ else {
 
 <body class="dark-bg d-flex flex-column">
 
-<div class="jumbotron jumbotron-fluid dark-bg-1 shadow rounded-lg text-light">
+<div class="jumbotron jumbotron-fluid dark-bg-1 text-light">
             <div class="container">
                 <h1 class="display-4">I messaggi inviati</h1>
                 <p class="lead">Ecco i messaggi da te inviati, per un totale di <?php echo $resultcheck; ?> Messaggi.</p>
@@ -47,7 +47,7 @@ else {
 
         <div class="row">
             <div class="col-sm-8">
-            <div class="py-1 dark-bg-1 shadow rounded-lg">
+            <div class="py-1 dark-bg-1">
                         <?php
         if($resultcheck > 0){ // If there is 1 result
             while($row = mysqli_fetch_assoc($result)){
@@ -72,10 +72,10 @@ else {
                }
 
                echo '
-               <div class="jumbotron jumbotron-fluid dark-bg-1 shadow rounded-lg text-light py-2 mb-1 m-3">
+               <div class="jumbotron jumbotron-fluid dark-bg-2 text-light py-2 mb-1 m-3">
                <div class="row mb-3 mt-3 mx-0">
                    <div class="col-sm-4">
-                   <img src="'.$propic.'" class="rounded mx-auto d-block" alt="..." style="object-fit: cover; width:200px; height:200px; ">
+                   <img src="'.$propic.'" class="mx-auto d-block" alt="..." style="object-fit: cover; width:200px; height:200px; ">
                    <div class="text-center text-break pr-3 pl-3">
                    <h5 class="mt-2"><small>a </small><a href="user/'.$to_username.'" class="text-light">'.$to_username.'</a></h5>
                    '.badgeGroup($role, $to_username_id, $badges, $conn).'
@@ -106,7 +106,7 @@ else {
             
             
             <div class="col-sm-4">
-                <div class="jumbotron jumbotron-fluid pt-3 pb-3 dark-bg-1 rounded-lg shadow text-light">
+                <div class="jumbotron jumbotron-fluid pt-3 pb-3 dark-bg-1 text-light">
                     <div class="container">
                         <h1 class="text-break">Messaggi privati</h1>
                         <p class="lead">Qui puoi vedere i messaggi che hai inviato.</p>

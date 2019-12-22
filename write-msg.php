@@ -42,7 +42,7 @@ if(loginCheck()){
 
 <body class="dark-bg d-flex flex-column">
 
-<div class="jumbotron jumbotron-fluid dark-bg-1 text-light shadow rounded-lg">
+<div class="jumbotron jumbotron-fluid dark-bg-1 text-light">
     <div class="container">
         <h1 class="display-4">Scrivi un messaggio</h1>
         <p class="lead">Invia un messaggio privato ad un utente. Solo lui potrà vederlo</p>
@@ -54,7 +54,7 @@ if(loginCheck()){
 
         <div class="row">
             <div class="col-sm-8">
-                <div class="jumbotron jumbotron-fluid pt-3 text-light dark-bg-1 shadow rounded-lg">
+                <div class="jumbotron jumbotron-fluid pt-3 text-light dark-bg-1">
                     <div class="container">
                         <?php sendMsgErrors(); ?>
                         <form action="inc/write-msg.php" method="POST" enctype="multipart/form-data">
@@ -78,7 +78,7 @@ if(loginCheck()){
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="jumbotron jumbotron-fluid pt-3 pb-3 dark-bg-1 text-light shadow rounded-lg">
+                <div class="jumbotron jumbotron-fluid pt-3 pb-3 dark-bg-1 text-light ">
                     <div class="container">
                         <h1 class="text-break">Invia un messaggio</h1>
                         <p class="lead">Qui puoi scrivere messaggi privati ad altri utenti.</p>

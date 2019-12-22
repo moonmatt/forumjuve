@@ -58,7 +58,7 @@ if(loginCheck()){
 
 <body class="dark-bg d-flex flex-column">
 
-<div class="jumbotron jumbotron-fluid text-light dark-bg-1 shadow">
+<div class="jumbotron jumbotron-fluid text-light dark-bg-1">
             <div class="container">
                 <h1 class="display-4">Modifica il tuo profilo</h1>
                 <p class="lead">Effettua cambiamenti al tuo account.</p>
@@ -70,7 +70,7 @@ if(loginCheck()){
 
         <div class="row">
             <div class="col-sm-8">
-                <div class="jumbotron jumbotron-fluid pt-3 dark-bg-1 text-light shadow rounded-lg">
+                <div class="jumbotron jumbotron-fluid pt-3 dark-bg-1 text-light">
                     <div class="container">
 
                         <form action="inc/profile.php" method="POST" enctype="multipart/form-data">
@@ -143,11 +143,11 @@ if(loginCheck()){
                 </div>
             </div>
             <div class="col-sm-4">
-                <div class="jumbotron jumbotron-fluid pt-3 pb-3 dark-bg-1 text-light shadow rounded-lg">
+                <div class="jumbotron jumbotron-fluid pt-3 pb-3 dark-bg-1 text-light">
                     <div class="container">
                         <h1 class="text-break">Immagine Profilo</h1>
                         <img src="<?php echo $propic; ?>" alt="..."
-                            style="object-fit: cover; width:200px; height:200px;" class="rounded center">
+                            style="object-fit: cover; width:200px; height:200px;" class="center">
                     </div>
                 </div>
             </div>
