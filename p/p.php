@@ -99,7 +99,7 @@ if($resultcheck_2 > 0){ // If there is 1 result
         $id_comment = $row_2['id'];
         $msg_comment = $row_2['msg'];
         $date_comment = $row_2['date'];
-        $date_comment = date("d/m/Y - H:i", strtotime($date_comment));
+        $date_comment = date("d M Y - H:i", strtotime($date_comment));
 
         $sql_3 = "SELECT * FROM users WHERE id = '$id_user_comment'";
         $result_3 = mysqli_query($conn, $sql_3);

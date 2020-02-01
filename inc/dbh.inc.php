@@ -24,7 +24,8 @@ $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
 //     role varchar(2083),
 //     website varchar(2083),
 //     dofbirth DATE NOT NULL,
-//     date DATE NOT NULL
+//     date DATE NOT NULL,
+//     ban int(1) NOT NULL
 // );
 
 
@@ -41,5 +42,27 @@ $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
 // CREATE TABLE roles (
 //     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
 //     name varchar(255) NOT NULL,
+//     image varchar(2083)
+// );
+
+// CREATE TABLE comments (
+//     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+//     username int NOT NULL,
+//     msg LONGTEXT NOT NULL,
+//     date DATETIME NOT NULL,
+//     permalink_post varchar(2083)
+// );
+
+// CREATE TABLE postbadges (
+//     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+//     value int NOT NULL,
+//     name varchar(255) NOT NULL,
+//     image varchar(2083)
+// );
+
+// CREATE TABLE badges (
+//     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+//     name varchar(255) NOT NULL,
+//     title varchar(255) NOT NULL,
 //     image varchar(2083)
 // );
