@@ -28,6 +28,13 @@ $username = stringEscape($actual_link, $conn);
             $propic = $row['propic'];
             $city = $row['city']; 
             $role = $row['role'];
+
+            if($ban == 1){
+                $ban = ' <span class="badge third">Bannato</span>';
+            } else {
+                  $ban = "";
+            }
+
             if($name != ''){
                 $name = '<h4>Nome</h4> <p class="lead">'.$name.'</p>';
             }
@@ -60,21 +67,16 @@ $username = stringEscape($actual_link, $conn);
                 $bio = '<h4>Biografia</h4> <p class="lead">'.$bio.'</p>';
             }
 
-            if($ban == 1){
-              echo "L'utente è bannato";
-              die();
-            }
-
             if($propic == ''){
               $propic = "/forumjuve/img/utente.jpg";
             }
 
 
-            $postsListSql = "SELECT * FROM posts WHERE username = '$username_id' ORDER BY id DESC";
+            $postsListSql = "SELECT * FROM posts WHERE username = '$username_id' and ban != 1 ORDER BY id DESC";
             $postsNumResult = mysqli_query($conn, $postsListSql);
             $postNumResultCount = mysqli_num_rows($postsNumResult);
 
-            $commentsListSql = "SELECT * FROM comments WHERE username = '$username_id' ORDER BY id DESC";
+            $commentsListSql = "SELECT * FROM comments WHERE username = '$username_id' and ban != 1 ORDER BY id DESC";
             $commentsNumResult = mysqli_query($conn, $commentsListSql);
             $commentsNumResultCount = mysqli_num_rows($commentsNumResult);
 
@@ -109,7 +111,7 @@ $username = stringEscape($actual_link, $conn);
                 <div class="row">
 
                     <div class="col-sm-8 align-self-center">
-                        <h1 class="display-4"><?php echo $username; ?></h1>
+                        <h1 class="display-4"><?php echo $username . $ban?></h1>
                         <p class="lead">Utente dal <?php echo $date; ?></p>
                     </div>
 

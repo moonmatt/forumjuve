@@ -37,6 +37,7 @@ $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
 //     date DATETIME NOT NULL,
 //     permalink varchar(2083),
 //     closed int(1) NOT NULL,
+//     ban int(1) NOT NULL
 // );
 
 // CREATE TABLE roles (
@@ -50,7 +51,8 @@ $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
 //     username int NOT NULL,
 //     msg LONGTEXT NOT NULL,
 //     date DATETIME NOT NULL,
-//     permalink_post varchar(2083)
+//     permalink_post varchar(2083),
+//     closed int(1) NOT NULL
 // );
 
 // CREATE TABLE postbadges (

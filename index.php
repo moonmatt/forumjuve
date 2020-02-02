@@ -23,11 +23,11 @@
         $max = 0;
         $linkNum = 1;
         $pzero = true;
-        $sql = "SELECT * FROM posts ORDER BY id DESC LIMIT 5";
+        $sql = "SELECT * FROM posts WHERE ban != 1 ORDER BY id DESC LIMIT 5";
         $result = mysqli_query($conn, $sql);
         $resultcheck = mysqli_num_rows($result);
     }
-    $sql_2 = "SELECT * FROM comments ORDER BY date DESC LIMIT 5";
+    $sql_2 = "SELECT * FROM comments WHERE ban != 1 ORDER BY date DESC LIMIT 5";
     $result_2 = mysqli_query($conn, $sql_2);
     $resultcheck_2 = mysqli_num_rows($result_2);
 ?>

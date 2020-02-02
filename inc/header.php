@@ -8,6 +8,7 @@ if(loginCheck()){
   $username = loginCheck()[1];
   $email = loginCheck()[2];
   $id = loginCheck()[3];
+  $ban = loginCheck()[5];
 }
 ?>
 

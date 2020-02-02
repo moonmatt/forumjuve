@@ -37,11 +37,13 @@ if(isset($_POST['submit'])){ // If the login form is submitted
                 $username = $row['username'];
                 $email = $row['email'];
                 $id = $row['id'];
+                $ban = $row['ban'];
                 if(password_verify($password, $pwd)){ // If password is correct
                     $_SESSION['username'] = $username;
                     $_SESSION['email'] = $email;
                     $_SESSION['id'] = $id;
                     $_SESSION['pwd'] = $pwd;
+                    $_SESSION['ban'] = $ban;
                     $_SESSION['success'] = "You are now logged in";
                     header('location: ' . $redirect);
                     die();

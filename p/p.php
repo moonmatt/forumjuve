@@ -5,7 +5,7 @@ $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $actual_link = basename($actual_link);
 $permalink_url = stringEscape($actual_link, $conn);
 
-$sql = "SELECT * FROM posts WHERE permalink = '$permalink_url'";
+$sql = "SELECT * FROM posts WHERE permalink = '$permalink_url' and ban != 1";
     $result = mysqli_query($conn, $sql);
     $resultcheck = mysqli_num_rows($result);
 
@@ -98,8 +98,12 @@ if($resultcheck_2 > 0){ // If there is 1 result
         $id_user_comment = $row_2['username'];
         $id_comment = $row_2['id'];
         $msg_comment = $row_2['msg'];
+        $ban_comment = $row_2['ban'];
         $date_comment = $row_2['date'];
         $date_comment = date("d M Y - H:i", strtotime($date_comment));
+        if($ban_comment == 1){
+            $msg_comment = "QUESTO MESSAGGIO E' STATO ELIMINATO DA UN MODERATORE";
+        }
 
         $sql_3 = "SELECT * FROM users WHERE id = '$id_user_comment'";
         $result_3 = mysqli_query($conn, $sql_3);
@@ -147,11 +151,20 @@ if($resultcheck_2 > 0){ // If there is 1 result
     </div>
 
 <?php
+
 if($closed != 1){
     if(loginCheck()){
         $username = loginCheck()[1];
         $email = loginCheck()[2];
         $id = loginCheck()[3];
+
+        if($ban == 1){
+            echo '<div class="container mt-3">
+            <div class="alert third rounded-lg text-light" role="alert">
+            Non puoi commentare poichè sei stato bannato.
+          </div>
+          </div>';
+        } else {
 
         $_SESSION["new-comment"] = array($permalink_url);; // Puts the Errors Array in the session, so it's visible from other pages
         echo '
@@ -170,6 +183,7 @@ if($closed != 1){
         </div>
     </div>
         ';
+    }
     } else {
         echo '
         <div class="container mt-2">

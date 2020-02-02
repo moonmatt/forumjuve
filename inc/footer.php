@@ -1,4 +1,9 @@
+<?php
+// LOGOUT EVERYONE
 
+// unset($_SESSION['success']);
+// session_destroy();
+?>
     <footer class="footer dark-bg-1 text-light text-muted p-2 ">
       <div class="container">
       <div class="row">

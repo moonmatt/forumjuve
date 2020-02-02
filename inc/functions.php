@@ -102,7 +102,8 @@ function loginCheck(){
         $email = $_SESSION["email"];
         $id = $_SESSION["id"];
         $pwd = $_SESSION["pwd"];
-        return array(True, $username, $email, $id, $pwd);
+        $ban = $_SESSION["ban"];
+        return array(True, $username, $email, $id, $pwd, $ban);
       } else {
         return False;
       }
@@ -205,7 +206,7 @@ function roleBadge($role, $conn){
 
 function postBadge($usernameId, $conn) {
     include 'dbh.inc.php';
-    $numberOfPostsSql = "SELECT * FROM comments, posts WHERE comments.username = '$usernameId' AND posts.username = '$usernameId'";
+    $numberOfPostsSql = "SELECT * FROM comments, posts WHERE comments.username = '$usernameId' AND posts.username = '$usernameId' AND comments.ban != 1 AND posts.ban != 1";
     $numberOfPostsResult = mysqli_query($conn, $numberOfPostsSql);
     $numberOfPostResultCount = mysqli_num_rows($numberOfPostsResult);
 
