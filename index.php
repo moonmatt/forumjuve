@@ -12,6 +12,7 @@
         $result = mysqli_query($conn, $sql);
         $resultcheck = mysqli_num_rows($result);
         $max = ceil($resultcheck / 5);
+        
         $sql = "SELECT * FROM posts order by id DESC LIMIT 5 OFFSET $offset";
         $result = mysqli_query($conn, $sql);
         $resultcheck = mysqli_num_rows($result);
@@ -177,9 +178,6 @@
             </div>
         </div>
     </div>
-
-    <ion-icon name="heart"></ion-icon>
-ciaoa
 
 
 <script src="https://kit.fontawesome.com/d2ce008e27.js" crossorigin="anonymous"></script>

@@ -68,7 +68,7 @@ $sql = "SELECT * FROM posts WHERE permalink = '$permalink_url'";
         </div>';
         }
         ?>
-            <div class="row ml-3 mr-3 pt-3 pb-3 dark-bg-2 text-light pl-3">
+            <div class="row ml-3 mr-3 pt-3 pb-3 dark-bg-2 text-light pl-3 pr-3">
                 <div class="col-sm-3 mr-0 pr-0 py-4 pl-0 dark-bg-1 text-light">
                     <img src="<?php echo $propic; ?>" class="rounded mx-auto d-block" alt="..."
                         style="object-fit: cover; width:200px; height:200px; ">
@@ -116,7 +116,7 @@ if($resultcheck_2 > 0){ // If there is 1 result
         }
 
         echo '
-        <div class="row ml-3 mr-3 pt-3 pb-3 dark-bg-2 text-light pl-3 mt-3">
+        <div class="row ml-3 mr-3 pt-3 pb-3 dark-bg-2 text-light pl-3 mt-3 pr-3">
         <div class="col-sm-3 mr-0 pr-0 py-4 pl-0 dark-bg-1 text-light">
             <img src="'.$propic_comment.'" class=" mx-auto d-block" alt="..."
                 style="object-fit: cover; width:200px; height:200px; ">

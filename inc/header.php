@@ -19,8 +19,8 @@ if(loginCheck()){
     <meta name="viewport" content="width=device-width">
     <link rel='icon' href='/forumjuve/img/favicon.png' type='image/x-icon' sizes="16x16" />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="\forumjuve\css\stile.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" >
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 
@@ -40,9 +40,15 @@ if(loginCheck()){
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse flex-grow-1 text-left pb-1" id="navbarSupportedContent">
-  <form class="form-inline">
-    <input class="form-control border-0 my-3 my-sm-0" type="search" placeholder="Cerca..." aria-label="Search" style="background-color: #1d1d1d !important;">
-  </form>
+  <div class="d-inline align-baseline text-light">
+  <h1 class="ml10">
+  <span class="text-wrapper">
+    <span class="letters">Finalmente disponibile!</span>
+  </span>
+</h1>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+</div>
   <?php
   if(loginCheck()){
     echo '
@@ -80,3 +86,45 @@ if(loginCheck()){
   </div>
   </div>
 </nav>
+<script>
+// Wrap every letter in a span
+var textWrapper = document.querySelector('.ml10 .letters');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml10 .letter',
+    rotateY: [-90, 0],
+    duration: 1300,
+    delay: (el, i) => 45 * i
+  }).add({
+    targets: '.ml10',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
+</script>
+
+<style>
+.ml10 {
+  position: relative;
+  font-weight: 900;
+  font-size: 1em;
+}
+
+.ml10 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.2em;
+  padding-right: 0.05em;
+  padding-bottom: 0.1em;
+  overflow: hidden;
+}
+
+.ml10 .letter {
+  display: inline-block;
+  line-height: 1em;
+  transform-origin: 0 0;
+}
+</style>
