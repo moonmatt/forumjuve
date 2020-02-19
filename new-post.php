@@ -22,8 +22,6 @@ if(loginCheck()){
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
-<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
 				
     <title>Scrivi un post | Forumjuve</title>
 
@@ -55,7 +53,9 @@ if(loginCheck()){
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Contenuto</label>
-                                <textarea class="form-control" id="msg_post" name="msg_post" rows="5"></textarea>
+                                <div class="trumbowyg-dark">
+                                <textarea class="form-control " id="my-editor" name="msg_post" rows="5"></textarea>
+                                </div>
                             </div>
                             <button type="submit" class="btn third text-light" value="submit_post"
                                 name="submit_post">Invia</button>

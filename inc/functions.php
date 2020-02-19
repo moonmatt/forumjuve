@@ -274,3 +274,9 @@ function permalink($string) {
             }
     return($string);
     }
+
+// Ban redirect
+
+function banRedirect(){ 
+    header("location: /forumjuve/ban");
+}

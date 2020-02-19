@@ -1,3 +1,9 @@
+<style>
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
 <?php
 include '../inc/header.php'; 
 
@@ -48,10 +54,12 @@ $sql = "SELECT * FROM posts WHERE permalink = '$permalink_url' and ban != 1";
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
-<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.js"></script>
+</html>
+			
 						
     <title><?php echo $title; ?> | ForumJuve</title>
 
@@ -174,7 +182,9 @@ if($closed != 1){
             <form action="../inc/new-comment.php" method="POST" enctype="multipart/form-data" class="pl-5 pr-5">
                             <div class="form-group">
                                 <h3>Aggiungi una risposta pubblica</h3>
-                                <textarea class="form-control" id="msg_comment" name="msg_comment" rows="5"></textarea>
+                                <div class="trumbowyg-dark">
+                                <textarea class="form-control " id="my-editor" name="msg_comment" rows="5"></textarea>
+                                </div>
                             </div>
                             <button type="submit" class="btn third text-light" value="submit_comment"
                                 name="submit_comment">Invia</button>
@@ -201,8 +211,6 @@ if($closed != 1){
   </div>';
 }
 ?>
-
-
 
     <?php include '../inc/footer.php'; ?>
 

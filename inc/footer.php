@@ -4,7 +4,7 @@
 // unset($_SESSION['success']);
 // session_destroy();
 ?>
-    <footer class="footer dark-bg-1 text-light text-muted p-2 ">
+    <footer class="footer dark-bg-1 text-light text-muted p-2 mt-2">
       <div class="container">
       <div class="row">
       <div class="col">© <?php echo date('Y');?> <a href="https://moonmatt.cf" class="text-muted">moonmatt</a> aka Matteo Galavotti</div>
@@ -13,11 +13,16 @@
       </div>
     </footer>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+<!-- include summernote css/js -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.20.0/ui/trumbowyg.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.20.0/trumbowyg.min.js"></script>
+
+<script>
+    // Doing this in a loaded JS file is better, I put this here for simplicity
+    $('#my-editor').trumbowyg();
+</script>
   
   
   </body>

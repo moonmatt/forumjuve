@@ -58,7 +58,7 @@ if(isset($_POST['submit_msg'])){ // If the login form is submitted
         $to_id = $row['id'];
         $sql = "INSERT INTO msg (from_username, to_username, msg, title, date) VALUES ('$id', '$to_id', '$msg_form', '$title_form', '$date');";
         mysqli_query($conn, $sql);
-        header('location: index?message-sent');
+        header('location: ../index?message-sent');
         die();
     } else {
         $_SESSION["sendMsg_errors"] = $errors;

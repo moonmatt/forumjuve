@@ -182,17 +182,4 @@
 
 <script src="https://kit.fontawesome.com/d2ce008e27.js" crossorigin="anonymous"></script>
     <?php include 'inc/footer.php'; ?>
-    <!-- <script type="text/javascript">
-            // let myElement = document.querySelector(".preloader");
-            // myElement.style.display = "block";
-let myElement = document.querySelector(".preloader");
-if (sessionStorage.getItem('dontLoad') == null){
-    alert("This message will be shown only once when we use this window." )
-    myElement.style.display = "block";
-    setTimeout(function(){ myElement.style.display = "none"; }, 3000);
-    sessionStorage.setItem('dontLoad', 'true');
-  } else {
-    console.log(myElement);
-  }
-</script> -->
 </html>

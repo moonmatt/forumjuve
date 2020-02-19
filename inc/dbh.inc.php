@@ -68,3 +68,12 @@ $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
 //     title varchar(255) NOT NULL,
 //     image varchar(2083)
 // );
+
+// CREATE TABLE msg (
+//     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+//     title varchar(255) NOT NULL,
+//     from_username int NOT NULL,
+//     to_username int NOT NULL,
+//     msg LONGTEXT NOT NULL,
+//     date DATETIME NOT NULL
+// );

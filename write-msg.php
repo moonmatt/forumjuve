@@ -5,6 +5,9 @@ if(loginCheck()){
   $username = loginCheck()[1];
   $email = loginCheck()[2];
 
+  if($ban == 1){
+      banRedirect();
+  }
   $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
   $actual_link = basename($actual_link);
   if (strpos($actual_link, '?') !== false) {
@@ -30,10 +33,7 @@ if(loginCheck()){
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script type="text/javascript" src="nicEdit.js"></script>
-        <script type="text/javascript">
-            bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
-        </script>
+						
     <title>Scrivi un messaggio | Forumjuve</title>
 
 
@@ -69,7 +69,9 @@ if(loginCheck()){
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Message</label>
-                                <textarea class="form-control" id="msg_form" name="msg_form" rows="5"></textarea>
+                                <div class="trumbowyg-dark">
+                                <textarea class="form-control " id="my-editor" name="msg_form" rows="5"></textarea>
+                                </div>
                             </div>
                             <button type="submit" class="btn third text-light" value="submit_msg"
                                 name="submit_msg">Invia</button>
