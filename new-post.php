@@ -45,7 +45,7 @@ if(loginCheck()){
             <div class="col-sm-8">
                 <div class="jumbotron jumbotron-fluid pt-3 text-light dark-bg-1 shadow rounded-lg">
                     <div class="container">
-                        <?php newPostErrors(); ?>
+                        <?php showErrors(); ?>
                         <form action="inc/new-post.php" method="POST" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Titolo</label>
@@ -68,7 +68,6 @@ if(loginCheck()){
                     <div class="container">
                         <h1 class="text-break">Crea un post</h1>
                         <p class="lead">Qui puoi iniziare una discussione, ricordati che può essere eliminata/chiusa in qualsiasi momento dagli admin, mantieni un tono educato.</p>
-                        <a href="/forumjuve/user/<?php echo $username; ?>" class="text-light">I tuoi post</a>
                     </div>
                 </div>
             </div>

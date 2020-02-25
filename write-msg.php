@@ -56,21 +56,21 @@ if(loginCheck()){
             <div class="col-sm-8">
                 <div class="jumbotron jumbotron-fluid pt-3 text-light dark-bg-1">
                     <div class="container">
-                        <?php sendMsgErrors(); ?>
+                        <?php showErrors(); ?>
                         <form action="inc/write-msg.php" method="POST" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Destinatario</label>
                                 <input type="text" class="form-control dark-bg text-light" id="to_username_form" name="to_username_form"
-                                    value="<?php echo $to_username; ?>" style="border: none;">
+                                    value="<?php echo $to_username; ?>" style="border: none;" required>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Titolo</label>
-                                <input type="text" class="form-control dark-bg text-light" id="title_form" name="title_form" style="border: none;">
+                                <input type="text" class="form-control dark-bg text-light" id="title_form" name="title_form" style="border: none;" required>
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Message</label>
+                                <label for="exampleFormControlTextarea1">Messaggio</label>
                                 <div class="trumbowyg-dark">
-                                <textarea class="form-control " id="my-editor" name="msg_form" rows="5"></textarea>
+                                <textarea class="form-control " id="my-editor" name="msg_form" rows="5" required></textarea>
                                 </div>
                             </div>
                             <button type="submit" class="btn third text-light" value="submit_msg"

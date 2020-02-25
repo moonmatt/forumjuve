@@ -4,11 +4,15 @@
 
 function stringEscape($string, $conn){
     $string = mysqli_real_escape_string($conn, $string);
-    // $string = htmlspecialchars($string);
+    $string =  str_replace("<","&lt;", $string);
+    $string =  str_replace(">","&gt;", $string);
+    return $string;
+}
+function textareaEscape($string, $conn){
+    $string = mysqli_real_escape_string($conn, $string);
     return $string;
 }
  
-
 // Password Hash
 
 function hashPassword($password){  
@@ -16,81 +20,16 @@ function hashPassword($password){
     return $password;
 }
 
-// Signup Error messages
+// Show Errors
 
-function signupErrors(){
-    if(isset($_SESSION['signup_errors']) && !empty($_SESSION['signup_errors'])) {
-        $error = $_SESSION["signup_errors"];
-
-        foreach($error as $error){
-            echo '<div class="alert third rounded-lg text-light" role="alert"> '.$error.' </div>'; 
-        }
-        unset($_SESSION["signup_errors"]);
-    }
-}
-
-// Login Error messages
-
-function loginErrors(){
-    if(isset($_SESSION['login_errors']) && !empty($_SESSION['login_errors'])) {
-        $error = $_SESSION["login_errors"];
+function showErrors(){
+    if(isset($_SESSION['showErrors']) && !empty($_SESSION['showErrors'])) {
+        $error = $_SESSION["showErrors"];
 
         foreach($error as $error){
             echo '<div class="alert third rounded-lg text-light" role="alert"> '.$error.' </div>'; 
         }
-        unset($_SESSION["login_errors"]);
-    }
-}
-
-// Profile Error messages
-
-function profileErrors(){
-    if(isset($_SESSION['profile_errors']) && !empty($_SESSION['profile_errors'])) {
-        $error = $_SESSION["profile_errors"];
-
-        foreach($error as $error){
-            echo '<div class="alert third rounded-lg text-light" role="alert"> '.$error.' </div>'; 
-        }
-        unset($_SESSION["profile_errors"]);
-    }
-}
-
-// Post Errors
-
-function newPostErrors(){
-    if(isset($_SESSION['newPost_errors']) && !empty($_SESSION['newPost_errors'])) {
-        $error = $_SESSION["newPost_errors"];
-
-        foreach($error as $error){
-            echo '<div class="alert third text-light rounded-lg" role="alert"> '.$error.' </div>'; 
-        }
-        unset($_SESSION["newPost_errors"]);
-    }
-}
-
-// Profile Error messages
-
-function newComment(){
-    if(isset($_SESSION['newComment_errors']) && !empty($_SESSION['newComment_errors'])) {
-        $error = $_SESSION["newComment_errors"];
-
-        foreach($error as $error){
-            echo '<div class="alert third text-light rounded-lg" role="alert"> '.$error.' </div>'; 
-        }
-        unset($_SESSION["newComment_errors"]);
-    }
-}
-
-// Send Msg Error messages
-
-function sendMsgErrors(){
-    if(isset($_SESSION['sendMsg_errors']) && !empty($_SESSION['sendMsg_errors'])) {
-        $error = $_SESSION["sendMsg_errors"];
-
-        foreach($error as $error){
-            echo '<div class="alert alert-warning" role="alert"> '.$error.' </div>'; 
-        }
-        unset($_SESSION["sendMsg_errors"]);
+        unset($_SESSION["showErrors"]);
     }
 }
 
@@ -119,7 +58,6 @@ function loginProfile($id, $password, $conn){
         $sql = "SELECT * FROM users WHERE id = '$id'";
         $result = mysqli_query($conn, $sql);
         $resultcheck = mysqli_num_rows($result);
-        echo $sql;
         if($resultcheck == 1){ // If there is 1 result
             while($row = mysqli_fetch_assoc($result)){
                 $pwd = $row['pwd'];
@@ -155,7 +93,32 @@ function valid_email($str) {
 // Valid username RegEx
 
 function valid_username($str) {
-    return (!preg_match("/^[a-zA-Z0-9-_]*$/", $str)) ? FALSE : TRUE;
+    if (preg_match('/^[a-zA-Z0-9_]{1,16}$/', $str)){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// Send verification email
+
+function verificationEmail($email, $token) {
+    
+    $to = $email;
+
+    $subject = 'Email di conferma ForumJuve';
+
+    $headers = "From: ForumJuve \r\n";
+    $headers .= "Reply-To: Te \r\n";
+    $headers .= "CC: ".$email."\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+    $message = '<html><body>Ciao, benvenuto su ForumJuve!<br>Conferma il tuo indirizzo email e inizia subito a partecipare al Forum!<br><br>';
+    $message .= 'Link conferma <br> <a href="https://forumjuve.cf/inc/email-verify?'.$email.'?token='.$token.'">https://forumjuve.cf/inc/email-verify?email?token=token</a><br><br>Se non hai fatto nessuna iscrizione cestina questa mail.<br><br>';
+    $message .= '</body>Matteo Galavotti (moonmatt) | Founder e developer di ForumJuve</html>';
+    mail($to, $subject, $message, $headers);
+    return $token;
 }
 
 // Auto Login
@@ -206,10 +169,15 @@ function roleBadge($role, $conn){
 
 function postBadge($usernameId, $conn) {
     include 'dbh.inc.php';
-    $numberOfPostsSql = "SELECT * FROM comments, posts WHERE comments.username = '$usernameId' AND posts.username = '$usernameId' AND comments.ban != 1 AND posts.ban != 1";
-    $numberOfPostsResult = mysqli_query($conn, $numberOfPostsSql);
-    $numberOfPostResultCount = mysqli_num_rows($numberOfPostsResult);
-
+    $numberOfPostsSql_1 = "SELECT * FROM comments WHERE username = '$usernameId' AND ban != 1";
+    $numberOfPostsSql_2 = "SELECT * FROM posts WHERE username = '$usernameId' AND ban != 1";
+    $numberOfPostsResult_1 = mysqli_query($conn, $numberOfPostsSql_1);
+    $numberOfPostsResult_2 = mysqli_query($conn, $numberOfPostsSql_2);
+    $numberOfPostResultCount_1 = mysqli_num_rows($numberOfPostsResult_1);
+    $numberOfPostResultCount_2 = mysqli_num_rows($numberOfPostsResult_2);
+    
+    $numberOfPostResultCount = $numberOfPostResultCount_1 + $numberOfPostResultCount_2;
+    
     $sql = "SELECT * FROM postbadges";
 	$result = mysqli_query($conn, $sql);
 	$resultcheck = mysqli_num_rows($result);
@@ -249,7 +217,7 @@ function badgeGroup($role, $usernameId, $badges, $conn){
     $postBadge = postBadge($usernameId, $conn);
     $allBadges = "";
     foreach(allBadges($badges, $conn) as $badge){
-        $allBadges = "<img class='mx-auto d-block my-1' width='132' height='auto' title='".$badge[1]."' src='/forumjuve/".$badge[2]."'>";
+        $allBadges = "<img class='mx-auto d-block my-1' width='132' height='auto' title='".$badge[1]."' src='".$badge[2]."'>";
     } 
     return $role . $postBadge . $allBadges;
 }
@@ -274,6 +242,20 @@ function permalink($string) {
             }
     return($string);
     }
+
+// Check post permalink
+
+function checkPermalink($permalink, $conn) {
+    $sql = "SELECT * FROM posts WHERE permalink = '$permalink'";
+    $result = mysqli_query($conn, $sql);
+    $resultcheck = mysqli_num_rows($result);
+    if($resultcheck >= 1) {
+        $permalink = $permalink ."-". rand(9,999);
+        return($permalink);
+    } else {
+        return($permalink);
+    }
+}
 
 // Ban redirect
 

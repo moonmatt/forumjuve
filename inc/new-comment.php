@@ -19,7 +19,7 @@ if(loginCheck()){
     die();
   }
 
-$_SESSION["newComment_errors"] = $errors; // Puts the Errors Array in the session, so it's visible from other pages
+$_SESSION["showErrors"] = $errors; // Puts the Errors Array in the session, so it's visible from other pages
 
 $redirect = "../"; // Path to redirect
 $redirectProfile = "../new-post"; // Path to redirect
@@ -28,14 +28,14 @@ if(isset($_POST['submit_comment'])){ // If the login form is submitted
 
     // Escapes dangerous characters
     $permalink = $_SESSION["new-comment"][0];
-    $msg_post = stringEscape($_POST['msg_comment'], $conn);
+    $msg_post = textareaEscape($_POST['msg_comment'], $conn);
     $date = date("Y-m-d H:i:s");
 
     // Creates error messages
     if (empty($msg_post)) { array_push($errors, "Il messaggio è obbligatorio"); }
 
     if (count($errors) == 0) { // If there are no errors
-        $sql = "INSERT INTO comments (username, msg, permalink_post, date) VALUES ('$id', '$msg_post', '$permalink', '$date');";
+        $sql = "INSERT INTO comments (username, msg, permalink_post, date, ban) VALUES ('$id', '$msg_post', '$permalink', '$date', 0);";
         mysqli_query($conn, $sql);
         $sql_2 = "SELECT * FROM comments WHERE permalink_post = '$permalink' ORDER BY id DESC";
         $result_2 = mysqli_query($conn, $sql_2);
@@ -45,7 +45,7 @@ if(isset($_POST['submit_comment'])){ // If the login form is submitted
         header("location: ../p/".$permalink."#".$id);
         die();
     } else {
-        $_SESSION["sendMsg_errors"] = $errors;
+        $_SESSION["showErrors"] = $errors;
         header('location: ' . $redirect);
         die();
     }

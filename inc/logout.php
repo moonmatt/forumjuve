@@ -1,5 +1,5 @@
 <?php
-$redirect = "/forumjuve"; // Path to redirect
+$redirect = "/"; // Path to redirect
 session_start();
 if(isset($_SESSION['success']) && !empty($_SESSION['success'])) {
     unset($_SESSION["success"]);

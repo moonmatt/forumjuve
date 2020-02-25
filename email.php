@@ -2,20 +2,18 @@
 include "inc/header.php";
 ?>
    <head>
-    <Title>404 Pagina non trovata | ForumJuve</Title>
+    <Title>Verifica l'email | ForumJuve</Title>
 </head>
 <style>
 *{
     transition: all 0.6s;
+    z-index: 99999999999999999999999999999999999999999999999999999;
 }
 
 html {
     height: auto;
 }
-    .preloader {
-        background: red;
-        display: none;
-    }
+
 body{
     font-family: 'Lato', sans-serif;
     color: #fff;
@@ -39,23 +37,20 @@ body{
 	  font-size: 50px;
 	  display: inline-block;
 	  padding-right: 12px;
-    color: #fff;
 	  animation: type .5s alternate infinite;
 }
-    a {
+    span {
         color: white;
     }
-    a:hover {
-        color: gray;
-    }
+
 @keyframes type{
-	  from{box-shadow: inset -3px 0px 0px #333;}
+	  from{box-shadow: inset -3px 0px 0px #888;}
 	  to{box-shadow: inset -3px 0px 0px transparent;}
 }
 </style>
        <div id="main">
     	<div class="fof">
-        		<h1>Pagina non trovata</h1> <br>
-        		<a href="/">Home</a>
+        		<h1>Controlla l'email</h1> <br>
+        		<span>Ti abbiamo inviato un codice segreto al tuo indirizzo di posta.</span>
     	</div>
 </div>

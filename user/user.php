@@ -24,7 +24,6 @@ $username = stringEscape($actual_link, $conn);
             $bio = $row['bio'];
             $website = $row['website'];
             $sex = $row['sex'];
-            $dofbirth = $row['dofbirth'];
             $propic = $row['propic'];
             $city = $row['city']; 
             $role = $row['role'];
@@ -41,13 +40,6 @@ $username = stringEscape($actual_link, $conn);
 
             if($website != ''){
                 $website = '<h4>Link</h4> <p class="lead">'.website($website).'</p>';
-            }
-
-            if($dofbirth != "0000-00-00"){ // If date of birth is not set
-              $dofbirth = date("d M Y", strtotime($dofbirth));
-              $dofbirth = '<h4>Data di nascita</h4> <p class="lead">'.$dofbirth.'</p>';
-            } else {
-                $dofbirth = "";
             }
 
             if($sex == 1){ // Check the sex of user
@@ -68,7 +60,7 @@ $username = stringEscape($actual_link, $conn);
             }
 
             if($propic == ''){
-              $propic = "/forumjuve/img/utente.jpg";
+              $propic = "/img/utente.jpg";
             }
 
 
@@ -137,7 +129,6 @@ $username = stringEscape($actual_link, $conn);
                 <p class="h3 py-2 px-2">Informazioni</p>
                     <div class="container">
                         <?php echo $name; ?>
-                        <?php echo $dofbirth; ?>
                         <?php echo $website; ?>
                         <?php echo $sex; ?>
                         <?php echo $city; ?>
@@ -184,12 +175,12 @@ $username = stringEscape($actual_link, $conn);
                 $username_post = $row_5['username'];
                 $role = $row_5['role'];
                 if($propic == ''){
-                  $propic = "/forumjuve/img/utente.jpg";
+                  $propic = "/img/utente.jpg";
                  }
                  if($status == 1){
-                    $status = '<span class="badge badge-danger shadow">Chiuso <ion-icon name="close"></ion-icon></span>';
+                    $status = '<span class="badge badge-danger shadow">Chiuso <i class="fas fa-door-closed"></i></span>';
                 } else {
-                    $status = '<span class="badge third text-light shadow">Aperto <ion-icon name="globe"></ion-icon></span>';
+                    $status = '<span class="badge third text-light shadow">Aperto <i class="fas fa-globe-europe"></i></span>';
                 }
 
                 $sql_6 = "SELECT * FROM comments WHERE permalink_post = '$permalink_post'";
@@ -207,7 +198,7 @@ $username = stringEscape($actual_link, $conn);
                 <p class="pt-0"><a href="../user/'.$username_post.'" class="text-light">'.$username_post.'</a> - '.$date.'</p>
                 </div>
                 <div class="col-3 text-right pl-0 ml-0">
-                <span class="mb-0 pb-0 mb-0"><span class="badge third shadow">'.$resultcheck_6.' <ion-icon name="chatboxes"></ion-icon> </span></span> <br>
+                <span class="mb-0 pb-0 mb-0"><span class="badge third shadow">'.$resultcheck_6.' <i class="fas fa-comment"></i> </span></span> <br>
                 <span class="mb-0 pt-0 mt-0">'.$status.'</span>
                 </div>
                 </div>
@@ -237,7 +228,7 @@ $username = stringEscape($actual_link, $conn);
                 $username_post = $row_8['username'];
                 $role = $row_8['role'];
                 if($propic_8 == ''){
-                    $propic_8 = "/forumjuve/img/utente.jpg";
+                    $propic_8 = "/img/utente.jpg";
                 }
 
                 $sql_4 = "SELECT * FROM posts WHERE permalink = '$permalink_comment'";
@@ -247,9 +238,9 @@ $username = stringEscape($actual_link, $conn);
                 $title_comment = $row_4['title'];
                 $status = $row_4['closed'];
                 if($status == 1){
-                    $status = '<span class="badge badge-danger shadow">Chiuso <ion-icon name="close"></ion-icon></span>';
+                    $status = '<span class="badge badge-danger shadow">Chiuso <i class="fas fa-door-closed"></i></span>';
                 } else {
-                    $status = '<span class="badge third text-light shadow">Aperto <ion-icon name="globe"></ion-icon></span>';
+                    $status = '<span class="badge third text-light shadow">Aperto <i class="fas fa-globe-europe"></i></span>';
                 }
 
                 $sql_9 = "SELECT * FROM comments WHERE permalink_post = '$permalink_comment'";
@@ -269,7 +260,7 @@ $username = stringEscape($actual_link, $conn);
                             <p class="pt-0">'.$date_comment.'</p>
                             </div>
                             <div class="col-3 text-right pl-0 ml-0">
-                            <span class="mb-0 pb-0 mb-0"><span class="badge third shadow">'.$resultcheck_9.' <ion-icon name="chatboxes"></ion-icon> </span></span> <br>
+                            <span class="mb-0 pb-0 mb-0"><span class="badge third shadow">'.$resultcheck_9.' <i class="fas fa-comment"></i> </span></span> <br>
                             <span class="mb-0 pt-0 mt-0">'.$status.'</span>
                             </div>
                             </div>

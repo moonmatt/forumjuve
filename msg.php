@@ -68,7 +68,7 @@ else {
                $role = $row_1['role'];
                $website = $row_1['website'];
                if($propic == ''){
-                $propic = "/forumjuve/img/utente.jpg";
+                $propic = "/img/utente.jpg";
                }
 
                echo '

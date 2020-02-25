@@ -17,13 +17,12 @@ if(loginCheck()){
     $pwd = loginCheck()[4];
   }
 
-$_SESSION["profile_errors"] = $errors; // Puts the Errors Array in the session, so it's visible from other pages
+$_SESSION["showErrors"] = $errors; // Puts the Errors Array in the session, so it's visible from other pages
 
 $redirect = "../"; // Path to redirect
 $redirectProfile = "../profile"; // Path to redirect
 
 if(isset($_POST['submit_profile'])){ // If the login form is submitted
-
     // // Escapes dangerous characters
     $username_form = stringEscape($_POST['username_form'], $conn);
     $email_form = stringEscape($_POST['email_form'], $conn);
@@ -42,7 +41,7 @@ if(isset($_POST['submit_profile'])){ // If the login form is submitted
     if(!valid_email($email)){
         array_push($errors, "L'email contiene caratteri non validi");
     }
-    if(!valid_username($username)){
+    if(!valid_username($username_form)){
         array_push($errors, "L'username contiene caratteri non validi");
     }
 
@@ -52,7 +51,7 @@ if(isset($_POST['submit_profile'])){ // If the login form is submitted
 
     if($resultcheck > 0){ // If the account already exists
         array_push($errors, "L'username o l'email non sono disponibili");
-        $_SESSION["profile_errors"] = $errors;
+        $_SESSION["showErrors"] = $errors;
     }
 
     if($img['name']==''){  
@@ -78,17 +77,15 @@ if(isset($_POST['submit_profile'])){ // If the login form is submitted
         if($url!=""){
          $url_image = $url;
         }else{
-         echo $pms['data']['error'];  
-         die();
+         array_push($errors, "Errore con l'immagine, provane una più leggera");
         } 
     }
-
     if (count($errors) == 0) { // If there are no errors
-        $sql = "UPDATE users SET username = '$username_form', email = '$email_form', name = '$name_form', bio = '$bio_form', sex = '$sex_form', website = '$website_form', dofbirth = '$dofbirth_form', city = '$city_form', propic = '$url_image' WHERE id = '$id';";
+        $sql = "UPDATE users SET username = '$username_form', email = '$email_form', name = '$name_form', bio = '$bio_form', sex = '$sex_form', website = '$website_form', city = '$city_form', propic = '$url_image' WHERE id = '$id';";
         mysqli_query($conn, $sql);
         loginProfile($id, $pwd, $conn);
     } else {
-        $_SESSION["signup_errors"] = $errors;
+        $_SESSION["showErrors"] = $errors;
         header('location: ' . $redirectProfile);
          die();
     }

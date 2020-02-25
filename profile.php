@@ -21,7 +21,7 @@ if(loginCheck()){
             $city = $row['city'];
             $propic = $row['propic'];
             if($propic == ''){
-              $propic = "/forumjuve/img/utente.jpg";
+              $propic = "/img/utente.jpg";
             }
 
         }
@@ -67,14 +67,13 @@ if(loginCheck()){
         </div>
 
     <div class="container">
-
         <div class="row">
             <div class="col-sm-8">
                 <div class="jumbotron jumbotron-fluid pt-3 dark-bg-1 text-light">
                     <div class="container">
 
                         <form action="inc/profile.php" method="POST" enctype="multipart/form-data">
-                            <?php profileErrors(); ?>
+                            <?php showErrors(); ?>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Username</label>
                                 <input type="text" class="form-control dark-bg text-light" id="username_form" name="username_form"
@@ -127,17 +126,12 @@ if(loginCheck()){
                                     value="<?php echo $city; ?>">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Data di nascita</label>
-                                <input type="date" class="form-control dark-bg text-light" id="dofbirth_form" name="dofbirth_form"
-                                    value="<?php echo $dofbirth; ?>">
-                            </div>
-                            <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Bio</label>
                                 <textarea class="form-control dark-bg text-light" id="bio_form" name="bio_form"
                                     rows="5"><?php echo $bio; ?></textarea>
                             </div>
                             <button type="submit" class="btn third third text-light" value="submit_profile"
-                                name="submit_profile">Invia</button>
+                                name="submit_profile">Aggiorna</button>
                         </form>
                     </div>
                 </div>

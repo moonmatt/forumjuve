@@ -19,7 +19,7 @@ if(loginCheck()){
       die();
   }
 
-$_SESSION["sendMsg_errors"] = $errors; // Puts the Errors Array in the session, so it's visible from other pages
+$_SESSION["showErrors"] = $errors; // Puts the Errors Array in the session, so it's visible from other pages
 
 $redirect = "../"; // Path to redirect
 $redirectProfile = "../write-msg"; // Path to redirect
@@ -28,7 +28,7 @@ if(isset($_POST['submit_msg'])){ // If the login form is submitted
 
     // // Escapes dangerous characters
     $to_username_form = stringEscape($_POST['to_username_form'], $conn);
-    $msg_form = stringEscape($_POST['msg_form'], $conn);
+    $msg_form = textareaEscape($_POST['msg_form'], $conn);
     $title_form = stringEscape($_POST['title_form'], $conn);
     $date = date("Y-m-d H:i:s");
     $username = stringEscape($username, $conn);
@@ -48,7 +48,7 @@ if(isset($_POST['submit_msg'])){ // If the login form is submitted
         
 
         if($resultcheck != 1){ // If there is not 1 result
-            array_push($errors, "Il desitanatio non esiste non esiste"); 
+            array_push($errors, "Il destinatario non esiste"); 
         }
 
     }
@@ -61,7 +61,7 @@ if(isset($_POST['submit_msg'])){ // If the login form is submitted
         header('location: ../index?message-sent');
         die();
     } else {
-        $_SESSION["sendMsg_errors"] = $errors;
+        $_SESSION["showErrors"] = $errors;
         header('location: ' . $redirectProfile);
          die();
     }

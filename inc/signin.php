@@ -10,7 +10,7 @@ $errors = array();
 // Starts the session
 session_start();
 
-$_SESSION["login_errors"] = $errors; // Puts the Errors Array in the session, so it's visible from other pages
+$_SESSION["showErrors"] = $errors; // Puts the Errors Array in the session, so it's visible from other pages
 
 $redirect = "../"; // Path to redirect
 $redirectLogin = "../login"; // Path to redirect
@@ -38,6 +38,13 @@ if(isset($_POST['submit'])){ // If the login form is submitted
                 $email = $row['email'];
                 $id = $row['id'];
                 $ban = $row['ban'];
+                $isVerified = $row['isVerified'];
+                if($isVerified == 0){
+                   array_push($errors, "L'email non è stata confermata");
+                   $_SESSION["showErrors"] = $errors;
+                   header('location: ' . $redirectLogin);
+                   die(); 
+                }
                 if(password_verify($password, $pwd)){ // If password is correct
                     $_SESSION['username'] = $username;
                     $_SESSION['email'] = $email;
@@ -49,19 +56,19 @@ if(isset($_POST['submit'])){ // If the login form is submitted
                     die();
                 } else { // If password is not correct
                     array_push($errors, "L'username o la password sono sbagliati");
-                    $_SESSION["login_errors"] = $errors;
+                    $_SESSION["showErrors"] = $errors;
                     header('location: ' . $redirectLogin);
                     die();
                 }
             }
         } else { // If there are no results
             array_push($errors, "L'username o la password sono sbagliati");
-            $_SESSION["login_errors"] = $errors;
+            $_SESSION["showErrors"] = $errors;
             header('location: ' . $redirectLogin);
             die();
         }
     } 
-    $_SESSION["login_errors"] = $errors;
+    $_SESSION["showErrors"] = $errors;
     header('location: ' . $redirectLogin);
     die();
 }

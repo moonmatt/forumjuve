@@ -43,6 +43,7 @@
 
 </head>
 
+
 <body class="dark-bg">
 <div class="jumbotron jumbotron-fluid text-light dark-bg-1 shadow">
             <div class="container">
@@ -68,9 +69,9 @@
         $date_post = $row['date'];
         $date_post = date("d/m/Y - H:i", strtotime($date_post));
         if($status == 1){
-            $status = '<span class="badge badge-danger shadow">Chiuso <ion-icon name="close"></ion-icon></span>';
+            $status = '<span class="badge badge-danger shadow">Chiuso <i class="fas fa-door-closed"></i></span>';
         } else {
-            $status = '<span class="badge third text-light shadow">Aperto <ion-icon name="globe"></ion-icon></span>';
+            $status = '<span class="badge third text-light shadow">Aperto <i class="fas fa-globe-europe"></i></span>';
         }
         $sql_1 = "SELECT * FROM users WHERE id = '$id_post'";
         $result_1 = mysqli_query($conn, $sql_1);
@@ -80,7 +81,7 @@
         $username_post = $row_1['username'];
         $role = $row_1['role'];
         if($propic == ''){
-          $propic = "/forumjuve/img/utente.jpg";
+          $propic = "/img/utente.jpg";
          }
          $sql_4 = "SELECT * FROM comments WHERE permalink_post = '$permalink_post'";
          $result_4 = mysqli_query($conn, $sql_4);
@@ -97,7 +98,7 @@
         <p class="pt-0"><a href="user/'.$username_post.'" class="text-light">'.$username_post.'</a> - '.$date_post.'</p>
         </div>
         <div class="col text-right pl-0 ml-0">
-        <span class="mb-0 pb-0 mb-0"><span class="badge third shadow">'.$resultcheck_4.' <ion-icon name="chatboxes"></ion-icon> </span></span> <br>
+        <span class="mb-0 pb-0 mb-0"><span class="badge third shadow">'.$resultcheck_4.' <i class="fas fa-comment"></i> </span></span> <br>
         <span class="mb-0 pt-0 mt-0">'.$status.'</span>
         </div>
         </div>
@@ -147,14 +148,13 @@
                              $username_post = $row_3['username'];
                              $role = $row_3['role'];
                              if($propic_3 == ''){
-                               $propic_3 = "/forumjuve/img/utente.jpg";
+                               $propic_3 = "/img/utente.jpg";
                               }
                               $sql_4 = "SELECT * FROM posts WHERE permalink = '$permalink_comment'";
                               $result_4 = mysqli_query($conn, $sql_4);
                               $resultcheck_4 = mysqli_num_rows($result_4);
                               $row_4 = mysqli_fetch_assoc($result_4);
                               $title_comment = $row_4['title'];
-                     
                              echo '
                              <div class="jumbotron jumbotron-fluid p-0 mt-0 mb-2 dark-bg-2 text-light">
                             <div class="row p-3 pt-2 mt-0 pb-0">
@@ -165,7 +165,7 @@
                             </div>
                             <div class="col-8 ml-2">
                             <h6 class="mb-0"><a href="p/'.$permalink_comment.'#'.$id_comment_1.'" class="text-light">'.$title_comment.'</a></h6>
-                            <p class="py-0 my-0">'.$date_post.'</p>
+                            <p class="py-0 my-0">'.$date_comment.'</p>
                             </div>
                             </div>
                             </div>
@@ -178,7 +178,6 @@
             </div>
         </div>
     </div>
-
 
 <script src="https://kit.fontawesome.com/d2ce008e27.js" crossorigin="anonymous"></script>
     <?php include 'inc/footer.php'; ?>

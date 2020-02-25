@@ -35,7 +35,7 @@ $sql = "SELECT * FROM posts WHERE permalink = '$permalink_url' and ban != 1";
             $username_post = $row_1['username'];
             $website = $row_1['website'];
             if($propic == ''){
-             $propic = "/forumjuve/img/utente.jpg";
+             $propic = "/img/utente.jpg";
             }
 
         }
@@ -118,23 +118,23 @@ if($resultcheck_2 > 0){ // If there is 1 result
         $resultcheck_3 = mysqli_num_rows($result_3);
         $row_3 = mysqli_fetch_assoc($result_3);
 
+        $id_comment_username = $row_3['id'];
         $username_comment = $row_3['username'];
         $propic_comment = $row_3['propic'];
         $badges_comment = $row_3['badges'];
         $role_comment = $row_3['role'];
         $website_comment = $row_3['website'];
         if($propic_comment == ''){
-         $propic_comment = "/forumjuve/img/utente.jpg";
+         $propic_comment = "/img/utente.jpg";
         }
-
         echo '
-        <div class="row ml-3 mr-3 pt-3 pb-3 dark-bg-2 text-light pl-3 mt-3 pr-3">
+        <div class="row ml-3 mr-3 pt-3 pb-3 dark-bg-2 text-light pl-3 mt-3 pr-3" id="'.$id_comment.'">
         <div class="col-sm-3 mr-0 pr-0 py-4 pl-0 dark-bg-1 text-light">
             <img src="'.$propic_comment.'" class=" mx-auto d-block" alt="..."
                 style="object-fit: cover; width:200px; height:200px; ">
             <div class="text-center text-break pr-3 pl-3 ">
             <a href="../user/'.$username_comment.'" class="text-light"><h5 class="mt-2">'.$username_comment.'</h5></a>
-                '.badgeGroup($role_comment, $username_comment, $badges_comment, $conn).'
+                '.badgeGroup($role_comment, $id_comment_username, $badges_comment, $conn).'
                 <span class="mt-2">'.website($website_comment).'</span>
             </div>
         </div>

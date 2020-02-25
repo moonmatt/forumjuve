@@ -19,7 +19,7 @@ if(loginCheck()){
       die();
   }
 
-$_SESSION["newPost_errors"] = $errors; // Puts the Errors Array in the session, so it's visible from other pages
+$_SESSION["showErrors"] = $errors; // Puts the Errors Array in the session, so it's visible from other pages
 
 $redirect = "../"; // Path to redirect
 $redirectPage = "../new-post"; // Path to redirect
@@ -27,7 +27,7 @@ $redirectPage = "../new-post"; // Path to redirect
 if(isset($_POST['submit_post'])){ // If the login form is submitted
 
     // Escapes dangerous characters
-    $msg_post = stringEscape($_POST['msg_post'], $conn);
+    $msg_post = textareaEscape($_POST['msg_post'], $conn);
     $title_post = stringEscape($_POST['title_post'], $conn);
     $date = date("Y-m-d H:i:s");
 
@@ -38,13 +38,15 @@ if(isset($_POST['submit_post'])){ // If the login form is submitted
 
     if (count($errors) == 0) { // If there are no errors
         $permalink = permalink($title_post);
-        $sql = "INSERT INTO posts (username, title, msg, permalink, date) VALUES ('$id', '$title_post', '$msg_post', '$permalink', '$date');";
+        $permalink =  checkPermalink($permalink, $conn);
+        
+        $sql = "INSERT INTO posts (username, title, msg, permalink, date, ban, closed) VALUES ('$id', '$title_post', '$msg_post', '$permalink', '$date', 0, 0);";
         mysqli_query($conn, $sql);
-        header('location: /forumjuve/p/'.$permalink);
+        header('location: /p/'.$permalink);
         die();
     } else {
         echo var_dump($errors);
-        $_SESSION["newPost_errors"] = $errors;
+        $_SESSION["showErrors"] = $errors;
         header('location: '.$redirectPage);
         die();
     }
