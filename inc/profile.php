@@ -56,7 +56,7 @@ if(isset($_POST['submit_profile'])){ // If the login form is submitted
             array_push($errors, "Il nome contiene caratteri non validi");
         } 
     }
-    if (!is_numeric($sex_form)){
+    if ($sex_form != 1 OR $sex_form != 2){
         array_push($errors, "Il sesso non è valido");
     }
     $sql = "SELECT * FROM users WHERE id != '$id' AND username = '$username_form'";
