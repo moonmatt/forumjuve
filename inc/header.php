@@ -1,3 +1,4 @@
+<script src="https://www.w3counter.com/tracker.js?id=130285"></script>
 <?php
 //  SELECT * FROM posts WHERE (`title` LIKE '%ciao%') OR (`msg` LIKE '%ciao%')
 require_once 'dbh.inc.php';

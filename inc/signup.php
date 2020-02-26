@@ -68,7 +68,7 @@ if(isset($_POST['submit'])){ // If the login form is submitted
     }
 
     if (count($errors) == 0) { // If there are no errors
-        $token = "fiuehfiwhfjikhweifgwefbjvodivuiuupsoaioasusoDUIOVHSDUIVGYUSDVHJDGVBDCHHDUIC16782932372920237539429823675372378978925";
+        $token = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         $token = str_shuffle($token);
         $token = substr($token, 0, 10);
         verificationEmail($email, $token);

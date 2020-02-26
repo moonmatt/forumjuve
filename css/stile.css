@@ -35,6 +35,9 @@ html {
     max-width: 100%;
     height: auto;
 }
+p {
+    overflow-wrap: break-word!important;
+}
 img {
     image-resolution: 1000dpi; 
 }

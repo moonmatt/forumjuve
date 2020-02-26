@@ -12,7 +12,6 @@ if(loginCheck()){
     if($resultcheck == 1){ // If there is 1 result
         while($row = mysqli_fetch_assoc($result)){
             $username = $row['username'];
-            $email = $row['email'];
             $name = $row['name'];
             $bio = $row['bio'];
             $website = $row['website'];
@@ -80,16 +79,9 @@ if(loginCheck()){
                                     value="<?php echo $username; ?>">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="email" class="form-control dark-bg text-light" id="email_form" name="email_form"
-                                    value="<?php echo $email; ?>">
-                            </div>
-                            <div class="form-group">
-                                <div class="custom-file">
-                                    <label for="exampleInputEmail1">Profile Image</label><br>
-                                    <input name="img_form" name="img_form" size="35" type="file" />
-                                    <input name="img_user" id="img_user" value="<?php echo $propic; ?>" type="hidden" />
-                                </div>
+                                <label for="exampleInputEmail1">Immagine profilo</label>
+                                <input type="text" class="form-control dark-bg text-light" id="img_form" name="img_form"
+                                    value="<?php echo $propic; ?>">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nome</label>
